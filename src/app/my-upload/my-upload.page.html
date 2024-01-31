@@ -1,0 +1,56 @@
+
+<ion-header>
+  <ion-toolbar>
+    <label class="label-titles">My Upload</label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bgimg">
+  <ion-refresher label="Start" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-button (click)="takephoto()" style="margin: 10px auto;
+    margin-right: 10px;" class="btn btn-primary" float-right>Upload Document
+  </ion-button>
+  <div *ngIf="!pagination">
+    <ion-list class="m-n">
+      <ion-item no-lines *ngFor="let i of [0,1,2,3,4,5,6,7]">
+        <skeleton-item height="8px" width="90%"></skeleton-item>
+        <skeleton-item height="6px" width="70%"></skeleton-item>
+        <skeleton-item height="6px" width="70%"></skeleton-item>
+        <ion-avatar item-end>
+          <skeleton-item height="50px" width="50px"></skeleton-item>
+        </ion-avatar>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div *ngIf="pagination && temrDocumentUploadList.length == 0">
+    <img style="width: 20%;margin:0px auto;display: block;margin-top:50px;" src="assets/mulk/pty.jpg">
+    <p><b
+      style="color:#fff;font-weight: bold; margin: 10px auto;display: block; text-align: center;font-size: 12px;font-family: monospace;">You
+      have no upload's files.</b></p>
+  </div>
+
+  <div *ngIf="pagination  && temrDocumentUploadList.length >= 1">
+    <div *ngFor="let user of temrDocumentUploadList | paginate : config; let i=index">
+      <ion-card>
+        <ion-list>
+          <ion-item>
+            <p><b>Document Name : </b> {{user.duName}}</p>
+            <p><b>Category : </b> {{user.duDcId.dcName}} </p>
+            <p><b>Date / Time : </b> {{user.createdDate | date}} / {{user.createdDate | date:'shortTime'}} </p>
+            <p><b>File Name : </b>{{user.duFileName}} </p>
+            <span item-end (click)="ViewImage(user.duFileName,'Upload Image View')"><img
+              src="assets/img/icons/viewupload.png"></span>
+          </ion-item>
+        </ion-list>
+      </ion-card>
+    </div>
+    <div style="text-align: left">
+      <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
+      <pagination-controls (pageChange)="getPage($event)" [id]="config.id"></pagination-controls>
+    </div>
+  </div>
+</ion-content>

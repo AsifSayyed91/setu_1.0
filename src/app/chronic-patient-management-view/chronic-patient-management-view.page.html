@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <label class="label-titles">Chronic Patient Details</label>
+    <ion-buttons end>
+      <ion-button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="background-color: #fff!important;">
+  <div class="labels">
+
+    <input type="button" style="font-size: large;" class="login-bt" value="Send to Lab" (click)="sendToOthers()"
+           (click)="OpenModal()">
+  </div>
+
+
+  <div *ngFor="let cPatient of chronicPatientList">
+    <div class="labels">
+
+    </div>
+    <h4><strong>Patient Name </strong> :
+      {{cPatient?.patientId?.patientUserId?.userName}} </h4>
+    <h4><strong>Enquiry</strong> :
+      {{cPatient.enquiry}} </h4>
+  </div>
+  <div class="presc_lable">
+    <!--<h5>Radiology List</h5>-->
+  </div>
+
+
+</ion-content>
+

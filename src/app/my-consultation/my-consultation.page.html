@@ -1,0 +1,197 @@
+<style type="text/css">
+  .bgimg {
+    /*background: url('assets/img/Mulk E Health A4-01 1.png');*/
+    background-color: black;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+  }
+</style>
+
+
+<!--<ion-header>-->
+<!--<ion-toolbar class="bar">-->
+<!--<ion-buttons start left>-->
+<!--<div ion-button show menuToggle>-->
+<!--<ion-icon name="menu"></ion-icon>-->
+<!--</div>-->
+<!--</ion-buttons>-->
+<!--<label class="label-titles">My Consu-->
+<!--<iabel>-->
+<!--</ion-toolbar>-->
+<!--</ion-header>-->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title style=" text-align: center;">My Consultation</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+
+<ion-content class="bgimg">
+  <ion-refresher slot="start" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-row>
+    <ion-col>
+      <img src="assets/mulk/consultation/My_Consultation1.png"
+           style="display: block;margin-left: auto;margin-right: auto;">
+    </ion-col>
+  </ion-row>
+
+  <!--<div class="container" class="box" *ngFor="let prescription of Prescriptionlist | paginate : config; let i=index">
+  <div>
+  <ion-row style="margin-right: 0px;margin-right: 0px">
+  <ion-col col-6 style="text-align: left;padding: 0px; ! important;margin-left: 40px;padding-top: 16px;">
+  &lt;!&ndash;<h3>abc</h3>&ndash;&gt;
+  <h5><b>NO : </b>  </h5>
+  <h5><b>DRUG : </b>  </h5>
+  <h5><b>FREQUENCY : </b>  </h5>
+  <h5><b>DURATION/DAYS : </b>  </h5>
+  <h5><b>INSTRUCTION 1 : </b></h5>
+  <h5><b>INSTRUCTION 2 : </b></h5>
+  <h5><b>ROUTE  : </b> </h5>
+  </ion-col>
+
+  <ion-col col-6 style="text-align: left;padding: 0px; ! important;margin-left: 40px;padding-top: 16px;">
+  &lt;!&ndash;<h3>abc</h3>&ndash;&gt;
+  <h5><b>{{prescription?.vpPatientMrNumber}} </b>  </h5>
+  <h5><b>Abact  </b></h5>
+  <h5><b> 1/2 ml- 1/2ml - 1/2ml </b> </h5>
+  <h5><b>3 Days </b>  </h5>
+  <h5><b>Before Breakfast </b> </h5>
+  <h5><b>Fasting </b> </h5>
+  <h5><b>Oral </b> </h5>
+  </ion-col>
+  </ion-row>
+
+  </div>
+  </div>
+
+  <div class="container" class="box" >
+  <div>
+  <ion-row style="margin-right: 0px;margin-right: 0px">
+
+  <ion-col col-6 style="text-align: left;padding: 0px; ! important;margin-left: 40px;padding-top: 16px;">
+  &lt;!&ndash;<h3>abc</h3>&ndash;&gt;
+  <h5><b>NO : </b>  </h5>
+  <h5><b>DRUG : </b>  </h5>
+  <h5><b>FREQUENCY : </b>  </h5>
+  <h5><b>DURATION/DAYS : </b>  </h5>
+  <h5><b>INSTRUCTION 1 : </b></h5>
+  <h5><b>INSTRUCTION 2 : </b></h5>
+  <h5><b>ROUTE  : </b> </h5>
+  </ion-col>
+
+  <ion-col col-6 style="text-align: left;padding: 0px; ! important;margin-left: 40px;padding-top: 16px;">
+  &lt;!&ndash;<h3>abc</h3>&ndash;&gt;
+  <h5><b>97876 </b>  </h5>
+  <h5><b>Abact  </b></h5>
+  <h5><b> 1/2 ml- 1/2ml - 1/2ml </b> </h5>
+  <h5><b>3 Days </b>  </h5>
+  <h5><b>Before Breakfast </b> </h5>
+  <h5><b>Fasting </b> </h5>
+  <h5><b>Oral </b> </h5>
+  </ion-col>
+  </ion-row>
+
+  </div>
+  </div>
+
+  <div style="text-align: left">
+  <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
+  <pagination-controls (pageChange)="getPage($event)" [id]="config.id"></pagination-controls>
+  </div>
+
+  <div *ngIf="!pagination">
+  <ion-list class="m-n">
+  <ion-item no-lines *ngFor="let i of [0,1,2,3,4,5,6,7]">
+  <skeleton-item height="8px" width="90%"></skeleton-item>
+  <skeleton-item height="6px" width="70%"></skeleton-item>
+  <skeleton-item height="6px" width="70%"></skeleton-item>
+  <ion-avatar item-end>
+  <skeleton-item height="50px" width="50px"></skeleton-item>
+  </ion-avatar>
+  </ion-item>
+  </ion-list>
+  </div>
+  <div *ngIf="pagination && Prescriptionlist.length == 0">
+  <img style="width: 20%;margin:0px auto;display: block;margin-top:50px;" src="assets/mulk/cpty.png">
+  <p><b
+  style="font-weight: bold; margin: 10px auto;display: block; text-align: center;font-size: 12px;font-family: monospace;">You
+  have no Prescription's.</b></p>
+  </div>
+  <div *ngIf="pagination && Prescriptionlist.length >= 1">
+  <div *ngFor="let prescription of Prescriptionlist | paginate : config; let i=index">
+  <ion-card>
+  <ion-list>
+  <ion-item>
+  &lt;!&ndash;<p><b>Mr.No : </b> {{prescription?.vpPatientMrNumber}} </p>&ndash;&gt;
+  <p><b>Date : </b> {{prescription?.vpVisitId?.visitDate | date:'dd-MM-yyyy'}} </p>
+  <p><b>Doctor : </b> Dr. {{prescription?.vpTimelineId?.timelineEMRFinalStaffId?.staffUserId.userFullname}}
+  </p>
+  <span (click)="prescription_view(prescription?.vpId)" item-end><img
+  src="assets/img/icons/prescription.png"></span>
+  </ion-item>
+  </ion-list>
+  </ion-card>
+  </div>
+  <div style="text-align: left">
+  <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
+  <pagination-controls (pageChange)="getPage($event)" [id]="config.id"></pagination-controls>
+  </div>
+  </div>-->
+  <div *ngIf="pagination && appointmentlist.length == 0">
+    <img style="width: 20%;margin:0px auto;display: block;margin-top:50px;" src="assets/mulk/cpty.png">
+    <p><b
+      style="color:#fff;font-weight: bold; margin: 10px auto;display: block; text-align: center;font-size: 12px;font-family: monospace;">You
+      have no Consultation's.</b></p>
+  </div>
+
+  <div *ngIf="pagination && appointmentlist.length >= 1" style="padding-left: 10px;
+    padding-right: 10px;">
+    <div *ngFor="let user of appointmentlist | paginate : config; let i=index">
+      <ion-card style="padding:0px !important;border-radius: 20px;">
+        <ion-item style="padding: 0px !important;">
+          <p><b style="font-size: 14px; font-family: unset;color: #0F6092;">Visited Dr.
+            {{user?.appointmentStaffId?.staffUserId?.userFullname }} on
+            {{user?.appointmentDate | date:'dd/MM/yyyy'}}
+            - {{user?.appointmentSlot}} </b>
+          </p>
+          <br style="margin-top: 5px"/>
+          <p> for <b style="font-size: 13px;"> {{user?.appointmentreason}}</b></p>
+          <!--<span item-end *ngIf="user.appointmentTimelineId.emrfinal==true" (click)="openCaseReport(user?.appointmentTimelineId?.timelineId)"><img src="assets/img/icons/casepaper.png"></span>-->
+          <!--<span item-end *ngIf="user.appointmentTimelineId.emrfinal==false"><img src="assets/img/icons/casepaperno.png"></span>-->
+          <span item-end *ngIf="user.appointmentTimelineId.emrfinal==true"
+                (click)="openCaseReport(user?.appointmentTimelineId?.timelineId,user?.appointmentStaffId?.staffUserId?.userId,user?.appointmentStaffId?.staffId,user?.appointmentId,user?.isRatingGiven)">
+            <img src="assets/img/icons/casepaper.png" (click)="openCaseReport(user?.appointmentTimelineId?.timelineId,user?.appointmentStaffId?.staffUserId?.userId,user?.appointmentStaffId?.staffId,user?.appointmentId,user?.isRatingGiven)"></span>
+          <span item-end *ngIf="user.appointmentTimelineId.emrfinal==false" >
+            <img src="assets/img/icons/casepaper.png" (click)="openCaseReport(user?.appointmentTimelineId?.timelineId,user?.appointmentStaffId?.staffUserId?.userId,user?.appointmentStaffId?.staffId,user?.appointmentId,user?.isRatingGiven)"></span>
+
+        </ion-item>
+        <p
+          style="margin: 0 0 5px;font-size: 1.4rem;font-weight: normal;line-height: 1.5;color: #222;text-align: right; margin-top: -15px;"
+          *ngIf="user?.appointmentRating !=null">
+          <ionic3-star-rating #rating activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#f9b403"
+                              defaultColor="#9a8a8a" readonly="true"
+                              rating="{{user?.appointmentRating  | number : '1.1-1'}}"
+                              fontSize="15px">
+          </ionic3-star-rating>
+
+
+        </p>
+      </ion-card>
+    </div>
+    <div style="text-align: left">
+      <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
+      <pagination-controls (pageChange)="getPage($event)" [id]="config.id"></pagination-controls>
+    </div>
+  </div>
+</ion-content>

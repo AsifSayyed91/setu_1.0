@@ -1,0 +1,125 @@
+<style type="text/css">
+  .bgimg {
+    background: url('assets/img/Mulk E Health A4-01 1.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+  }
+</style>
+
+<!--<ion-header>
+  <ion-navbar class="bar">
+    <ion-buttons start left>
+      <div ion-button show menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </div>
+    </ion-buttons>
+    <label class="label-titles">Diagnostics</label>
+    <ion-buttons end>
+      <div ion-button icon-only (click)="popoverMenu($event)">
+        <ion-icon name="more"></ion-icon>
+      </div>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>-->
+
+<!--<ion-header>
+  <ion-navbar>
+    <label class="label-titles">Diagnostics</label>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goBack()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>-->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/explore-services"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="align-items: center">Radiology</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding class="bgimg" id="chronicTextArea">
+
+
+  <!--<ion-grid>-->
+  <!--<ion-row>-->
+  <!--<ng-container *ngFor="let partner of partnerListByCondition">-->
+  <!--<ion-col class="col-12" style="padding: 5px" *ngIf="partner?.uspImage != null && partner?.uspImage != '(NULL)'">-->
+  <!--<ion-card style="background-color:#ebebeb;border-radius:10px;height: 84%;">-->
+  <!--<img src="{{patientimagepath}}{{partner?.uspImage}}"-->
+  <!--style="width: 100%; height: 78px;display: block;text-align: center;margin: 5px auto;">-->
+  <!--&lt;!&ndash;  <img *ngIf="doctor.imageName !='null'" src="{{patientimagepath}}{{doctor.imageName}}" class="docimg">&ndash;&gt;-->
+  <!--</ion-card>-->
+  <!--</ion-col>-->
+  <!--</ng-container>-->
+  <!--</ion-row>-->
+  <!--</ion-grid>-->
+
+  <!--<input type="button" style="font-size: large; margin: 0px auto;width:41%;display: block;margin-top: 33px;"-->
+  <!--class="login-bt" value="Send"-->
+  <!--(click)="gotoRefferals()">-->
+
+
+  <!--<h2 class="or">OR</h2>-->
+
+
+  <form class="pd-10" id="medicalTourism" autocomplete="off"
+        [formGroup]="myForm" (ngSubmit)="onAddRecord(myForm.value)">
+
+    <!--<div class="row" style="font-size: 18px; margin: -10px auto;  padding: 14px;">-->
+      <!--<div class="col-md-5" style="color: #ffffff;padding: 0px">-->
+        <!--<h6 style="color: white; font-size: 20px;text-align: center">Enquiry</h6>-->
+      <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="row" style="margin-top: 5px;">-->
+      <!--<div class="col-md-1"></div>-->
+      <!--<div class="col-md-10">-->
+        <!--<div class="row">-->
+                <!--<textarea class="form-control new-form-control" id="enquiry"-->
+                          <!--name="enquiry" required="" formControlName="enquiry"-->
+                          <!--[formControl]="myForm.controls['enquiry']"-->
+                          <!--style="margin-top: 0px; margin-bottom: 0px; height: 55px; width: 100% !important; padding: 37px; border: 1px solid #ccc; border-radius: 10PX;">-->
+                <!--</textarea>-->
+        <!--</div>-->
+      <!--</div>-->
+
+    <div class="row" style="font-size: 18px; margin: -10px auto;  padding: 14px;">
+      <div class="col-md-5" style="padding: 0px">
+        <h6 style=" font-size: 20px;text-align: center">Enquiry</h6>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 5px;">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <div class="row">
+                <textarea
+                  class="form-control" id="enquiry"
+                  name="enquiry" required="" formControlName="enquiry"
+                  formControlName="enquiry"
+                  style="margin-top: 0px; margin-bottom: 0px; height: 55px; width: 100% !important; padding: 37px; border: 1px solid #ccc; border-radius: 10PX;">
+                </textarea>
+        </div>
+      </div>
+      <br><br>
+      <!--<button class="btn btn-primary mt-3 active"
+              style="display: block;text-align: center;margin: 0px auto;width: 37%; font-size: 20px" type="submit">Submit</button>-->
+      <ion-button shape="round" type="submit" style="font-size: large; margin: 0px auto;width:41%;display: block;margin-top: 33px;"
+           class="login-bt" value="Submit"> SUBMIT
+      </ion-button>
+    </div>
+  </form>
+
+
+  <ion-refresher label="Start" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+
+</ion-content>

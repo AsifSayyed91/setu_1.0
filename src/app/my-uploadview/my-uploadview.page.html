@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <label class="label-titles">{{title}}</label>
+    <ion-buttons end>
+      <ion-button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding style="background-color: #fff!important;">
+  <div *ngIf="!flag">
+    <img *ngIf="imagepath == null">
+    <img *ngIf="imagepath != null" [src]="docpath+imagepath">
+  </div>
+</ion-content>

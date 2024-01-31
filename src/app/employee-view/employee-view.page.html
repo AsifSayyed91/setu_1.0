@@ -1,0 +1,46 @@
+<!--<ion-header>
+  <ion-toolbar>
+    <label class="label-titles">My Lab Reports Details</label>
+    <ion-buttons end>
+      <ion-button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>-->
+
+<ion-header>
+  <ion-toolbar class="bar">
+    <ion-buttons start left>
+      <div ion-button show menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </div>
+    </ion-buttons>
+    <label class="label-titles">Employee Details</label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="background-color: #fff!important;">
+  <!--<div class="labels">
+    <input type="button" style="font-size: large;" class="login-bt" value="Send to Lab" (click)="sendToOthers()" (click)="OpenModal()">
+  </div>-->
+
+  <div *ngFor="let employees of employeeList;">
+    <ion-col class="col-12" style="padding: 5px" >
+      <ion-card style="background-color:#ebebeb;border-radius:10px;height: 84%;">
+        <ion-item style="padding: 0px!important;">
+          <p><b>Date : </b> {{employees?.createdDate | date:'dd-MM-yyyy'}} </p>
+          <p><b>Employee Name : </b> {{employees?.employeeName}}</p>
+          <p><b>Mobile Number : </b> {{employees?.mobile}} </p>
+          <p><b>Email : </b> {{employees?.email}} </p>
+          <p><b>Address : </b> {{employees?.address}} </p>
+        </ion-item>
+      </ion-card>
+    </ion-col>
+  </div>
+  <div class="presc_lable">
+  </div>
+
+
+</ion-content>
+

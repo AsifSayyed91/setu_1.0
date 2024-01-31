@@ -1,0 +1,162 @@
+
+.toolbar-title-md {
+  padding: 0 12px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #424242;
+}
+.avatar {
+  vertical-align: middle;
+  width: 85px;
+  height: 85px;
+  margin: 1px 1px 1px 1px;
+  border-radius: 50%;
+  border: 0px solid #cccccc;
+}
+
+.topborder img {
+  border: 1px solid #9b9b9b;
+  text-align: left;
+  border-radius: 10px;
+  height: 80px;
+  width: 80px;
+  margin-left: 10px;
+  border-radius: 54px;
+}
+//
+//.xyz{
+//  background: linear-gradient(to right, #182230, #09c1df);
+//  color: #fff;
+//  margin: 5px auto;
+//}
+h6 {
+  //margin-bottom: 0px;
+  //font-weight: 500;
+  //line-height: 30px;
+  //margin-left: 10px;
+  //font-size: 12px;
+  margin-bottom: 0px;
+  font-weight: 500;
+  line-height: 30px;
+  margin-left: 10px;
+  font-size: 14px;
+  font-family: Lato;
+  font-style: normal;
+
+}
+h3 {
+  font-size: 14px;
+  //font-weight: 500;
+  color: black;
+  font-weight: bold;
+}
+
+h4 {
+  font-size: 11px;
+  font-weight: 500;
+
+}
+
+h5 {
+  font-size: 12px;
+  //font-weight: 400;
+  color: black;
+  font-weight: bold;
+}
+.hr {
+  background-color: whitesmoke;
+}
+.btn-warning {
+  color: #fff;
+  background-color: #f1a30b;
+  border-color: #f1a30b;
+  width: 100%;
+}
+
+.btn-success {
+  color: #fff;
+  background-color: #63a71c;
+  border-color: #63a71c;
+  width: 100%;
+}
+.default {
+  display: inline-block;
+  font-weight: 400;
+  color: #fff;
+  outline: 1px solid #ffad0a00;
+  background: linear-gradient(to right, #fec923, #ffa705);
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.bgimg {
+  background: url('/src/assets/img/Mulk E Health A4-01 1.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+
+.h61 {
+  //margin-bottom: 0px;
+  //font-weight: 500;
+  //line-height: 30px;
+  //margin-left: 10px;
+  //font-size: 12px;
+  margin-bottom: 0px;
+  font-weight: 500;
+  line-height: 30px;
+  margin-left: 10px;
+  font-size: 14px;
+  font-family: Lato;
+  font-style: normal;
+
+}
+
+.h31 {
+  font-size: 14px;
+  font-weight: 500;
+
+}
+
+.h41 {
+  font-size: 16px;
+  font-weight: 500;
+
+}
+
+.h51 {
+  font-size: 12px;
+  font-weight: 400;
+
+}
+
+.font {
+  font-size: 20px;
+  font-weight: bold;
+
+}
+
+.font1 {
+  font-size: 15px;
+  font-weight: bold;
+  color: whitesmoke;
+}
+
+.font2 {
+  font-size: 14px;
+  //font-weight: bold;
+  color: whitesmoke !important;
+}

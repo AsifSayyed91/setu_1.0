@@ -1,0 +1,98 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="text-align: center">Contact Uss</ion-title>
+    <ion-buttons slot="end">
+      <!--<div ion-button icon-only (click)="showNotificationsPanel($event)">-->
+        <!--<ion-icon name="notifications"><span>{{notifictionList.length}}</span></ion-icon>-->
+      <!--</div>-->
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
+    <ion-item lines="full">
+      <ion-label position="floating">Name</ion-label>
+      <ion-input
+        formControlName="name"
+        type="text"
+        aria-label="Name"
+      ></ion-input>
+    </ion-item>
+    <div
+      *ngIf="this.ionicForm.controls?.['name'].touched && this.ionicForm.controls?.['name'].invalid"
+
+    >
+      <div
+        class="ion-padding"
+        *ngIf="this.ionicForm.controls?.name.errors?.required"
+      >
+        <ion-text color="danger">Name is required.</ion-text>
+      </div>
+      <div
+        class="ion-padding"
+        color="danger"
+        *ngIf="this.ionicForm.controls?.name.errors?.minlength"
+      >
+        <ion-text color="danger">Name should be min 2 chars long.</ion-text>
+      </div>
+    </div>
+    <ion-item lines="full">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input
+        formControlName="email"
+        aria-label="Email"
+        type="email"
+      ></ion-input>
+    </ion-item>
+    <div
+      *ngIf="this.ionicForm.controls?.['email'].touched && this.ionicForm.controls?.['email'].invalid"
+    >
+      <div
+        class="error ion-padding"
+        *ngIf="errorControl.email.errors?.required"
+      >
+        <ion-text color="danger">Email is required.</ion-text>
+      </div>
+      <div class="ion-padding" *ngIf="errorControl.email.errors?.pattern">
+        <ion-text color="danger">Please provide valid email.</ion-text>
+      </div>
+    </div>
+    <ion-item lines="full">
+      <ion-label position="floating">Mobile</ion-label>
+      <ion-input
+        maxlength="10"
+        formControlName="mobile"
+        type="text"
+        aria-label="Mobile"
+        required
+      ></ion-input>
+    </ion-item>
+    <div
+      *ngIf="this.ionicForm.controls?.['mobile'].touched && this.ionicForm.controls?.['mobile'].invalid"
+    >
+      <div
+        class="error ion-padding"
+        *ngIf="errorControl.mobile.errors?.required"
+      >
+        <ion-text color="danger">Mobile number is required.</ion-text>
+      </div>
+      <div
+        class="error ion-padding"
+        *ngIf="errorControl.mobile.errors?.pattern"
+      >
+        <ion-text color="danger">Only numerical values allowed.</ion-text>
+      </div>
+    </div>
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" color="danger" expand="block"
+        >Submit</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

@@ -1,0 +1,304 @@
+<ion-header>
+  <ion-toolbar class="bar">
+    <ion-buttons start left>
+      <div ion-button show menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </div>
+    </ion-buttons>
+    <label class="label-titles">Diagnostics & Labs</label>
+    <ion-buttons end>
+
+      <div ion-button icon-only (click)="popoverMenu($event)">
+        <ion-icon name="more"></ion-icon>
+      </div>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bgimg" padding>
+  <div *ngIf="tab=='1'">
+    <ion-refresher slot="start" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content
+        pullingIcon="arrow-dropdown"
+        pullingText="Pull to refresh"
+        refreshingSpinner="circles"
+        refreshingText="Refreshing...">
+      </ion-refresher-content>
+    </ion-refresher>
+
+    <ion-row>
+      <label class="labtext" style="font-size: 14px;">Kindly Choose</label>
+      <select class="form-control" style="font-size: 14px;" (change)="onSelect($event.target.value)">
+        <option value="0">Cash Insurance</option>
+      </select>
+    </ion-row>
+
+
+    <div class="container" class="boxes">
+      <div>
+        <ion-row>
+          <ion-col style="background: #7C79FF; margin-left: 15px; margin-right: 15px;">
+            <label class="radiology">RADIOLOGY</label>
+
+          </ion-col>
+        </ion-row>
+
+        <ion-row style="margin-right: 0px;margin-right: 0px">
+          <ion-col col-6 style="text-align: left;padding: 0px; ! important;margin-left: 40px;padding-top: 5px;">
+            <ion-button class="mri"><b>MRI BRAIN </b></ion-button>
+          </ion-col>
+
+          <ion-col col-6 style="text-align: left;padding: 0px; ! important;margin-left: 10px;padding-top: 5px;">
+            <ion-button class="mri"><b>CT ABDOMEN PAIN </b></ion-button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row style="margin-right: 0px;margin-right: 0px">
+          <ion-col col-6 style="text-align: left;padding: 0px; ! important;margin-left: 40px;padding-top: 5px;">
+            <ion-button class="mri"><b>MRI SHOULDER </b></ion-button>
+          </ion-col>
+
+          <ion-col col-6 style="text-align: left;padding: 0px; ! important;margin-left: 10px;padding-top: 5px;">
+            <ion-button class="mri"><b>ULTRASOUND </b></ion-button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row style="margin-right: 0px;margin-right: 0px">
+          <ion-col col-6 style="text-align: left;padding: 0px; ! important;margin-left: 40px;padding-top: 5px;">
+            <ion-button class="mri"><b>MRI SPINE (LS. DS. TS) </b></ion-button>
+          </ion-col>
+
+          <ion-col col-6 style="text-align: left;padding: 0px; ! important;margin-left: 10px;padding-top: 5px;">
+            <ion-button class="mri"><b>ULTRASOUND OBS </b></ion-button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row style="margin-right: 0px;margin-right: 0px">
+          <ion-col col-6 style="text-align: left;padding: 0px; ! important;margin-left: 40px;padding-top: 5px;">
+            <ion-button class="mri"><b>MAMMOGRAPHY </b></ion-button>
+          </ion-col>
+
+          <ion-col col-6 style="text-align: left;padding: 0px; ! important;margin-left: 10px;padding-top: 5px;">
+            <ion-button class="mri"><b>DEXA SCAN </b></ion-button>
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row>
+          <ion-col style="    margin-left: 22px;">
+            <label>Others Please Specify :</label><BR>
+            <input type="text" id="name" name="name" style="    background: #e6e6e6;
+    width: 286px;"><br><br>
+          </ion-col>
+        </ion-row>
+
+      </div>
+    </div>
+
+
+    <div class="container" class="boxes">
+      <div>
+        <ion-row>
+          <ion-col style="background: #E6655D; margin-left: 15px; margin-right: 15px;">
+            <label class="radiology">LABORATORY</label>
+
+          </ion-col>
+        </ion-row>
+
+        <ion-row style="margin-right: 0px;margin-right: 0px">
+          <ion-col col-6 style="text-align: left;padding: 0px; ! important;margin-left: 40px;padding-top: 5px;">
+            <ion-button class="mri"><b>CBC </b></ion-button>
+          </ion-col>
+
+          <ion-col col-6 style="text-align: left;padding: 0px; ! important;margin-left: 10px;padding-top: 5px;">
+            <ion-button class="mri"><b>LIVER PROFILE </b></ion-button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row style="margin-right: 0px;margin-right: 0px">
+          <ion-col col-6 style="text-align: left;padding: 0px; ! important;margin-left: 40px;padding-top: 5px;">
+            <ion-button class="mri"><b>RENAL PROFILE </b></ion-button>
+          </ion-col>
+
+          <ion-col col-6 style="text-align: left;padding: 0px; ! important;margin-left: 10px;padding-top: 5px;">
+            <ion-button class="mri"><b>THYROID PROFILE </b></ion-button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row style="margin-right: 0px;margin-right: 0px">
+          <ion-col col-6 style="text-align: left;padding: 0px; ! important;margin-left: 40px;padding-top: 5px;">
+            <ion-button class="mri"><b>VITAMIN D </b></ion-button>
+          </ion-col>
+
+          <ion-col col-6 style="text-align: left;padding: 0px; ! important;margin-left: 10px;padding-top: 5px;">
+            <!--<ion-button  class="mri"><b>ULTRASOUND OBS  </b>  </ion-button>-->
+          </ion-col>
+        </ion-row>
+
+        <!--<ion-row style="margin-right: 0px;margin-right: 0px">-->
+        <!--<ion-col col-6 style="text-align: left;padding: 0px; ! important;margin-left: 40px;padding-top: 5px;">-->
+        <!--<ion-button  class="mri"><b>MAMMOGRAPHY  </b>  </ion-button>-->
+        <!--</ion-col>-->
+
+        <!--<ion-col col-6 style="text-align: left;padding: 0px; ! important;margin-left: 10px;padding-top: 5px;">-->
+        <!--<ion-button  class="mri"><b>DEXA SCAN    </b>  </ion-button>-->
+        <!--</ion-col>-->
+        <!--</ion-row>-->
+
+
+        <ion-row>
+          <ion-col style="margin-left: 22px;">
+            <label>Others Please Specify :</label><BR>
+            <input type="text" id="name" name="name" style="    background: #e6e6e6;
+    width: 286px;"><br><br>
+          </ion-col>
+        </ion-row>
+
+      </div>
+    </div>
+
+
+    <ion-row>
+      <label class="labtext" style="font-size: 14px;">Upload Medical Report & Dr Refferal :</label>
+      <select class="form-control" style="font-size: 14px;" (change)="onSelect($event.target.value)">
+        <option value="0">Medical Report</option>
+      </select>
+    </ion-row>
+    <br>
+    <ion-row>
+      <select class="form-control" style="font-size: 14px;" (change)="onSelect($event.target.value)">
+        <option value="0">Dr. Refferal</option>
+      </select>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col class="col-6">
+        <ion-button class="bg3">Submit</ion-button>
+      </ion-col>
+    </ion-row>
+
+
+    <!--<ion-row>-->
+    <!--<ion-col class="col-6">-->
+    <!--<img src="assets/img/symp3.png" class="wt">-->
+    <!--</ion-col>-->
+
+    <!--<ion-col class="col-6">-->
+    <!--<img src="assets/img/symp4.png" class="wt">-->
+    <!--</ion-col>-->
+    <!--</ion-row>-->
+
+
+    <!--<ion-row>-->
+    <!--<ion-col class="col-6">-->
+    <!--<img src="assets/img/symp5.png" class="wt">-->
+    <!--</ion-col>-->
+
+    <!--<ion-col class="col-6">-->
+    <!--<img src="assets/img/symp6.png" class="wt">-->
+    <!--</ion-col>-->
+    <!--</ion-row>-->
+
+
+    <ion-row>
+      <ion-col class="col-12">
+        <ion-button class="btn btn-primary mt-3 active"
+                style="display: block;text-align: center;margin: 0px auto;width: 70%" (click)="query('')">Submit
+          Query
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div class="row justify-content-center" *ngIf="tab=='2'">
+    <div class="col-12">
+      <div class="card panel panel-default ">
+        <div class="panel-body">
+          <form class="pd-10" id="genericForm" autocomplete="off"
+                [formGroup]="explore" (ngSubmit)="onSubmitquery(explore.value)">
+
+            <div class="form-group label-controls"><label class="control-label col-sm-12" for="name">Name<span
+              class="red">*</span></label>
+              <div class="col-sm-12">
+                <input type="text" class="form-control new-form-control" id="name"
+                       name="name" required="" style="font-size: 15px;"
+                       formControlName="name" placeholder=""
+                       [formControl]="explore.controls['name']" title="firstName"
+                       placeholder="Enter name">
+              </div>
+            </div>
+
+            <div class="form-group label-controls"><label class="control-label col-sm-12" for="email">Email<span
+              class="red">*</span></label>
+              <div class="col-sm-12">
+                <input type="email" class="form-control new-form-control" id="email"
+                       formControlName="email" placeholder="" style="font-size: 15px;"
+                       [formControl]="explore.controls['email']" autocomplete="email" title="email" required="">
+              </div>
+            </div>
+
+            <div class="form-group label-controls"><label class="control-label col-sm-12" for="email">Upload
+              Document<span
+                class="red">*</span></label>
+              <div class="col-sm-12">
+                <input type="file" class="form-control new-form-control" id="email" style="font-size: 15px;"
+                       placeholder="Enter email" name="email" required="">
+              </div>
+            </div>
+
+            <div style="margin-top: 10px;margin-bottom: 10px"
+                 *ngIf="imagepath !=null && imagepath!=undefined && imagepath!=''">
+              <img src="{{imagepath}}" style="width: 200px;
+    height: 150px;
+    text-align: center;
+    display: block;
+    margin: 0px auto;">
+            </div>
+
+            <div class="form-group label-controls"><label class="control-label col-sm-12" for="phone">Phone
+              Number<span
+                class="red">*</span></label>
+              <div class="col-sm-12">
+                <!--<input type="text" id="country_phone_code" name="country_phone_code"-->
+                <!--class="form-control new-form-control col-md-2" value="" readonly=""-->
+                <!--style="width: 15%; float: left;">-->
+                <input type="tel" class="form-control new-form-control col-md-10"
+                       id="phone_number" maxlength="10" minlength="10"
+                       placeholder="Your Phone number" style="font-size: 15px;"
+                       name="mobileno" required=""
+                       formControlName="mobileno" placeholder=""
+                       [formControl]="explore.controls['mobileno']" autocomplete="mobileno"
+                       title="mobileno"
+                       style="width: 84%"></div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="form-group"><label>Medical Condition <span class="red">*</span></label><br>
+                <textarea cols="5" rows="5" id="medicalProblem" name="medicalProblem"
+                          formControlName="medicalProblem" placeholder="" style="font-size: 15px;"
+                          [formControl]="explore.controls['medicalProblem']" autocomplete="medicalProblem"
+                          title="medicalProblem"
+                          style="height:100%; width:100%; resize: vertical;" required=""></textarea></div>
+            </div>
+
+            <div class="form-group label-controls" id="ageblock" style=""><label class="control-label col-sm-12"
+                                                                                 for="email">Patient Age <span
+              class="red">*</span></label>
+              <div class="col-sm-12"><input type="number" class="form-control new-form-control" id="age"
+                                            placeholder="Example: 30" name="age" style="font-size: 15px;"
+                                            formControlName="age" placeholder=""
+                                            [formControl]="explore.controls['age']" autocomplete="age" title="age">
+              </div>
+            </div>
+            <div class="form-group label-controls">
+              <div class="col-sm-12 text-center">
+                <ion-button type="submit" class="btn btn-danger" [disabled]="!explore.valid" (click)="sub()">SUBMIT</ion-button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

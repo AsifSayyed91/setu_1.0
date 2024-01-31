@@ -1,0 +1,212 @@
+
+<ion-header>
+  <ion-toolbar class="bar">
+    <ion-buttons start left>
+      <div ion-button show menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </div>
+    </ion-buttons>
+    <label class="label-titles">Remote Patient Monitoring</label>
+    <ion-buttons end>
+      <div ion-button icon-only (click)="popoverMenu($event)">
+        <ion-icon name="more"></ion-icon>
+      </div>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="bgimg">
+  <div *ngIf="tab=='1'">
+    <ion-row style="margin: 10px; border-radius: 10px;background-color: #27356C;">
+      <ion-button
+        style=" margin-top: 11px;     font-size: 15px; background-color: #27356C; margin-inline: auto; color: #fff;">
+        Mulk 6 in 1 Device
+      </ion-button>
+    </ion-row>
+    <ion-row class="medical" style="margin-left: 6px;margin-right: 5px;">
+      <ion-col>
+        <img src="assets/mulk/explore/remote1.png" class="image1">
+      </ion-col>
+
+      <ion-col style="margin-top: 10px;margin-right: 10px;;">
+        <ion-col>
+          <ion-button class="mri">Body Temp</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button class="mri">Blood Pressure</ion-button>
+
+        </ion-col>
+        <ion-col>
+          <ion-button class="mri">ECG</ion-button>
+        </ion-col>
+      </ion-col>
+
+      <ion-col style="margin-top: 10px;margin-right: 10px;">
+        <ion-col>
+          <ion-button class="mri">Oxygen Level</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button class="mri">Blood glucose</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button class="mri">Heart Rate</ion-button>
+        </ion-col>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row style="background-color:#FF70A3;margin: 10px; border-radius: 10px;">
+      <ion-button style="margin-inline: auto;background-color:#FF70A3; margin-top: 11px; font-size: 16px;">
+        ECG Monitoring
+      </ion-button>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="col-12">
+        <ion-card style="border-radius: 10px;">
+          <ul style="padding: 0px;padding-left: 20px;">
+            <li class="list"> All-weather 24/7 continuous monitoring of the heart, everything about the heart gets in
+              the palm of your hand.
+            </li>
+            <li class="list">Intelligent wearable</li>
+            <li class="list"> Real-time monitor of multi-parameters, with built-in body posture sensor; ergonomic
+              design, ultra-light weight/thin, fit and comfortable.
+            </li>
+            <li class="list"> 24/7 medical pros on call </li>
+            <li class="list"> FDA/CE  </li>
+            <li class="list">
+              Real-time alert on APB, VPB, long interval, tachycardia and bradycardia; when a tumble-down occurs, it
+              sends SMS alerts to the guardian’s phone 
+            </li>
+
+
+          </ul>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin: 10px; border-radius: 10px;">
+      <ion-button class="btn btn-primary" style="margin-inline: auto; margin-top: 11px; font-size: 10px;">
+        GLUCOSE | CHOLESTEROL | URIC ACID | HB MONITORING
+      </ion-button>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="col-12">
+        <ion-card style="border-radius: 10px;">
+
+          <ul style="padding: 0px;padding-left: 20px;">
+            <li class="list"> Hemoglobin machine blood glucose meter with cholesterol Uric Acid meter</li>
+            <li class="list"> Multi-Monitoring system is for healthcare professionals and persons with
+              diabetes,hyper-cholesterolmia, hyperuricemia or anemia to measure glucose, cholesterol, uric acid and
+              hemoglobin values in fresh capillary whole blood or venous blood
+            </li>
+
+          </ul>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col class="col-12">
+        <ion-button class="btn btn-primary mt-3 active"
+                style="display: block;text-align: center;margin: 0px auto;width: 70%" (click)="query('1')">Submit
+          Query
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div class="row justify-content-center" *ngIf="tab=='2'">
+    <div class="col-12">
+      <div class="card panel panel-default ">
+        <div class="panel-body">
+          <form class="pd-10" id="genericForm" autocomplete="off"
+                [formGroup]="explore" (ngSubmit)="onSubmitquery(explore.value)">
+
+            <div class="form-group label-controls"><label class="control-label col-sm-12" for="name">Name<span
+              class="red">*</span></label>
+              <div class="col-sm-12">
+                <input type="text" class="form-control new-form-control" id="name"
+                       name="name" required="" style="font-size: 15px;"
+                       formControlName="name" placeholder=""
+                       [formControl]="explore.controls['name']" title="firstName"
+                       placeholder="Enter name">
+              </div>
+            </div>
+
+            <div class="form-group label-controls"><label class="control-label col-sm-12" for="email">Email<span
+              class="red">*</span></label>
+              <div class="col-sm-12">
+                <input type="email" class="form-control new-form-control" id="email"
+                       formControlName="email" placeholder="" style="font-size: 15px;"
+                       [formControl]="explore.controls['email']" autocomplete="email" title="email" required="">
+              </div>
+            </div>
+
+            <div class="form-group label-controls"><label class="control-label col-sm-12" for="email">Upload
+              Document<span
+                class="red">*</span></label>
+              <div class="col-sm-12">
+                <input type="file" class="form-control new-form-control" id="email" style="font-size: 15px;"
+                       placeholder="Enter email" name="email" required="">
+              </div>
+            </div>
+
+            <div style="margin-top: 10px;margin-bottom: 10px"
+                 *ngIf="imagepath !=null && imagepath!=undefined && imagepath!=''">
+              <img src="{{imagepath}}" style="width: 200px;
+    height: 150px;
+    text-align: center;
+    display: block;
+    margin: 0px auto;">
+            </div>
+
+            <div class="form-group label-controls"><label class="control-label col-sm-12" for="phone">Phone
+              Number<span
+                class="red">*</span></label>
+              <div class="col-sm-12">
+                <!--<input type="text" id="country_phone_code" name="country_phone_code"-->
+                <!--class="form-control new-form-control col-md-2" value="" readonly=""-->
+                <!--style="width: 15%; float: left;">-->
+                <input type="tel" class="form-control new-form-control col-md-10"
+                       id="phone_number" maxlength="10" minlength="10"
+                       placeholder="Your Phone number" style="font-size: 15px;"
+                       name="mobileno" required=""
+                       formControlName="mobileno" placeholder=""
+                       [formControl]="explore.controls['mobileno']" autocomplete="mobileno"
+                       title="mobileno"
+                       style="width: 84%"></div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="form-group"><label>Medical Condition <span class="red">*</span></label><br>
+                <textarea cols="5" rows="5" id="medicalProblem" name="medicalProblem"
+                          formControlName="medicalProblem" placeholder="" style="font-size: 15px;"
+                          [formControl]="explore.controls['medicalProblem']" autocomplete="medicalProblem"
+                          title="medicalProblem"
+                          style="height:100%; width:100%; resize: vertical;" required=""></textarea></div>
+            </div>
+
+            <div class="form-group label-controls" id="ageblock" style=""><label class="control-label col-sm-12"
+                                                                                 for="email">Patient Age <span
+              class="red">*</span></label>
+              <div class="col-sm-12"><input type="number" class="form-control new-form-control" id="age"
+                                            placeholder="Example: 30" name="age" style="font-size: 15px;"
+                                            formControlName="age" placeholder=""
+                                            [formControl]="explore.controls['age']" autocomplete="age" title="age">
+              </div>
+            </div>
+            <div class="form-group label-controls">
+              <div class="col-sm-12 text-center">
+                <ion-button type="submit" class="btn btn-danger" [disabled]="!explore.valid" (click)="sub()">SUBMIT</ion-button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

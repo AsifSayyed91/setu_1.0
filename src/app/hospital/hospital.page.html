@@ -1,0 +1,676 @@
+
+<!--<ion-header>
+  <ion-toolbar class="bar">
+    <ion-buttons start left>
+      <div ion-button show menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </div>
+    </ion-buttons>
+    <label class="label-titles">{{title}}</label>
+    <ion-buttons end>
+      <div ion-button icon-only (click)="popoverMenu($event)">
+        <ion-icon name="more"></ion-icon>
+      </div>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>-->
+
+
+<!--<ion-header>
+  <ion-toolbar class="bar">
+    <ion-buttons start left>
+      <div ion-button show menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </div>
+    </ion-buttons>
+    <label class="label-titles">Find Doctor</label>
+    <ion-buttons end>
+      <div ion-button icon-only (click)="popoverMenu($event)">
+        <ion-icon name="more"></ion-icon>
+      </div>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>-->
+
+<!--<ion-header>-->
+<!--<ion-toolbar class="bar">-->
+<!--<ion-buttons start left>-->
+<!--<div ion-button show menuToggle>-->
+<!--<ion-icon name="menu"></ion-icon>-->
+<!--</div>-->
+<!--</ion-buttons>-->
+<!--<label class="label-titles">Find Doctor</label>-->
+<!--</ion-toolbar>-->
+<!--</ion-header>-->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="text-align: center">Find Doctor</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content class="bgimg">
+  <ion-refresher label="Start" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngIf="Stepper=='step1'">
+    <ion-row style="margin: 0px auto;display: block;text-align: center">
+      <img src="assets/mulk/hospital/hospital.png">
+    </ion-row>
+
+
+    <!--<ion-label for="hospital" class="content">Select Hospital</ion-label>-->
+    <!--<ion-select class="selector" #unit id="category" [(ngModel)]="selectedHospitalObject"-->
+                <!--(ionChange)="getInsurance(unit.value)">-->
+      <!--<ion-option class="option" *ngFor="let unit of unitData" value="{{unit.unitId}}"-->
+                  <!--style="font-size: 15px;color:#000;font-weight: bold;">{{unit.unitName}}-->
+      <!--</ion-option>-->
+    <!--</ion-select>-->
+
+    <ion-label for="hospital" class="content">Select Hospital</ion-label>
+    <ion-select class="selector" #unit id="category" [(ngModel)]="selectedHospitalObject" (ionChange)="getInsurance(unit.value)">
+      <ion-option class="option" *ngFor="let unit of unitData" value="{{unit.unitId}}"
+                  style="font-size: 15px; color: #000; font-weight: bold;">
+        {{unit.unitName}}
+      </ion-option>
+    </ion-select>
+
+
+
+
+    <!--<ion-grid>-->
+      <!--<ion-row>-->
+        <!--<ng-container *ngFor="let data of unitData">-->
+          <!--<ion-row class="col-12" style="padding: 5px">-->
+            <!--<ion-card style="background-color:#ebebeb;border-radius:10px;height: 80%; width: 100%"-->
+                      <!--(click)="getInsurance(data.unitId,'step5')">-->
+              <!--<img-->
+                <!--src="{{patientimagepath}}//{{data.unitImage}}"-->
+                <!--style="display: block;text-align: center;margin: 5px auto;">-->
+            <!--</ion-card>-->
+          <!--</ion-row>-->
+        <!--</ng-container>-->
+      <!--</ion-row>-->
+    <!--</ion-grid>-->
+    <ion-grid>
+      <ion-row>
+        <ng-container *ngFor="let data of unitData">
+          <ion-row class="col-12" style="padding: 20px; width: 100%">
+            <ion-card style="background-color:#ebebeb;border-radius:10px;height: 80%; width: 100%" (click)="getInsurance(data.unitId,'step5')">
+              <img src="{{patientimagepath}}/{{data.unitImage}}" class="img-responsive" style="display: block;text-align: center;margin: 5px auto; width: 100%; height: 80%;">
+            </ion-card>
+          </ion-row>
+        </ng-container>
+      </ion-row>
+    </ion-grid>
+
+  </div>
+
+
+  <div *ngIf="Stepper == 'step3'" style="width: 90%; display: block; text-align: center; margin: 0px auto;">
+
+
+    <ion-row style="padding-right: 0px !important; padding-left: 0px!important; padding: 0px !important;">
+      <ion-col col-12>
+        <input style="border: 1px solid #000;width: 98%!important; margin-right: 3px;margin-left: 3px;"
+               placeholder="Search Doctor" class="form-control"
+               type="text"
+               name="fromdate" required (keyup)="searchDoctor($event)">
+      </ion-col>
+    </ion-row>
+
+
+    <div *ngFor="let doctor of doctorList;let i=index"
+         style="background-color: #ccc; border-radius:10px; width: 96%; display: block;margin: 10px auto">
+      <ion-row style="margin-bottom: 0px;">
+        <ion-col col-3 style="padding: 15px;max-width: 40%; padding-bottom: 0px;">
+          <img *ngIf="doctor.imageName =='null'" src="assets/img/doctor.png" class="docimg">
+          <img *ngIf="doctor.imageName !='null'" src="{{patientimagepath}}{{doctor.imageName}}" class="docimg">
+        </ion-col>
+        <!--<ion-col col-9 style="text-align: left;padding: 0px !important;margin-top: 3px;">-->
+          <!--<h3 class="h3-0"><b>{{doctor.name}}</b></h3>-->
+          <!--<h5 class="h5-0">-->
+            <!--<img src="assets/icon/Speciality_1.png"-->
+                 <!--style="width: 7%; margin-right: 3px;">-->
+          <!--<h5 class="h5-0"><b>{{doctor.education}} </b></h5>-->
+          <!--<h5 class="h5-0">-->
+            <!--<img src="assets/icon/Experience_1.png"-->
+                 <!--style="width: 7%; margin-right: 3px;">-->
+            <!--<b>Experience :{{doctor.exp}}</b></h5>-->
+
+          <!--<h5 class="h5-0">-->
+            <!--<b>{{doctor.sname}}</b></h5>-->
+
+          <!--<img src="assets/icon/Location_1.png"-->
+                 <!--style="width: 7%; margin-right: 3px;">-->
+            <!--<b>Location : {{doctor.city_name}} </b></h5>-->
+          <!--<h5 class="h5-0">-->
+
+            <!--<img src="assets/icon/Language_1.png"-->
+                 <!--style="width: 7%; margin-right: 3px;">-->
+            <!--<b>Languages : {{doctor.lang}}</b></h5>-->
+        <!--</ion-col>-->
+
+        <ion-col col-9 style="text-align: left;padding: 0px !important;margin-top: 20px;">
+          <h3 class="h3-0"><b style="font-size: large; color: #0d0d0d">{{doctor.name}}</b></h3>
+          <h5 class="h5-0">
+            <img src="assets/icon/Speciality_1.png"
+                 style="width: 9%;">
+            <b style="color: #0d0d0d">{{doctor.sname}}</b></h5>
+          <!--<h5 class="h5-0"><b>{{doctor.education}} </b></h5>-->
+          <h5 class="h5-0">
+            <img src="assets/icon/Experience_1.png"
+                 style="width: 9%;">
+            <b style="color: #0d0d0d">Experience :{{doctor.exp}}</b></h5>
+
+          <h5 class="h5-0">
+            <img src="assets/icon/Location_1.png"
+                 style="width: 9%;">
+
+            <b style="color: #0d0d0d">Location : {{doctor.city_name}} </b></h5>
+          <h5 class="h5-0">
+            <img src="assets/icon/Language_1.png"
+                 style="width: 9%;">
+            <b style="color: #0d0d0d">Languages : {{doctor.lang}}</b></h5>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-6>
+          <ion-button class="bg2" (click)="selectDoctor('step4',doctor)" [attr.disabled]="disableBookAppBtn" *ngIf="!disableBookAppBtn">Book Now</ion-button>
+          <ion-button class="bg2" (click)="selectDoctor('step4',doctor)" *ngIf="disableBookAppBtn" >Book Now</ion-button>
+        </ion-col>
+
+
+      </ion-row>
+    </div>
+  </div>
+
+
+  <!--<ion-col col-6>-->
+  <!--<ion-button class="bg2" (click)="selectDoctor('step4',doctor)" [attr.disabled]="disableBookAppBtn" *ngIf="!disableBookAppBtn">Book Now</ion-button>-->
+  <!--<ion-button class="bg2" (click)="selectDoctor('step4',doctor)" *ngIf="disableBookAppBtn" >Book Now</ion-button>-->
+  <!--</ion-col>-->
+
+  <div *ngIf="Stepper=='step4'" style="padding: 10px">
+
+
+    <div class="back1"><h4 class="doctorTest"><b>Dr.{{selectedDoctor.name}}</b>
+    </h4>
+    </div>
+    <ion-row class="back">
+
+      <ion-col col-1 style="padding: 0px;max-width: 40%;">
+        <img src="{{patientimagepath}}{{selectedDoctor.imageName}}" class="docimg" style="margin-left: 10px">
+      </ion-col>
+
+      <ion-col col-11 style="padding: 0px;padding-left: 10px">
+        <ion-grid>
+          <ion-row>
+            <ion-col col-12>
+              <h6 style="font-size: 17px;margin-bottom: 4px;margin-right: 2px; color: black">
+                <img src="assets/icon/Speciality_1.png"
+                     style="width: 12%;">
+                {{selectedDoctor.sname}}
+              </h6>
+
+              <h6 style="font-size: 17px;margin-bottom: 4px;color: black">
+                <img src="assets/icon/Language_1.png"
+                     style="width: 12%;">
+                {{selectedDoctor.lang}}</h6>
+
+              <h6 style="font-size: 17px;margin-bottom: 4px;color: black">
+                <img src="assets/icon/Location_1.png"
+                     style="width: 12%;">
+                {{selectedDoctor.city_name}} </h6>
+
+              <h6 style="font-size: 17px;margin-bottom: 4px;color: black">
+                <img src="assets/icon/Experience_1.png"
+                     style="width: 12%;">
+                {{selectedDoctor.exp}}</h6>
+            </ion-col>
+
+          </ion-row>
+
+
+        </ion-grid>
+
+
+      </ion-col>
+    </ion-row>
+
+    <div style="padding-left: 0px;padding-right: 0px">
+      <div class="row" style="margin: 5px auto;">
+        <div class="col-md-12" style="padding: 0px">
+          <h6 class="h6-0">1.Select the Date of Appointment</h6>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12" style="padding: 0px;">
+          <input type="date" style="color:#fffdfa; width: 100%
+          !important;background-color:#242322;
+          border: 1px solid #fffdfa; border-radius: 10px;"
+                 [formControl]="appointmentForm.controls['appointmentDate']" class="form-control"
+                 placeholder="Appointment Date" #myDate [(ngModel)]='todays' autocomplete="date"
+                 min="{{minimumdate}}"
+                 max="{{afterday}}" title="Appointment Date" (change)="onSelectedDate($event)" required>
+        </div>
+      </div>
+
+      <div class="row" style="margin: 5px auto; ">
+        <div class="col-md-12" style="padding: 0px;">
+          <h6 class="h6-0">2.Select the Type of Consultation</h6>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12" style="padding: 0px;">
+          <select class="form-control" #service
+
+                  [formControl]="appointmentForm.controls['appointmentService']"
+                  style="font-family: 'Roboto';color:#fffdfa;width: 100% !important;
+                  font-size: 11px;background-color:#242322;border: 1px solid #fffdfa; border-radius: 10px;">
+            <option value="0" disabled selected>Select Service</option>
+            <option *ngFor="let service of serviceList" [value]=service.serviceId>{{service.serviceName}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row" style="margin: 5px auto;">
+        <div class="col-md-5" style="padding:0px;">
+          <h6 class="h6-0">3. How do you want to consult your doctor</h6>
+        </div>
+      </div>
+
+      <ion-row
+        style="margin-left: 3px;margin-bottom:10px; margin-right: 3px; border: 1px solid #fffdfa; border-radius: 10px;
+       background-color:#242322;">
+        <ion-col col-1 style="max-width: 1%;line-height: 40px;">
+          <input type="radio" name="ispay" value="DirectConsultation" [checked]="DirectConsultation"
+                 (click)="ConsultationRateDoctor('DirectConsultation')">
+        </ion-col>
+        <ion-col col-10 style="padding: 5px">
+          <p style="color:#fffdfa; margin-bottom: 0px; font-weight: bolder; margin-left: 10px;">Consultation (Self-
+            Payment)</p>
+          <p style="color:#fffdfa; margin-bottom: 5px;font-size: 11px; padding: 0px; margin-left: 10px;">Book an
+            Appointment now
+            to see your doctor (in Person / Video Call)</p>
+        </ion-col>
+      </ion-row>
+
+
+
+      <ion-row
+        style="margin-left: 3px;margin-bottom:10px; margin-right: 3px; border: 1px solid #fffdfa; border-radius: 10px;
+       background-color:#242322;">
+        <ion-col col-1 style="max-width: 1%;line-height: 40px;">
+          <input type="radio" name="ispay" value="InsuranceConsultation"
+                 (click)="ConsultationRateDoctor('InsuranceConsultation')">
+        </ion-col>
+        <ion-col col-10 style="padding: 5px">
+          <p style="color:#fffdfa; margin-bottom: 0px; font-weight: bolder; margin-left: 10px;">Insurance
+            for
+            Consultation</p>
+          <p style="color:#fffdfa; margin-bottom: 5px;font-size: 11px; padding: 0px; margin-left: 10px;">Book an
+            Appointment now
+            to
+            see your doctor (in Person /
+            Video
+            Call) and Medical expencess will be covered by
+            the registered insurance as per policy and approvals</p>
+        </ion-col>
+      </ion-row>
+
+      <div *ngIf="InsuranceShow">
+        <div class="" style="background: #0f6092;margin: 10px auto;">
+          <h6
+            style="color: whitesmoke; height: 35px; color: whitesmoke; height: 35px; margin-left: 30px; line-height: 35px;">
+            Insurance Details</h6>
+        </div>
+        <div class="row" style="margin: 5px auto;">
+          <div class="col-md-3">
+            <h6><b style="font-size: 12px;">COMPANY</b></h6>
+          </div>
+          <div class="col-md-9">
+            <input type="text" class="form-control" value={{loginUser?.userInsuranceId?.companyName}} readonly>
+          </div>
+        </div>
+
+        <div class="row" style="margin: 5px auto;">
+          <div class="col-md-3">
+            <h6><b style="font-size: 12px;">CARD NO </b></h6>
+          </div>
+          <div class="col-md-9">
+            <input type="text" class="form-control" value={{loginUser?.userInsuranceCardNo}} readonly>
+          </div>
+        </div>
+
+        <div class="row" style="margin: 5px auto;">
+          <div class="col-md-3">
+            <h6><b style="font-size: 12px;">ISSUE DATE</b></h6>
+          </div>
+          <div class="col-md-9">
+            <input type="text" class="form-control" value={{loginUser?.userInsuranceDateOfIssue}} readonly>
+          </div>
+        </div>
+
+        <div class="row" style="margin: 5px auto;">
+          <div class="col-md-3">
+            <h6><b style="font-size: 12px;">EXPIRY DATE</b></h6>
+          </div>
+          <div class="col-md-9">
+            <input type="text" class="form-control" value={{loginUser?.userInsuranceDateOfExp}} readonly>
+          </div>
+        </div>
+        <div style="margin: 10px auto;display: block;text-align: center">
+          <ion-button class="btn btn-primary" [hidden]="isInsuranceCovered" (click)="updateProfile()">Manage Insurance
+            Details
+          </ion-button>
+        </div>
+      </div>
+
+      <div class="row" style="margin: 5px auto;">
+        <div class="col-md-5" style="padding:0px;">
+          <h6 class="h6-0">4.Consultation Type</h6>
+        </div>
+      </div>
+
+      <ion-row
+        style="margin-left: 3px;margin-bottom:10px; margin-right: 3px; border: 1px solid #fffdfa; border-radius: 10px;
+       background-color:#242322;">
+        <ion-col col-1 style="max-width: 1%;line-height: 40px;">
+          <input type="radio" name="isself" value="SelfConsultation" [checked]="SelfConsultation"
+                 (click)="ConsultationType('SelfConsultation')">
+        </ion-col>
+        <ion-col col-10 style="padding: 5px">
+          <p style="color:#fffdfa; margin-bottom: 0px; font-weight: bolder; margin-left: 10px;">Virtual Consultation</p>
+          <p style="color:#fffdfa; margin-bottom: 5px;font-size: 11px; padding: 0px; margin-left: 10px;">See your Doctor
+            over a
+            Video Call</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row
+        style="margin-left: 2px;margin-bottom:10px; margin-right: 2px;  border: 1px solid #fffdfa;
+        background-color:#242322; border-radius: 10px;">
+        <ion-col col-1 style="max-width: 1%;line-height: 40px;">
+          <input type="radio" name="isself" value="PersonConsultation"
+                 (click)="ConsultationType('PersonConsultation')">
+        </ion-col>
+        <!--  <ion-col col-1 style="max-width: 10%; padding: 0px;line-height: 40px">
+          <img src="assets/mulk/DoctorConsultation.png" style="margin-top: 10px;margin-left: 5px;height: 30px;">
+          </ion-col>-->
+        <ion-col col-11 style="padding: 5px">
+          <p style=";color:#fffdfa; margin-bottom: 0px; font-weight: bolder; margin-left: 10px;">In Person
+            Consultation</p>
+          <p style="color:#fffdfa; margin-bottom: 5px;font-size: 11px; padding: 0px; margin-left: 10px;">See your Doctor
+            in
+            Person</p>
+        </ion-col>
+      </ion-row>
+
+      <div class="row" style="margin: 5px auto; ">
+        <div class="col-md-5" style="color:#fffdfa;padding: 0px">
+          <h6>5. Describe your Symptoms, if any </h6>
+        </div>
+      </div>
+
+      <div class="row" style=" margin-top: 5px; ">
+        <div class="col-md-1"></div>
+        <div class="col-md-10" style="padding: 0px;color:#fffdfa">
+          <div class="row" style=" background-color:#242322; margin-left: 2px; margin-right: 2px; ">
+                <textarea placeholder="Please Enter 120 Characters Only" [maxlength]="120"
+                          [formControl]="appointmentForm.controls['appointmentReason']"
+                          style=" background-color:#242322;margin-top: 0px; margin-bottom: 0px; height: 55px; width: 100%; padding: 5px;
+                           border: 1px solid #fffdfa; border-radius: 10px;"></textarea>
+            <!--(keyup)="character($event)"-->
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+
+      <div class="row1" style="height: 300px; overflow-x: auto; margin-top: 20px">
+        <div class="col-6" style="margin-bottom: 2px;padding: 2px;" *ngFor="let slist of scheduleList;let i= index">
+          <ion-button type="button" class="btn btn-block btn-primary" *ngIf="slist.status==1 && slist.status!=0"
+                      [ngClass]="slist.slotSelected == true ? 'btn-success': 'btn-primary'" title="Available Slot"
+                      [ngClass]="slist.slotSelected == true ? 'btn-success': 'btn-primary'" title="Available Slot"
+                      (click)="selectSlot(slist,i)">
+            {{slist.slot}}
+          </ion-button>
+          <ion-button type="button" style="margin: 0px auto;padding: 2px;" class="btn btn-block btn-secondary"
+                      *ngIf="slist.status==2 && slist.status!=0" disabled title="Booked Slot" disabled>
+            {{slist.slot}}
+          </ion-button>
+        </div>
+      </div>
+
+      <div style="margin: 10px auto; margin-bottom: 15px" >
+        <img src="assets/mulk/Confirm.png" *ngIf="slotConfirm" style="display: block; text-align: center; margin: 0px auto; border-radius: 5px;width: 40%;
+                margin-top: 10px;" (click)="FindDoctor('step6')" disabled="this.selectedService == undefined || this.selectedService == null">
+
+        <img src="assets/mulk/Confirm.png" *ngIf="!slotConfirm" style="display: block; text-align: center; margin: 0px auto; border-radius: 5px;width: 40%;
+               margin-top: 10px;" (click)="sloat()">
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Sstep-6 -->
+  <div *ngIf="Stepper=='step6'">
+    <div style="margin-top: 12px; margin-left: 10px; margin-right: 15px;margin-bottom: 12px; background-color: black">
+      <h5
+        style="font-size: 12px;margin-bottom: 10px;color:#fff; display: block;margin: 0px auto;text-align: center;font-weight: 800;">
+        MULK MED HEALTHCARE CONSENT FORM FOR TELECONSULTATION </h5>
+      <ul
+        style="font-size: 12px; color:#fff; margin-top: 5px; margin-left: 5px; margin-right: 5px;padding: 0px;text-align: justify;">
+        <li>
+          <p> 1- Purpose: To obtain your consent to participate in a teleconsultation in connection with the following
+            service(s) and/or procedure(s) • Patient Health Records • Medical Images • Live audio and video interaction
+            • Output data from medical devices and sound and video files
+
+          </p>
+          <p> 2- Electronic systems: Electronic systems used will incorporate network and software security protocols to
+            protect confidentiality of patient identification and imaging data and will include measures to safeguard
+            the data and to ensure its integrity against intentional and unintentional corruption in accordance to UAE
+            Laws and Regulations.
+
+          </p>
+          <p>3- Nature of Teleconsultation: During the teleconsultation a. Details of your medical history,
+            examinations, x-rays and tests may be discussed with other healthcare professionals with interactive videos,
+            audio and telecommunication technology. b. A physical examination may need to take place. c. A non-medical
+            technical person may be present in the telehealth studio to aid in the video transmission. d. Audio and/or
+            photo recordings may be taken for accurate diagnosis, treatment and quality control.
+
+          </p>
+          <p> 4- Medical Information and Records: All existing federal laws and local regulations/policies/guidelines
+            regarding access to medical information and copies of your Health Records apply to this teleconsultation.
+            Dissemination of any patient identifiable images or information for this telehealth interaction to other
+            entities will not take place without your consent.
+
+          </p>
+          <p> 5- Confidentiality: Responsible and appropriate efforts have been made to eliminate any confidentiality
+            risks associated with the teleconsultation and all existing confidentiality protections under UAE federal
+            laws and local regulation apply to information disclosed during this teleconsultation.
+
+          </p>
+          <p> 6- Rights: You may withhold or withdraw consent to teleconsultation at any time without affecting your
+            right to future care or treatment.
+
+          </p>
+          <p> 7- Disputes: You agree that any disputes that arise from the teleconsultation will be resolved as per UAE
+            laws and regulations and will be raised with the telehealth provider in the first instance.
+
+          </p>
+          <p> 8- Expected Benefits: a. Improves access to medical care by enabling a patient to remain in their home,
+            office (or a remote site) while your DHA licensed physician obtains test results and consults with other DHA
+            licensed physicians at distant/ other sites. b. More efficient medical evaluation and management.
+            c. Access to expertise from distant specialist in the UAE or experts outside.
+
+          </p>
+          <p> 9- Possible Risks: As with any medical procedures there are potential risks associated with the use of
+            Telehealth, which may include, but not limited to the following: a. Information transmission may not be
+            sufficient (e.g. poor resolution of images) to allow appropriate decision making by the consulted physician.
+            b. Delays in medical evaluation and treatment could occur due to deficiencies or failure of equipment. c. In
+            rare instances, security protocol could fail causing a breach of privacy of personal medical information. d.
+            In rare cases, a lack of access to complete health records may result in adverse drug interactions, allergic
+            reactions, or other judgement errors.
+
+          </p>
+          <p> 10- Expected Benefits and Possible Risks: You have been advised of all the risks, consequences and
+            benefits of telehealth. Your treating physician has discussed with you the information provided in a
+            language you can understand. You have had the opportunity to ask questions about the information presented
+            in this form and about the teleconsultation. All your questions have been answered and you understand the
+            written information provided above.
+          </p>
+
+        </li>
+      </ul>
+
+      <ion-row>
+        <ion-col col-1 style="max-width: 1%;margin-right: 12px;margin-top: -2px;">
+          <input type="checkbox" (change)="checkshowNot($event)">
+        </ion-col>
+        <ion-col col-10 style="padding: 0; margin-top: 4px;color: #fff; margin: 0px auto;text-align: justify">
+          <p style="font-size: 12px; text-align:justify-all;margin-right: 5px;margin-right: 20px;">
+            I have read and understand the information provided above regarding Telehealth, have discussed it with my
+            Physicians
+            or such assistants as may be designated and all my questions have been answered to my satisfaction. I hereby
+            give my
+            informed consent for the use of Telehealth in my medical care.</p>
+        </ion-col>
+      </ion-row>
+
+      <div style="margin-top: 10px;">
+        <p style="font-size: 12px;color: #fff;"><Strong>Patient Name : </Strong>{{loginUser?.userTitleId?.titleName}}
+          {{loginUser.userFirstname}}
+          {{loginUser.userLastname}}</p>
+        <p style="font-size: 12px;color: #fff;"><Strong>Date : </Strong>{{todays | date: 'fullDate'}}</p>
+      </div>
+
+
+      <div style="margin: 10px auto; margin-bottom: 15px">
+        <img src="assets/mulk/Next.png" *ngIf="constaccpect" style="display: block; text-align: center; margin: 0px auto; border-radius: 5px;width: 40%;
+    margin-top: 10px;" (click)="FindDoctor('step7')">
+
+        <img src="assets/mulk/Next.png" (click)="check('Consents')" *ngIf="!constaccpect" style="display: block; text-align: center; margin: 0px auto; border-radius: 5px;width: 40%;
+margin-top: 10px;">
+      </div>
+    </div>
+  </div>
+  <!--  Sstep-6 -->
+
+  <!-- Step-7 -->
+  <div *ngIf="Stepper=='step7'">
+    <div style="margin-top: 12px; margin-left: 10px; margin-right: 15px;margin-bottom: 12px; background-color: black">
+      <h5
+        style="margin-bottom: 10px;font-size: 12px;display: block;color: #fff; margin: 0px auto;text-align: center;font-weight: 800;">
+        Patients rights & responsibilities </h5>
+      <ul
+        style="font-size: 12px;color:#fff; margin-top: 10px; margin-left: 5px; margin-right: 5px; padding: 0;text-align: justify;">
+        <li>A patient has the right to be treated with courtesy and respect, with an appreciation of his or her
+          individual dignity,
+          and with the protection of his or her need for privacy. A patient has the right to a prompt and reasonable
+          response to questions and requests. A patient has the right to know who is providing medical services and
+          who is responsible for his or her care. A patient has the right to know what patient support services are
+          available,
+          including whether an interpreter is available if he or she does not speak English. A patient has the right
+          to know what rules and regulations apply to his or her conduct. A patient has the right to be given by the
+          healthcare provider information concerning diagnosis, planned course of treatment, alternatives, risks,
+          and prognosis. A patient has the right to refuse any treatment, except as otherwise provided by law.
+          A patient has the right to be given, upon request, full information, and necessary counseling on the
+          availability of known financial resources for his or her care. A patient who is eligible for Medicare
+          has the right to know, upon request and in advance of treatment, whether the health care provider or
+          health care facility accepts the Medicare assignment rate. A patient has the right to receive, upon request,
+          prior to treatment, a reasonable estimate of charges for medical care. A patient has the right to receive a
+          copy of a reasonably clear and understandable, itemized bill and, upon request, to have the charges
+          explained.
+          A patient has the right to impartial access to medical treatment or accommodations, regardless of race,
+          national origin, religion, handicap, or source of payment. A patient has the right to treatment for any
+          emergency medical condition that will deteriorate from failure to provide treatment.
+          A patient has the right to know if medical treatment is for purposes of experimental
+          research and to give his or her consent or refusal to participate in such experimental research.
+          A patient has the right to express grievances regarding any violation of his or her rights,
+          through the grievance procedure of the health care provider or health care facility which served him or her
+          and to the appropriate licensing agency. A patient is responsible for providing to the healthcare provider,
+          to the best of his or her knowledge, accurate and complete information about present complaints, past
+          illnesses,
+          hospitalizations, medications, and other matters relating to his or her health. A patient is responsible for
+          reporting unexpected changes in his or her condition to the healthcare provider. A patient is responsible
+          for
+          reporting to the health care provider whether he or she comprehends a contemplated course of action and what
+          is expected of him or her. A patient is responsible for following the treatment plan recommended by the
+          healthcare
+          provider. A patient is responsible for keeping appointments and, when he or she is unable to do so for any
+          reason,
+          for notifying the healthcare provider or health care facility. A patient is responsible for his or her
+          actions
+          if he or she refuses treatment or does not follow the health care provider's instructions.
+          A patient is responsible for assuring that the financial obligations of his or her healthcare are fulfilled
+          as promptly as possible. A patient is responsible for following healthcare facility rules and regulations
+          affecting
+          patient care and conduct. All the communication is being carried out over a secured channel.
+        </li>
+      </ul>
+
+      <ion-row style="margin-left: -15px; text-align: justify;">
+        <ion-col col-1 style="max-width: 1%;   margin-right: 12px;
+    margin-top: -2px;">
+          <input type="checkbox" (change)="checkshowNot1($event)">
+        </ion-col>
+
+        <ion-col col-10 style="padding: 0; margin-top: 4px;margin-right: 20px">
+          <p style="font-size: 12px;color: #fff;text-align: justify">
+            I have read and understood THE PATIENTS RIGHTS & RESPONSIBILITIES
+            and would like to
+            proceed with Booking an Appointment </p>
+        </ion-col>
+      </ion-row>
+
+      <div style="margin: 10px auto; margin-bottom: 15px">
+        <img src="assets/mulk/Confirm.png" *ngIf="rightstaccpect" style="display: block; text-align: center; margin: 0px auto; border-radius: 5px;width: 50%;
+             margin-top: 10px;" (click)="BookAppointment('profile')">
+
+        <img src="assets/mulk/Confirm.png" *ngIf="!rightstaccpect" style="display: block; text-align: center; margin: 0px auto; border-radius: 5px;width: 50%;
+            margin-top: 10px;" (click)="check('Rights')">
+      </div>
+    </div>
+  </div>
+  <!-- Step-7 -->
+
+  <ion-refresher label="Start" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+
+</ion-content>
+
+
+<!--<ion-row>
+<label class="labtext">Hospital:</label>
+<select class="form-control" (change)="selectedUnitValue(unitId.value)">
+<option value="0">Select Hospital</option>
+<option *ngFor="let data of unitData" [value]=data.unitId>{{data.unitName}}</option>
+</select>
+</ion-row>
+
+
+<ion-row>
+<label class="labtext">Insurance:</label>
+<select class="form-control" (change)="selectedUnitValue(unitId.value)">
+<option value="0">Select Insurance</option>
+<option *ngFor="let data of unitData" [value]=data.unitId>{{data.unitName}}</option>
+</select>
+</ion-row>-->

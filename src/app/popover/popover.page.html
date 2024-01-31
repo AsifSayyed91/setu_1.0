@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>popover</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div menuClose ion-item (click)="Profile()">
+    <ion-icon style="margin: 0px 10px 0px 10px;
+    color: #182230;
+    font-size: 20px;" ios="ios-contact" md="md-contact"></ion-icon>
+    Profile
+  </div>
+  <div menuClose ion-item (click)="Changepassword()">
+    <ion-icon ios="ios-lock" md="md-lock" style="margin: 0px 10px 0px 10px;
+    color: #182230;
+    font-size: 20px;"></ion-icon>
+    Change Password
+  </div>
+  <div menuClose ion-item (click)="Logout()">
+    <ion-icon ios="ios-power" md="md-power" style="margin: 0px 10px 0px 10px;
+    color: #182230;
+    font-size: 20px;"></ion-icon>
+    Logout
+  </div>
+</ion-content>

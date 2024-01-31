@@ -1,0 +1,184 @@
+
+<ion-header>
+  <ion-toolbar class="bar">
+    <ion-buttons start left>
+      <div ion-button show menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </div>
+    </ion-buttons>
+    <label class="label-titles">My Prescription</label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bgimg">
+  <ion-refresher slot="start" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-row>
+    <ion-col>
+      <img src="assets/mulk/prescription/My_Prescription1.png" class="img">
+    </ion-col>
+  </ion-row>
+
+  <!--<div class="container" class="box">
+    <div>
+      <ion-row style="margin-right: 0px;margin-right: 0px">
+
+        <ion-col col-6 style="text-align: left;padding: 0px; ! important;margin-left: 40px;padding-top: 16px;">
+          &lt;!&ndash;<h3>abc</h3>&ndash;&gt;
+          <h5><b>NO : </b>  </h5>
+          <h5><b>DRUG : </b>  </h5>
+          <h5><b>FREQUENCY : </b>  </h5>
+          <h5><b>DURATION/DAYS : </b>  </h5>
+          <h5><b>INSTRUCTION 1 : </b></h5>
+          <h5><b>INSTRUCTION 2 : </b></h5>
+          <h5><b>ROUTE  : </b> </h5>
+        </ion-col>
+
+        <ion-col col-6 style="text-align: left;padding: 0px; ! important;margin-left: 40px;padding-top: 16px;">
+          &lt;!&ndash;<h3>abc</h3>&ndash;&gt;
+          <h5><b>97876 </b>  </h5>
+          <h5><b>Abact  </b></h5>
+          <h5><b> 1/2 ml- 1/2ml - 1/2ml </b> </h5>
+          <h5><b>3 Days </b>  </h5>
+          <h5><b>Before Breakfast </b> </h5>
+          <h5><b>Fasting </b> </h5>
+          <h5><b>Oral </b> </h5>
+        </ion-col>
+      </ion-row>
+
+    </div>
+  </div>
+
+
+
+  <div class="container" class="box" >
+    <div>
+      <ion-row style="margin-right: 0px;margin-right: 0px">
+
+        <ion-col col-6 style="text-align: left;padding: 0px; ! important;margin-left: 40px;padding-top: 16px;">
+          &lt;!&ndash;<h3>abc</h3>&ndash;&gt;
+          <h5><b>NO : </b>  </h5>
+          <h5><b>DRUG : </b>  </h5>
+          <h5><b>FREQUENCY : </b>  </h5>
+          <h5><b>DURATION/DAYS : </b>  </h5>
+          <h5><b>INSTRUCTION 1 : </b></h5>
+          <h5><b>INSTRUCTION 2 : </b></h5>
+          <h5><b>ROUTE  : </b> </h5>
+        </ion-col>
+
+        <ion-col col-6 style="text-align: left;padding: 0px; ! important;margin-left: 40px;padding-top: 16px;">
+          &lt;!&ndash;<h3>abc</h3>&ndash;&gt;
+          <h5><b>97876 </b>  </h5>
+          <h5><b>Abact  </b></h5>
+          <h5><b> 1/2 ml- 1/2ml - 1/2ml </b> </h5>
+          <h5><b>3 Days </b>  </h5>
+          <h5><b>Before Breakfast </b> </h5>
+          <h5><b>Fasting </b> </h5>
+          <h5><b>Oral </b> </h5>
+        </ion-col>
+      </ion-row>
+
+    </div>
+  </div>-->
+
+
+  <div *ngIf="!pagination">
+    <ion-list class="m-n">
+      <ion-item no-lines *ngFor="let i of [0,1,2,3,4,5,6,7]">
+        <skeleton-item height="8px" width="90%"></skeleton-item>
+        <skeleton-item height="6px" width="70%"></skeleton-item>
+        <skeleton-item height="6px" width="70%"></skeleton-item>
+        <ion-avatar item-end>
+          <skeleton-item height="50px" width="50px"></skeleton-item>
+        </ion-avatar>
+      </ion-item>
+    </ion-list>
+  </div>
+  <div *ngIf="pagination && Prescriptionlist.length == 0">
+    <img style="color:#fff;width: 20%;margin:0px auto;display: block;margin-top:50px;" src="assets/mulk/cpty.png">
+    <p><b
+      style="color:#fff;font-weight: bold; margin: 10px auto;display: block; text-align: center;font-size: 12px;font-family: monospace;">You
+      have no Prescription.</b></p>
+  </div>
+
+  <form [formGroup]="myForm" (ngSubmit)="submit(myForm.value)">
+    <div class="row">
+      <div class="form-group col-sm-4">
+        <h6 style=" font-size: 20px;"><label for="name">Name</label></h6>
+        <input style="color: black" formControlName="name" id="name" type="text" placeholder="Document Name" class="form-control">
+      </div>
+
+      <div class="form-group col-sm-4">
+        <h6 style="color: white"><label for="file">File</label></h6>
+        <input formControlName="file" id="file" type="file" class="form-control"
+               (change)="onFileChange($event)">
+      </div>
+
+      <div class="form-group col-sm-4">
+        <h6 style="color: white"><label for="file">File</label></h6>
+        <ion-button type="submit" class="btn btn-primary px-4">
+          Upload
+        </ion-button>
+      </div>
+    </div>
+  </form>
+
+  <!--<div *ngIf="pagination && Prescriptionlist.length >= 1">-->
+    <!--<div *ngFor="let prescription of Prescriptionlist | paginate : config; let i=index" class="input-wrapper">-->
+      <!--<ion-card style="padding: 0px!important;border-radius: 20px;">-->
+        <!--<ion-item style="padding: 0px!important;">-->
+          <!--<p><b>Date : </b> {{prescription?.createdDate | date:'dd-MM-yyyy'}} </p>-->
+          <!--&lt;!&ndash;<p><b>Doctor : </b> Dr. {{prescription?.vpTimelineId?.timelineEMRFinalStaffId?.staffUserId.userFullname}}</p>&ndash;&gt;-->
+          <!--<h4 *ngIf="prescription?.doctorId"><strong> Doctor Name : </strong>{{prescription?.doctorId?.staffUserId?.userFullname}} </h4>-->
+          <!--<h4 *ngIf="prescription?.doctorId == null"><strong> Doctor Name : </strong>NA </h4>-->
+          <!--<p><b>Document Name : </b>{{prescription?.duName}} </p>-->
+
+          <!--<span (click)="prescription_view(prescription?.vpId)" item-end>-->
+                  <!--<img style="color:#fff;margin: 0px auto;width: 104%;display: block;margin-top: 33px;"-->
+                       <!--src="assets/img/icons/prescription.png"></span>-->
+        <!--</ion-item>-->
+      <!--</ion-card>-->
+    <!--</div>-->
+    <!--<div style="text-align: left;">-->
+      <!--<div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>-->
+      <!--<pagination-controls (pageChange)="getPage($event)" [id]="config.id"></pagination-controls>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <ng-container *ngIf="pagination && Prescriptionlist.length >= 1">
+    <ion-list *ngFor="let prescription of Prescriptionlist | paginate:{itemsPerPage: pageSize, currentPage: currentPage}; let i = index" class="input-wrapper">
+      <ion-card style="--padding-start: 0; --padding-end: 0; --border-radius: 20px;">
+        <ion-item style="--padding-start: 0; --padding-end: 0;">
+          <ion-label><b>Date:</b> {{prescription?.createdDate | date:'dd-MM-yyyy'}}</ion-label>
+          <ng-container *ngIf="prescription?.doctorId">
+            <h4><strong>Doctor Name:</strong> {{prescription?.doctorId?.staffUserId?.userFullname}}</h4>
+          </ng-container>
+          <ng-container *ngIf="!prescription?.doctorId">
+            <h4><strong>Doctor Name:</strong> NA</h4>
+          </ng-container>
+          <ion-label><b>Document Name:</b> {{prescription?.duName}}</ion-label>
+          <ion-icon (click)="prescription_view(prescription?.vpId)" slot="end" name="eye"></ion-icon>
+        </ion-item>
+      </ion-card>
+    </ion-list>
+    <ion-grid style="text-align: left;">
+      <ion-row>
+        <ion-col size="7"></ion-col>
+        <ion-col size="5">
+          <ion-text>
+            <h5 style="margin: 2px auto;">Finalized By</h5>
+            <h5 style="margin: 0 auto;">
+              <strong>Dr. {{prescription?.ipVpId?.vpTimelineId?.timelineDoctorAdviceCreatedStaffName}}</strong>
+              ({{prescription?.ipVpId?.vpTimelineId?.timelineEMRFinalStaffId?.staffEducation}})
+            </h5>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-container>
+  <div class="spinner" [ngClass]="{ 'hidden': !loading }" *ngIf="pagination"></div>
+  <ion-pagination [id]="config.id" (pageChange)="getPage($event)" *ngIf="pagination"></ion-pagination>
+
+</ion-content>

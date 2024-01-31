@@ -1,0 +1,52 @@
+<!--<ion-header>
+  <ion-toolbar>
+    <label class="label-titles">My Lab Reports Details</label>
+    <ion-buttons end>
+      <ion-button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>-->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="text-align: center">My Lab Reports Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content style="background-color: #fff!important;">
+  <!--<div class="labels">
+    <input type="button" style="font-size: large;" class="login-bt" value="Send to Lab" (click)="sendToOthers()" (click)="OpenModal()">
+  </div>-->
+
+  <div class="labels">
+    <input type="button" style="font-size: large;" class="login-bt" value="Send To Lab"
+           (click)="sentToLab(patientId, vpId)">
+  </div>
+
+  <div *ngFor="let myLab of labReportsList">
+    <div class="labels">
+    </div>
+    <!-- <h4><strong>Doctor Name </strong> :
+       Dr.{{myLab?.doctorId?.staffUserId?.userFullname}}</h4>-->
+    <h4 *ngIf="myLab?.doctorId"><strong> Doctor Name : </strong>{{myLab?.doctorId?.staffUserId?.userFullname}} </h4>
+    <h4 *ngIf="myLab?.doctorId == null"><strong> Doctor Name : </strong>NA </h4>
+    <h4><strong>Date : </strong>> {{myLab?.createdDate | date:'dd-MM-yyyy'}}</h4>
+    <h4><strong>Document Name </strong> :
+      {{myLab?.duName}}</h4>
+    <h4><strong>Patient Name </strong> :
+      {{myLab?.patientId?.patientUserId?.userName}} </h4>
+    <img style="color:#fff;width: 20%;margin:0px auto;display: block;margin-top:50px;"
+         src="{{patientimagepath}}/{{myLab?.duFileName}}">
+  </div>
+  <div class="presc_lable">
+  </div>
+
+
+</ion-content>
+

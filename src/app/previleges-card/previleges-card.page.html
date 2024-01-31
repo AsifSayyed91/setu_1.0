@@ -1,0 +1,48 @@
+<!--
+  Generated template for the PrevilegesCardPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+
+<ion-header>
+  <ion-toolbar class="bar">
+    <ion-buttons start left>
+      <div ion-button show menuToggle >
+        <ion-icon name="menu"></ion-icon>
+      </div>
+    </ion-buttons>
+    <label class="label-titles">Apply Previlege Card</label>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content style="background-color: #fff!important;">
+  <div>
+    <div class="form-group col-sm-4 col-lg-4 col-xl-4" style="margin: 20px auto">
+      <h6 style="color: white; font-size: 20px;"><label for="name">Enter Previleges Card No</label></h6>
+      <input [(ngModel)]="cardno" id="name" type="text" placeholder="Enter Previlege Card Number" class="form-control" (input)="checkCard($event.target.value)">
+    </div>
+    <div class="form-group col-sm-4 col-lg-4" style="margin: 20px auto">
+      <h6 style="color: white; font-size: 20px;"><label for="name">Your Emirate Id</label></h6>
+      <input id="name" type="text" [value]="emirateId"  class="form-control" disabled>
+      <p class="dangererr" style="color:red; margin-left: 20px" *ngIf="emirateId == ''">Please Update Emirate Id in your Profile</p>
+    </div>
+
+    <ion-button type="button" (click)="appyPrevilegesCard()" class="btn btn-primary px-6" style="margin: auto;display: block" [disabled]="!disabled">
+      Apply Code
+    </ion-button>
+  </div>
+
+  <div>
+    <div>
+      <div style="" class="flex">
+        <img src="assets/img/mulk1.png"
+             style=" height: 300px;text-align: center;display: block;margin: auto" />
+      </div>
+    </div>
+  </div>
+
+</ion-content>

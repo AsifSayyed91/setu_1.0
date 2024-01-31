@@ -1,0 +1,142 @@
+
+  .form-control {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #dc6b6b;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  }
+  .border {
+    border: 1px solid #cccccc !important;
+  }
+
+  p {
+    margin-top: 0;
+    font-size: 12px;
+    margin: 0px auto;
+    margin-left: 10px;
+  }
+
+  h5, h3 {
+    font-size: 12px;
+  }
+
+  .card-md h5 {
+    margin: 2px 0;
+    font-size: 13px;
+    color: #222;
+    font-weight: 500;
+  }
+
+  .card-md h6 {
+    margin: 2px 0;
+    font-size: 10px;
+    font-weight: normal;
+    color: #978787;
+  }
+
+  .alls {
+    border: 1px solid #ced4da;
+  }
+
+  .allsp {
+    margin-top: 0;
+    font-size: 12px;
+    margin: 6px auto;
+  }
+
+  .text-input-md {
+    margin: 0px auto;
+    padding: 5px;
+    width: calc(100% - 8px - 8px);
+  }
+  .label-md {
+    margin: 0px auto;
+    padding: 5px;
+  }
+
+  .item-md.item-block .item-inner {
+    padding-right: 0px !important;
+    border-bottom: 0px solid #dedede !important;
+  }
+
+  .bookimg {
+    height: 100px;
+    width: 90%;
+    display: block;
+    margin: 0px auto;
+  }
+
+  .bookimgs {
+    height: 120px;
+    width: 100%;
+    display: block;
+    margin: 5px auto;
+  }
+  .text {
+    position: absolute;
+    z-index: 999;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    text-align: right;
+    top: 40%;
+    font-family: Arial, sans-serif;
+    color: #000;
+    width: 60%;
+  }
+
+  .card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, .125);
+    border-radius: .25rem;
+    width: 100%;
+    padding: 0px;
+    margin: 5px auto;
+  }
+  .col1 {
+    color: #007bff;
+    font-size: 15px;
+    padding: 5px;
+  }
+  .col2 {
+    padding: 0px;
+    margin-left: -15px;
+    margin-top: 6px;
+  }
+
+  .btns {
+    color: #fff;
+    background-color: #0b6c0bf0;
+    border-color: #0b6c0bf0;
+  }
+
+  .btnun {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+
+  .bgimg {
+    background: url('/src/assets/img/Mulk E Health A4-01 1.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+  }

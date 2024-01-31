@@ -1,0 +1,41 @@
+ .toolbar-title-md {
+    padding: 0 12px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #424242;
+  }
+  h6 {
+    font-size: 12px;
+    text-align: left;
+    margin-left: 20px;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  .form-control {
+    display: block;
+    width: 100% !important;
+    margin: 0px auto !important;
+    height: 35px !important;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    -webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+  }
+
+ .bgimg {
+   background: url('/src/assets/img/Mulk E Health A4-01 1.png');
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   background-position: center;
+   background-size: cover;
+ }

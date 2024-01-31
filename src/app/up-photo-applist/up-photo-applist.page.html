@@ -1,0 +1,73 @@
+<style type="text/css">
+  .bgimg {
+    /*background: url('assets/img/Mulk E Health A4-01 1.png');*/
+    background-color: black;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+  }
+</style>
+
+<!--<ion-header>
+  <ion-navbar>
+    <label class="label-titles">Upload Image</label>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>-->
+
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="text-align: center">Upload Image</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="bgimg">
+  <!--<div style="width: 200px;-->
+  <!--display: block;-->
+  <!--margin: 0px auto;">-->
+  <!--<img src="{{image_path}}">-->
+  <!--</div>-->
+
+  <div class="text-center">
+    <form [formGroup]="myForm" (ngSubmit)="submit(myForm.value)">
+      <div class="row">
+        <div class="form-group col-sm-4">
+          <h6><ion-label for="name">Name</ion-label></h6>
+          <ion-input formControlName="name" id="name" type="text" placeholder="Document Name" class="form-control"/>
+        </div>
+
+        <div class="form-group col-sm-4">
+          <h6><ion-label for="file">File</ion-label></h6>
+          <ion-input formControlName="file" id="file" type="file" class="form-control"
+                     (change)="onFileChange($event)"/>
+        </div>
+
+        <div class="form-group col-sm-3">
+          <h6><label>Category</label></h6>
+          <ion-select class="form-control"(change)="onSelectCategory(selectedg.value)"
+                      #selectedg  [formControl]="myForm.get('dcId').get('dcId')">
+            <ion-select-option value="0">Select Category</ion-select-option>
+            <ion-select-option *ngFor="let service of Category" required value="{{service.dcId}}">{{service.dcName}}
+            </ion-select-option>
+          </ion-select>
+
+        </div>
+      </div>
+
+      <ion-button type="submit" class="btn btn-primary px-4">
+        Upload
+      </ion-button>
+    </form>
+
+  </div>
+</ion-content>

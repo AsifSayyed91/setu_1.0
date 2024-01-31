@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar class="bar">
+    <ion-buttons start left>
+      <div ion-button show menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </div>
+    </ion-buttons>
+    <label class="label-titles">My Doctors</label>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="bgimg">
+
+  <ion-refresher label="Start" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+
+  <div class="container" *ngFor="let doctor of appointmentlist;let i=index"
+       style="background-color: #ebebeb; border-radius: 30px; width: 95%;  display: block;margin: 10px auto;">
+    <div class="text-left">
+      <ion-row col-12>
+        <ion-col col-3 style="padding: 0px;max-width: 20%;">
+          <img *ngIf="doctor?.appointmentStaffId?.staffUserId?.userImage =='null'" src="assets/img/doctor.png" class="docimg">
+          <img *ngIf="doctor?.appointmentStaffId?.staffUserId?.userImage !='null'"
+               src="{{patientimagepath}}{{doctor?.appointmentStaffId?.staffUserId?.userImage}}" class="docimg">
+        </ion-col>
+        <ion-col col-9 style="text-align: left;padding: 0px !important;margin-top: 20px;">
+          <h3 class="h3-0"><b style="font-size: large">{{ doctor?.appointmentStaffId?.staffUserId?.userTitleId?.titleName }}  {{doctor?.appointmentStaffId?.staffUserId?.userFullname}}</b>
+          </h3>
+          <h5 class="h5-0">
+            <img src="assets/icon/Speciality_1.png"
+                 style="width: 9%;">
+            <b>{{doctor.appointmentStaffId?.staffSpecialityId?.specialityName}}</b></h5>
+          <!--<h5 class="h5-0"><b>{{doctor.education}} </b></h5>-->
+          <h5 class="h5-0">
+            <img src="assets/icon/Experience_1.png"
+                 style="width: 9%;">
+            <b>Experience :{{doctor.appointmentStaffId?.staffexprience}}</b></h5>
+
+          <h5 class="h5-0">
+            <img src="assets/icon/Location_1.png"
+                 style="width: 9%;">
+
+            <b>Location : {{ doctor.appointmentStaffId?.staffUserId?.userCityId?.cityName }} </b></h5>
+          <h5 class="h5-0">
+            <img src="assets/icon/Language_1.png"
+                 style="width: 9%;">
+            <b>Languages :
+              <span *ngFor="let language of doctor.appointmentStaffId?.staffLanguages">
+                {{ language.languageName }},
+              </span>
+              <!--{{ doctor.appointmentStaffId?.staffLanguages?.languageName }}-->
+            </b></h5>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+
+
+  <ion-refresher label="Start" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+</ion-content>

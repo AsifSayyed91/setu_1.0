@@ -1,0 +1,80 @@
+<!--<ion-header>
+  <ion-toolbar class="bar">
+    <ion-buttons start left>
+      <div ion-button show menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </div>
+    </ion-buttons>
+    <label class="label-titles">Laboratory</label>
+    <ion-buttons end>
+      <div ion-button icon-only (click)="popoverMenu($event)">
+        <ion-icon name="more"></ion-icon>
+      </div>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>-->
+
+
+<!--<ion-header>
+  <ion-toolbar>
+    <label class="label-titles">Laboratory</label>
+    <ion-buttons end>
+      <ion-button ion-button icon-only (click)="goBack()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>-->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/explore-services"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="align-items: center">Laboratory</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="bgimg" id="chronicTextArea">
+  <ion-grid>
+
+
+  <form class="pd-10" id="medicalTourism" autocomplete="off"
+        [formGroup]="myForm" (ngSubmit)="onAddRecord(myForm.value)">
+
+    <div class="row" style="font-size: 18px; margin: -10px auto;  padding: 14px;">
+      <div class="col-md-5" style="padding: 0px">
+        <h6 style=" font-size: 20px;text-align: center">Enquiry</h6>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 5px;">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <div class="row">
+                <textarea
+                  class="form-control" id="enquiry"
+                  name="enquiry" required="" formControlName="enquiry"
+                  formControlName="enquiry"
+                  style="margin-top: 0px; margin-bottom: 0px; height: 55px; width: 100% !important; padding: 37px; border: 1px solid black; border-radius: 10PX;">
+                </textarea>
+        </div>
+      </div>
+      <br><br>
+      <!--<button class="btn btn-primary mt-3 active"
+              style="display: block;text-align: center;margin: 0px auto;width: 37%; font-size: 20px" type="submit">Submit</button>-->
+      <ion-button shape="round"  type="submit" style="font-size: large; margin: 0px auto;width:41%;display: block;margin-top: 33px;"
+           class="login-bt" value="Submit">SUBMIT
+      </ion-button>
+    </div>
+  </form>
+
+
+
+  <ion-refresher label="Start" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+
+
+</ion-grid></ion-content>

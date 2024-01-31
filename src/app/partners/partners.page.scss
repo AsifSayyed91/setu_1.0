@@ -1,0 +1,46 @@
+
+  .dropdown {
+    color: whitesmoke;
+    font-weight: bold;
+    margin-left: 20px;
+    font-size: 13px;
+  }
+  .wt {
+    width: 100%;
+  }
+  .mri {
+    background: #28D0F4;
+    border-radius: 5px;
+    font-size: 12px;
+    width: 70%;
+    margin-right: 10px;
+  }
+  .medical {
+    background-color: #fff;
+    border-radius: 12px;
+    //margin-left: 6px;
+    //margin-right: 6px;
+
+  }
+  .home {
+    border-radius: 10px;
+    background: #FF87B2;
+  }
+  .home1 {
+    border-radius: 10px;
+    background: #FF8787;
+  }
+
+  .img-responsive {
+    margin: 0 auto;
+    display: block;
+  }
+
+  .bgimg {
+    background: url('/src/assets/img/Mulk E Health A4-01 1.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+  }
+

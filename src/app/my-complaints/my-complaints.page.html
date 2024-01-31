@@ -1,0 +1,113 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="text-align: center">Enquiry</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding class="bgimg" id="chronicTextArea">
+  <!--  <form class="pd-10" id="complaint" autocomplete="off"
+          [formGroup]="myComplaints" (ngSubmit)="onAddRecord(myComplaints.value)">
+      <div class="row" style="font-size: 18px; margin: -10px auto;  padding: 14px;">
+        <div class="col-md-5" style="color: #ffffff;padding: 0px">
+          <h6>My Complaint</h6>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 5px;">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+          <div class="row" style="margin-left: 2px; margin-right: 2px; background: white;">
+                  <textarea placeholder="Please Enter 120 Characters Only"
+                            class="form-control new-form-control" id="complaints"
+                            name="complaints" required="" formControlName="complaints"
+                            [formControl]="complaints.controls['complaints']"
+                            style="margin-top: 0px; margin-bottom: 0px; height: 55px; width: 100%; padding: 5px; border: 1px solid #ccc; border-radius: 10PX;">
+                  </textarea>
+          </div>
+        </div>
+        <br><br>
+        <div class="col-md-2">
+          <ion-button ion-button color="primary" type="submit">Submit</ion-button>
+        </div>
+      </div>
+        </form>-->
+  <form class="pd-10" id="complaintForm" autocomplete="off"
+        [formGroup]="myComplaints" (ngSubmit)="onAddRecord(myComplaints.value)">
+    <div class="row" style="font-size: 18px; margin: -10px auto;  padding: 14px;">
+      <div class="col-md-5" style="color: #ffffff;padding: 0px;text-align: center; font-size: 18px;">
+        <h2>Enquiry</h2>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 5px;">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <div class="row">
+                <textarea
+                  class="form-control new-form-control" id="complaints"
+                  name="complaints" required="" formControlName="complaint"
+                  [formControl]="myComplaints.controls['complaint']"
+                  style="margin-top: 0px; margin-bottom: 0px; height: 55px; width: 100% !important; padding: 37px; border: 1px solid #ccc; border-radius: 10PX;background-color: gainsboro;
+  color: black;">
+                </textarea>
+        </div>
+      </div>
+      <br><br>
+      <!--<div class="col-md-2">
+        <ion-button ion-button color="primary" type="submit">Submit</ion-button>
+      </div>-->
+      <ion-button class="btn btn-primary mt-3 active"
+              style="display: block;text-align: center;margin: 0px auto;width: 37%" type="submit">Submit
+      </ion-button>
+    </div>
+  </form>
+
+
+  <ion-refresher label="Start" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngIf="!pagination">
+    <ion-list class="m-n">
+      <ion-item no-lines *ngFor="let i of [0,1,2,3,4,5,6,7]">
+        <skeleton-item height="8px" width="90%"></skeleton-item>
+        <skeleton-item height="6px" width="70%"></skeleton-item>
+        <skeleton-item height="6px" width="70%"></skeleton-item>
+        <ion-avatar item-end>
+          <skeleton-item height="50px" width="50px"></skeleton-item>
+        </ion-avatar>
+      </ion-item>
+    </ion-list>
+  </div>
+  <div *ngIf="pagination && myComplaintsList.length == 0">
+    <img style="color:#fff;width: 20%;margin:0px auto;display: block;margin-top:50px;" src="assets/mulk/cpty.png">
+    <p><b
+      style="color:#fff;font-weight: bold; margin: 10px auto;display: block; text-align: center;font-size: 12px;font-family: monospace;">You
+      have no Complaints.</b></p>
+  </div>
+
+  <div *ngIf="pagination && myComplaintsList.length >= 1">
+    <div *ngFor="let mComplaints of myComplaintsList | paginate : config; let i=index" class="input-wrapper">
+      <ion-card style="padding: 0px!important;border-radius: 20px;">
+        <ion-item style="padding: 0px!important;">
+          <p><b>Date : </b> {{mComplaints?.createdDate | date:'dd-MM-yyyy'}} </p>
+          <p><b>Patient Name : </b> {{mComplaints.patientId?.patientUserId?.userName}} </p>
+          <p><b>My Complaints : </b> {{mComplaints.complaint}} </p>
+          <span (click)="complaints_view(mComplaints?.myComplaintsId)" item-end>
+                  <img style="color:#fff;margin: 0px auto;width: 104%;display: block;margin-top: 33px;"
+                       src="assets/img/icons/prescription.png"></span>
+        </ion-item>
+      </ion-card>
+    </div>
+    <div style="text-align: left;">
+      <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
+      <pagination-controls (pageChange)="getPage($event)" [id]="config.id"></pagination-controls>
+    </div>
+  </div>
+
+</ion-content>

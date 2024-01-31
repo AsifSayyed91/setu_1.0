@@ -1,0 +1,46 @@
+<!--<ion-header>
+  <ion-toolbar>
+    <label class="label-titles">My SickLeaves Details</label>
+    <ion-buttons end>
+      <ion-button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>-->
+
+<ion-header>
+  <ion-toolbar class="bar">
+    <ion-buttons start left>
+      <div ion-button show menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </div>
+    </ion-buttons>
+    <label class="label-titles">My Sick Leaves Details</label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="background-color: #fff!important;">
+
+  <div >
+    <div class="labels">
+    </div>
+    <h4><strong>Date </strong>:
+      {{sickLeaves?.createdDate | date:'dd-MM-yyyy'}} </h4>
+    <h4><strong> Patient Name </strong> :
+      {{sickLeaves?.patientId?.patientUserId?.userName}} </h4>
+    <!--<h4><strong>Doctor Name </strong> :
+      Dr.{{sickLeaves?.doctorId?.staffUserId?.userFullname}}</h4>-->
+    <h4 *ngIf="sickLeaves?.doctorId"><strong> Doctor Name : </strong>{{sickLeaves?.doctorId?.staffUserId?.userFullname}} </h4>
+    <h4 *ngIf="sickLeaves?.doctorId == null"><strong> Doctor Name : </strong>NA </h4>
+
+    <img style="color:#fff;width: 20%;margin:0px auto;display: block;margin-top:50px;"
+         src="{{patientimagepath}}/{{sickLeaves?.duPath}}">
+  </div>
+  <div class="presc_lable">
+    <!--<h5>Radiology List</h5>-->
+  </div>
+
+
+</ion-content>
+

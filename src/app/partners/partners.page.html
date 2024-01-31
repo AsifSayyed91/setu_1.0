@@ -1,0 +1,66 @@
+
+<ion-header>
+  <ion-toolbar class="bar">
+    <ion-buttons start left>
+      <div ion-button show menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </div>
+    </ion-buttons>
+    <label class="label-titles">Our Partners</label>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content class="bgimg">
+  <ion-refresher label="Start" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <!-- <ion-row >
+     <ion-col>
+       <img src="assets/mulk/prescription/My_Prescription1.png" class="img">
+     </ion-col>
+   </ion-row>-->
+
+  <!--<div *ngIf="partnerListByCondition.length == 0">
+    <img style="color:#fff;width: 20%;margin:0px auto;display: block;margin-top:50px;" src="assets/mulk/cpty.png">
+    <p><b
+      style="color:#fff;font-weight: bold; margin: 10px auto;display: block; text-align: center;font-size: 12px;font-family: monospace;">You
+      have no Partner's.</b></p>
+  </div>-->
+
+  <img *ngIf="CDM" src="assets/mulk/explore/1 Chronic Disease Mgmt (1).png" class="img">
+  <img *ngIf="pharmacy" src="assets/mulk/explore/8 Pharmacy.png" class="img">
+  <img *ngIf="HH" src="assets/mulk/explore/2 Home Health Services (1).png" class="img">
+  <img *ngIf="MT" src="assets/mulk/explore/4 Medical Tourism (1).png" class="img">
+  <img *ngIf="Radiology" src="assets/mulk/explore/5 Radiology.png" class="img">
+  <img *ngIf="Lab" src="assets/mulk/explore/6 Lab (1).png" class="img">
+  <img *ngIf="physiotherapy" src="assets/mulk/explore/7 Physiotherapy.png" class="img">
+  <img *ngIf="aesthetics" src="assets/mulk/explore/Aesthetics.png" class="img">
+
+  <ion-grid>
+    <ion-row>
+      <ng-container *ngFor="let partner of partnerListByCondition;">
+        <ion-col class="col-12" style="padding: 5px" *ngIf="partner?.partnerLogo != null && partner?.partnerLogo != 'undefined'" >
+          <!--<p style="font-family: emoji; color: white;"><b> Labs</b></p>-->
+          <ion-card style="background-color:#ccc;border-radius:10px;height: 84%;">
+            <img  src="{{patientimagepath}}/{{partner?.partnerLogo}}"
+                  style="width: 100%;display: block;text-align: center;margin: 5px auto;">
+
+          </ion-card>
+        </ion-col>
+      </ng-container>
+    </ion-row>
+  </ion-grid>
+
+  <ion-refresher label="Start" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+</ion-content>

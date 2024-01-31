@@ -1,0 +1,198 @@
+<style type="text/css">
+  .bgimg {
+  //background: url('assets/img/Mulk E Health A4-01 1.png');/
+  background-color: black;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+  }
+
+
+
+  ::placeholder {
+    color: whitesmoke !important;
+    opacity: 1;
+  }
+</style>
+<!--<ion-content class="bgimg">-->
+<!--<ion-card style="margin-top: 20%;-->
+<!--background-color: transparent;  ">-->
+<!--<ion-row class="row">-->
+<!--<img src="assets/img/mulk old.png"-->
+<!--style="width: 200px; height: 200px;text-align: center;display: block;margin: 15px auto;">-->
+
+<!--&lt;!&ndash;<img src="assets/img/mulk.png"&ndash;&gt;-->
+<!--&lt;!&ndash;style="width: 150px; height: 100px;text-align: center;display: block;margin: 0px auto;">&ndash;&gt;-->
+<!--</ion-row>-->
+
+<!--<form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)" style="padding-top: 30px;">-->
+<!--&lt;!&ndash;<h6 class="text-center" style="color: #fff">Login </h6>&ndash;&gt;-->
+
+<!--&lt;!&ndash;<p class="text-muted text-center" style="color: #fff !important;color: black">Sign In to your account</p>&ndash;&gt;-->
+
+<!--&lt;!&ndash;<div class="input-group" style="width: 80%; margin: 10px auto;">&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="input-group-prepend">&ndash;&gt;-->
+<!--&lt;!&ndash;<span class="input-group-text">&ndash;&gt;-->
+<!--&lt;!&ndash;<ion-icon ios="ios-person" md="md-person"></ion-icon>&ndash;&gt;-->
+<!--&lt;!&ndash;</span>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--&lt;!&ndash;<input type="text" class="form-control" placeholder="Username" [formControl]="loginForm.controls['username']"&ndash;&gt;-->
+<!--&lt;!&ndash;autocomplete="mrnumber" required>&ndash;&gt;-->
+
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="input-group mb-4" style="width: 80%; margin: 10px auto;">&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="input-group-prepend">&ndash;&gt;-->
+<!--&lt;!&ndash;<span class="input-group-text">&ndash;&gt;-->
+<!--&lt;!&ndash;<ion-icon ios="ios-lock" md="md-lock"></ion-icon>&ndash;&gt;-->
+<!--&lt;!&ndash;</span>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--&lt;!&ndash;<input type="password" class="form-control" placeholder="Password"&ndash;&gt;-->
+<!--&lt;!&ndash;[formControl]="loginForm.controls['password']" autocomplete="current-password" required>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+<!--<div class="input-group" style="width: 80%; margin: 10px auto;">-->
+<!--<ion-input class="form-control text-center transparent-input"-->
+<!--style="background-color: transparent; border-color: #fff;   display: block;-->
+<!--margin: 0 auto;   color: #fff;font-size: large;" type='text'-->
+<!--name='name' placeholder="Username"-->
+<!--[formControl]="loginForm.controls['username']"-->
+<!--autocomplete="mrnumber" required>-->
+<!--</ion-input>-->
+<!--</div>-->
+
+<!--<div class="input-group " style="width: 80%; margin: 10px auto;">-->
+<!--<ion-input class="form-control text-center transparent-input" type='password' name='name' placeholder="Password"-->
+<!--[formControl]="loginForm.controls['password']"-->
+<!--style="color:white;opacity: 10.65;  display: block;-->
+<!--margin: 0 auto;background-color: transparent;border-color: #fff;font-size: large;"-->
+<!--autocomplete="current-password" required>-->
+<!--</ion-input>-->
+<!--</div>-->
+
+<!--<div class="text-center trouble">-->
+<!--<ion-label (click)="forgotPassword()">Forgot Password?</ion-label>-->
+<!--</div>-->
+<!--<br>-->
+
+<!--<div class="text-center" style="margin-bottom: 30px;padding-top: 50px;">-->
+<!--<ion-button type="submit"-->
+<!--class="loginbutton" [disabled]="!loginForm.valid">Login <br>-->
+<!--&lt;!&ndash;<i class="fa fa-lock" aria-hidden="true"></i>&ndash;&gt;-->
+<!--</ion-button>-->
+<!--</div>-->
+
+
+<!--<div class="text-center" style="margin-bottom: 30px;">-->
+<!--<ion-button type="button" class="btn btn-link px-0"-->
+<!--style="background-color: transparent;-->
+<!--border-radius: 20px;-->
+<!--color: #fff;-->
+<!--font-size: large;-->
+<!--border-color: aqua;-->
+<!--width: 183px;-->
+<!--height: 42px;-->
+<!--font-weight: 600;"-->
+<!--(click)="Register()"> Register Now-->
+<!--&lt;!&ndash;<i class="fa fa-lock" aria-hidden="true"></i>&ndash;&gt;-->
+<!--</ion-button>-->
+<!--</div>-->
+<!--<div class="row" style="width: 90%; margin: 2px auto;">-->
+<!--<div class="col-6 text-left">-->
+<!--&lt;!&ndash;<button type="button" class="btn btn-link px-0" style="color: #fff" (click)="Register()"> Register Now!&ndash;&gt;-->
+<!--&lt;!&ndash;</button>&ndash;&gt;-->
+<!--</div>-->
+<!--<div class="col-6 text-right">-->
+<!--&lt;!&ndash;<button type="button" class="btn btn-link px-0" style="color: #fff" (click)="forgotUser()">Forgot Username?&ndash;&gt;-->
+<!--&lt;!&ndash;</button>&ndash;&gt;-->
+<!--</div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash;Forgot Password&ndash;&gt;-->
+<!--&lt;!&ndash;   <div class="row" style="width: 90%; margin: 2px auto;">-->
+<!--<div class="col-6 text-left">-->
+<!--</div>-->
+<!--<div class="col-6 text-right">-->
+<!--<button type="button" class="btn btn-link px-0" style="color: #fff" (click)="forgotPassword()">Forgot-->
+<!--password?-->
+<!--</button>-->
+<!--</div>-->
+<!--</div>&ndash;&gt;-->
+
+
+<!--</form>-->
+<!--</ion-card>-->
+<!--<br>-->
+
+<!--</ion-content>-->
+
+
+<!--<ion-footer class="hide-on-keyboard-open" style="background-color:whitesmoke;height: 55px;" *ngIf="footer">-->
+<!--<div text-center style="margin-top:5px">-->
+<!--<p>Powered By-->
+<!--<a href="http://www.cellbeanshealthcare.com/">-->
+<!--<img src="./assets/img/logo_cellbeans.png" width="100" height="30" style="margin-bottom: 11px">-->
+<!--</a>-->
+<!--</p>-->
+
+<!--</div>-->
+<!--</ion-footer>-->
+
+
+<!--<ion-header>-->
+<!--<ion-toolbar>-->
+<!--&lt;!&ndash;<ion-title>&ndash;&gt;-->
+<!--&lt;!&ndash;Login Page&ndash;&gt;-->
+<!--&lt;!&ndash;</ion-title>&ndash;&gt;-->
+<!--</ion-toolbar>-->
+<!--</ion-header>-->
+
+<ion-content [fullscreen]="true">
+  <div class="bgimg">
+    <ion-card style="margin-top: 20%; background-color:black;">
+      <ion-row class="row">
+        <!--<img src="assets/img/mulkmed logo.png" style="width: 200px; height: 60px; text-align: center; display: block; margin: 15px auto;">-->
+        <img src="assets/img/mulkmed logo.png" style="width: 200px; height: 200px; text-align: center; display: block; margin: 15px auto;">
+      </ion-row>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)" style="padding-top: 30px;">
+        <ion-item class="input-group" style="width: 80%; margin: 10px auto;">
+          <ion-input class="transparent-input" type="text" name="name" placeholder="Username" [formControl]="loginForm.controls['username']" autocomplete="mrnumber" required></ion-input>
+        </ion-item>
+
+        <ion-item class="input-group" style="width: 80%; margin: 10px auto;">
+          <ion-input class="transparent-input" type="password" name="name" placeholder="Password" [formControl]="loginForm.controls['password']" autocomplete="current-password" required></ion-input>
+        </ion-item>
+
+        <div class="text-center trouble">
+          <ion-label (click)="forgotPassword()">Forgot Password?</ion-label>
+        </div>
+        <br>
+
+        <div class="text-center" style="margin-bottom: 30px; padding-top: 50px; display: flex; justify-content: center; align-items: center;">
+          <ion-button class="logbutton" type="submit" [disabled]="!loginForm.valid"  style="width: 160px; height: 30px; --padding-start: 0; --padding-end: 0; --padding-top: 0; padding-bottom: 0;"><ion-img src="assets/mulk/LOGIN.png" alt="Image Description"style="width: 200px; height: 100%;right: -5px;margin-left: -4px"></ion-img></ion-button>
+        </div>
+
+        <div class="text-center" style="margin-bottom: 30px; display: flex; justify-content: center; align-items: center;">
+          <ion-img src="assets/mulk/Register.png" alt="Image Description" style="width: 160px; height: 30px;" (click)="Register()"></ion-img>
+        </div>
+
+        <div class="row" style="width: 90%; margin: 2px auto;">
+          <div class="col-6 text-left"></div>
+          <div class="col-6 text-right"></div>
+        </div>
+      </form>
+    </ion-card>
+    <br>
+  </div>
+</ion-content>
+
+<ion-footer class="hide-on-keyboard-open" style="background-color: whitesmoke; height: 55px;" *ngIf="footer">
+  <div text-center style="margin-top: 5px;">
+    <p>Powered By
+      <a href="http://www.cellbeanshealthcare.com/">
+        <img src="./assets/img/logo_cellbeans.png" width="100" height="30" style="margin-bottom: 11px;">
+      </a>
+    </p>
+  </div>
+</ion-footer>

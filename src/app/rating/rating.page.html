@@ -1,0 +1,119 @@
+
+<!--<ion-header>
+  <ion-toolbar>
+    <label class="label-titles"> Doctor Rating</label>
+    <ion-buttons end>
+      <ion-button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>-->
+
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="text-align: center">Doctor Rating</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding class="bgimg">
+  <form [formGroup]="ratingForm">
+    <!--<div style="text-align:center;display: block;margin: 10px auto;">-->
+      <!--<ionic3-star-rating #rating-->
+                          <!--activeIcon="ios-star"-->
+                          <!--defaultIcon="ios-star-outline"-->
+                          <!--activeColor="#f9b403"-->
+                          <!--defaultColor="#9a8a8a"-->
+                          <!--readonly="false"-->
+                          <!--rating="0"-->
+                          <!--fontSize="35px"-->
+                          <!--(ratingChanged)="logRatingChange($event)">-->
+      <!--</ionic3-star-rating>-->
+
+    <!--</div>-->
+    <div style="text-align: center; display: block; margin: 10px auto;">
+      <ion-icon
+        name="star"
+        *ngFor="let _ of [1, 2, 3, 4, 5]; let i = index"
+        [style.color]="i < rating ? '#f9b403' : '#9a8a8a'"
+        [style.fontSize.px]="35"
+        (click)="rate(i + 1)">
+      </ion-icon>
+    </div>
+
+    <div class="class-form">
+      <input [formControl]="ratingForm.controls['drRemark']"
+             style="width: 100%;border: 1px solid #404099db;padding: 15px; background-color: gainsboro;
+  color: black;"
+             placeholder="Describe Your Experience (Optional)"/>
+    </div>
+
+    <h6 style="font-size: 15px; margin: 10px auto;color: white"> Review summary </h6>
+    <ion-row>
+      <ion-col col-
+               \1 style="max-width: 40%;">
+
+        <p style="font-size: 35px; text-align: right;color: white" *ngIf="totalReviews.rating == ''"> 0.0 </p>
+        <p style="font-size: 35px; text-align: right;color: white" *ngIf="totalReviews.rating != ''">
+          {{totalReviews.rating | number : '1.1-1'}} </p>
+      </ion-col>
+      <ion-col col-8 style="text-align: left; padding: 0px;color: white;">
+        <p style="margin-bottom: -6px;" *ngIf="totalReviews.rating >= 4.0 && totalReviews.rating < 5.0"><b>
+          EXCELLENT</b></p>
+        <p style="margin-bottom: -6px;" *ngIf="totalReviews.rating >= 3.0 && totalReviews.rating < 4.0"><b> VERY
+          GOOD</b></p>
+        <p style="margin-bottom: -6px;" *ngIf="totalReviews.rating >= 2.0 && totalReviews.rating < 3.0"><b> GOOD</b></p>
+        <p style="margin-bottom: -6px;" *ngIf="totalReviews.rating >= 1.0 && totalReviews.rating < 2.0"><b>
+          SATISFACTORY</b></p>
+        <p style="margin-bottom: -6px;" *ngIf="totalReviews.rating >= 0.0 && totalReviews.rating <= 0.0"><b> POOR</b>
+        </p>
+
+        <!--<p style="margin-bottom: 0px;">-->
+          <!--<ionic3-star-rating #rating-->
+                              <!--activeIcon="ios-star"-->
+                              <!--defaultIcon="ios-star-outline"-->
+                              <!--activeColor="#f9b403"-->
+                              <!--defaultColor="#9a8a8a"-->
+                              <!--readonly="true"-->
+                              <!--rating="{{totalReviews.rating  | number : '1.1-1'}}"-->
+                              <!--fontSize="15px">-->
+          <!--</ionic3-star-rating>-->
+        <!--</p>-->
+        <p style="margin-bottom: 0px;">
+          <ion-icon name="star" *ngFor="let _ of [1, 2, 3, 4, 5]; let i = index"
+                    [style.color]="i < totalReviews.rating ? '#f9b403' : '#9a8a8a'"
+                    [style.fontSize.px]="15"
+          ></ion-icon>
+        </p>
+
+        <p style="margin-bottom: 0px;color: white;">{{totalReviews.reviews | number : '1.0-0'}} reviews</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-5>
+        <ion-button class="btn btn-default" (click)="cancel()">Maybe Later</ion-button>
+      </ion-col>
+      <ion-col col-5>
+        <ion-button (click)="Rating(ratingForm.value)" class="btn btn-primary">Post Rating</ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-content>
+      <div style="text-align: center; display: block; margin: 10px auto;">
+        <ion-icon
+          name="star"
+          *ngFor="let _ of [1, 2, 3, 4, 5]; let i = index"
+          [style.color]="i < rating ? '#f9b403' : '#9a8a8a'"
+          [style.fontSize.px]="35"
+          (click)="rate(i + 1)">
+        </ion-icon>
+      </div>
+    </ion-content>
+  </form>
+</ion-content>

@@ -1,0 +1,132 @@
+<style type="text/css">
+  .bgimg {
+    /*background: url('assets/img/Mulk E Health A4-01 1.png');*/
+    background-color: black;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+  }
+</style>
+
+<!--<ion-header>-->
+<!--<ion-toolbar class="bar">-->
+<!--<ion-buttons start left>-->
+<!--<div ion-button show menuToggle>-->
+<!--<ion-icon name="menu"></ion-icon>-->
+<!--</div>-->
+<!--</ion-buttons>-->
+<!--<label class="label-titles">My Lab Reports</label>-->
+<!--</ion-toolbar>-->
+<!--</ion-header>-->
+
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="text-align: center">My Lab Reports</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<!--<ion-header>
+  <ion-navbar>
+    <label class="label-titles">My Radiology</label>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goBack()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>-->
+
+<ion-content class="bgimg">
+  <ion-refresher label="Start" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-row>
+    <ion-col>
+      <img src="assets/mulk/prescription/My_Prescription1.png" class="img">
+    </ion-col>
+  </ion-row>
+
+  <form [formGroup]="myForm" (ngSubmit)="submit(myForm.value)">
+    <div class="row">
+      <div class="form-group col-sm-4">
+        <h6 style=" font-size: 20px;"><label for="name">Name</label></h6>
+        <input  formControlName="name" id="name" type="text" placeholder="Document Name" class="form-control"style="width:80%;margin-left: 10%; background: white; color: black">
+      </div>
+
+      <div class="form-group col-sm-4">
+        <h6 style=" font-size: 20px;"><label for="file">File</label></h6>
+        <input formControlName="file" id="file" type="file" class="form-control"
+               accept="image/x-png,image/jpeg,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/msword,application/pdf"
+               (change)="onFileChange($event)" style="background: white; color: black;
+    margin-left: 10%;
+    width: 80%;
+    border: 1px solid black;">
+      </div>
+
+      <div class="form-group col-sm-4">
+        <h6 style=" font-size: 20px;"><label for="file">File</label></h6>
+        <button type="submit" class="btn btn-primary px-4" style=" background-color: #007bff; padding: 10px 20px;border-radius: 5px; margin-left: 2px">
+          Upload
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <!--<ion-row>
+    <button (click)="takephoto()" style="margin: 10px auto;
+    margin-right: 10px;" class="btn btn-primary" float-right>Upload Document</button>
+  </ion-row>-->
+
+  <!--<div *ngIf="!pagination">
+    <ion-list class="m-n">
+      <ion-item no-lines *ngFor="let i of [0,1,2,3,4,5,6,7]">
+        <skeleton-item height="8px" width="90%"></skeleton-item>
+        <skeleton-item height="6px" width="70%"></skeleton-item>
+        <skeleton-item height="6px" width="70%"></skeleton-item>
+        <ion-avatar item-end>
+          <skeleton-item height="50px" width="50px"></skeleton-item>
+        </ion-avatar>
+      </ion-item>
+    </ion-list>
+  </div>
+  <div *ngIf="pagination && myLabReportsList.length == 0">
+    <img style="color:#fff;width: 20%;margin:0px auto;display: block;margin-top:50px;" src="assets/mulk/cpty.png">
+    <p><b
+      style="color:#fff;font-weight: bold; margin: 10px auto;display: block; text-align: center;font-size: 12px;font-family: monospace;">You
+      have no Lab Reports.</b></p>
+  </div>
+-->
+  <!--<div *ngIf="pagination && myLabReportsList.length >= 1">-->
+  <div *ngFor="let labReports of myLabReportsList | paginate : config; let i=index" class="input-wrapper">
+    <ion-card style="padding: 0px!important;border-radius: 20px;">
+      <ion-item style="padding: 0px!important;">
+        <!--<p><b>Report Date : </b> {{labReports?.date | date:'dd-MM-yyyy'}} </p>-->
+        <p style="margin-right: auto"><b>Date : </b> {{labReports?.createdDate | date:'dd-MM-yyyy'}} </p><hr/>
+        <!--<p><b>Doctor Name : </b> {{labReports?.doctorId?.staffUserId?.userFullname}}</p>-->
+        <p><b>Patient Name : </b> {{labReports.patientId?.patientUserId?.userName}} </p>
+        <!--  <p><b>Refferal Letter : </b> {{labReports.refferalLetterId?.refferalLetter}}</p>
+        <p><b>Document Name : </b> {{labReports.duName}}</p>
+         <p><b>File Name : </b>{{labReports?.duFileName}} </p>-->
+        <!--<img style="color:#fff;width: 20%;margin:0px auto;display: block;margin-top:50px;"
+             src="{{patientimagepath}}/{{labReports?.duFileName}}">-->
+
+        <span (click)="labReports_view(labReports.myLabReportsId)" item-end>
+                  <img style="color:#fff;margin: 0px auto;width: 104%;display: block;margin-top: 33px;"
+                       src="assets/img/icons/prescription.png"></span>
+      </ion-item>
+    </ion-card>
+  </div>
+  <div style="text-align: left;">
+    <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
+    <pagination-controls (pageChange)="getPage($event)" [id]="config.id"></pagination-controls>
+  </div>
+  <!--</div>-->
+
+</ion-content>

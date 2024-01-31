@@ -1,0 +1,286 @@
+
+<!--<ion-header>
+  <ion-toolbar class="bar">
+    <ion-buttons start left>
+      <div ion-button show menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </div>
+    </ion-buttons>
+    <label class="label-titles">Home Health Services</label>
+    <ion-buttons end>
+      <div ion-button icon-only (click)="popoverMenu($event)">
+        <ion-icon name="more"></ion-icon>
+      </div>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>-->
+
+<!--<ion-header>
+  <ion-toolbar>
+    <label class="label-titles">Home Health Services</label>
+    <ion-buttons end>
+      <ion-button ion-button icon-only (click)="goBack()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>-->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/explore-services"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="align-items: center">Home Health Service</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bgimg" padding>
+  <div *ngIf="tab=='1'">
+    <ion-refresher label="Start" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content
+        pullingIcon="arrow-dropdown"
+        pullingText="Pull to refresh"
+        refreshingSpinner="circles"
+        refreshingText="Refreshing...">
+      </ion-refresher-content>
+    </ion-refresher>
+    <ion-row>
+      <ion-col>
+        <img src="assets/mulk/health/Home Health Service_1.png" class="img-responsive" style="width: 90%;">
+      </ion-col>
+    </ion-row>
+
+    <!--  <ion-row>
+        <ion-col class="col-6">
+          <img src="assets/mulk/health/health1.png" class="wt">
+        </ion-col>
+
+        <ion-col class="col-6">
+          <img src="assets/mulk/health/health2.png" class="wt">
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col class="col-6">
+          <img src="assets/mulk/health/health3.png" class="wt">
+        </ion-col>
+
+        <ion-col class="col-6">
+          <img src="assets/mulk/health/health4.png" class="wt">
+        </ion-col>
+      </ion-row>-->
+
+    <!--<ion-row class="medical" style="margin-left: 6px;margin-right: 5px;">
+      <ion-col class="home">
+        <ion-col>
+          <img src="assets/mulk/health/Vector.png" height="37" width="37">
+        </ion-col>
+        <ion-col>
+          <label style="font-size: 12px;color: #000;">Medical Equipment At home</label>
+        </ion-col>
+      </ion-col>
+
+      <ion-col style="    margin-right: 10px;">
+        <ion-col style="margin-top: 20px;">
+          <ion-button class="mri">BUY</ion-button>
+        </ion-col>
+        <ion-col style="margin-top: 20px;">
+          <ion-button class="mri">RENT</ion-button>
+        </ion-col>
+      </ion-col>
+    </ion-row>-->
+
+    <br>
+
+    <!-- <ion-row class="medical" style="margin-left: 6px;margin-right: 5px;">
+       <ion-col class="home1">
+         <ion-col>
+           <img src="assets/mulk/health/Vector3.png" height="37" width="37">
+         </ion-col>
+         <ion-col>
+           <label style="font-size: 12px;color: #000;">Physician Visit
+             At home</label>
+         </ion-col>
+       </ion-col>
+
+       <ion-col style="    margin-right: 10px;">
+         <ion-col>
+           <ion-button class="mri">GP</ion-button>
+         </ion-col>
+         <ion-col>
+           <ion-button class="mri">SPECIALIST</ion-button>
+         </ion-col>
+       </ion-col>
+     </ion-row>
+
+     <ion-row>
+       <ion-col class="col-12">
+         <img src="assets/mulk/health/health5.png" class="wt">
+       </ion-col>
+     </ion-row>
+
+     <ion-row>
+       <ion-col class="col-12">
+         <img src="assets/mulk/health/health6.png" class="wt">
+       </ion-col>
+     </ion-row>
+
+
+     <ion-row>
+       <ion-col class="col-12">
+         <img src="assets/mulk/health/health7.png" class="wt">
+       </ion-col>
+     </ion-row>-->
+
+    <form class="pd-10" id="queryForm" autocomplete="off"
+          [formGroup]="queries" (ngSubmit)="onAddRecord(queries.value)">
+      <div class="row" style="font-size: 18px; margin: -10px auto;  padding: 14px;">
+        <div class="col-md-5" style="padding: 0px">
+          <h6 style=" font-size: 20px;text-align: center">Enquiry</h6>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 5px;">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+          <div class="row">
+                <textarea  class="form-control new-form-control" id="query"
+                           name="query" required="" formControlName="query"
+                           [formControl]="queries.controls['query']"
+                           style="margin-top: 0px; margin-bottom: 0px; height: 55px;width: 100% !important; padding: 37px; border: 1px solid black; border-radius: 10PX;background-color: gainsboro;
+  color: black;">
+                </textarea>
+          </div>
+        </div>
+        <br><br>
+      </div>
+      <ion-row>
+        <ion-col class="col-12">
+          <!--<ion-button class="btn btn-primary mt-3 active"
+                  style="display: block;text-align: center;margin: 0px auto;width: 37%;font-size: 20px" type="submit">Submit
+          </ion-button>-->
+          <ion-button  type="submit" style="font-size: large; margin: 0px auto;width:41%;display: block;margin-top: 33px;"
+                       class="login-bt" value="Submit">Submit</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+
+
+    <!-- <div *ngIf="pagination && queryList.length >= 1">
+       <div *ngFor="let query of queryList | paginate : config; let i=index" class="input-wrapper">
+         <ion-card style="padding: 0px!important;border-radius: 20px;">
+           <ion-item style="padding: 0px!important;">
+             <p><b>Date : </b> {{query?.date | date:'dd-MM-yyyy'}} </p>patientId
+             <p><b>Patient Name : </b> {{query.patientId?.patientUserId?.userName}} </p>
+             <p><b>Query : </b> {{query.query}} </p>
+             <span (click)="homeService_view(query?.homeHealthServiceId)" item-end>
+                   <img style="color:#fff;margin: 0px auto;width: 104%;display: block;margin-top: 33px;"
+                        src="assets/img/icons/prescription.png"></span>
+           </ion-item>
+         </ion-card>
+       </div>
+       <div style="text-align: left;">
+         <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
+         <pagination-controls (pageChange)="getPage($event)" [id]="config.id"></pagination-controls>
+       </div>
+     </div>-->
+
+
+  </div>
+  <div class="row justify-content-center" *ngIf="tab=='2'">
+    <div class="col-12">
+      <div class="card panel panel-default ">
+        <div class="panel-body">
+          <form class="pd-10" id="genericForm" autocomplete="off"
+                [formGroup]="explore" (ngSubmit)="onSubmitquery(explore.value)">
+
+            <div class="form-group label-controls"><label class="control-label col-sm-12" for="name">Name<span
+              class="red">*</span></label>
+              <div class="col-sm-12">
+                <input type="text" class="form-control new-form-control" id="name"
+                       name="name" required="" style="font-size: 15px;"
+                       formControlName="name" placeholder=""
+                       [formControl]="explore.controls['name']" title="firstName"
+                       placeholder="Enter name">
+              </div>
+            </div>
+
+            <div class="form-group label-controls"><label class="control-label col-sm-12" for="email">Email<span
+              class="red">*</span></label>
+              <div class="col-sm-12">
+                <input type="email" class="form-control new-form-control" id="email"
+                       formControlName="email" placeholder="" style="font-size: 15px;"
+                       [formControl]="explore.controls['email']" autocomplete="email" title="email" required="">
+              </div>
+            </div>
+
+            <div class="form-group label-controls"><label class="control-label col-sm-12" for="email">Upload
+              Document<span
+                class="red">*</span></label>
+              <div class="col-sm-12">
+                <input type="file" class="form-control new-form-control" id="email" style="font-size: 15px;"
+                       placeholder="Enter email" name="email" required="">
+              </div>
+            </div>
+
+
+
+
+            <div style="margin-top: 10px;margin-bottom: 10px"
+                 *ngIf="imagepath !=null && imagepath!=undefined && imagepath!=''">
+              <img src="{{imagepath}}" style="width: 200px;
+    height: 150px;
+    text-align: center;
+    display: block;
+    margin: 0px auto;">
+            </div>
+
+            <div class="form-group label-controls"><label class="control-label col-sm-12" for="phone">Phone
+              Number<span
+                class="red">*</span></label>
+              <div class="col-sm-12">
+                <!--<input type="text" id="country_phone_code" name="country_phone_code"-->
+                <!--class="form-control new-form-control col-md-2" value="" readonly=""-->
+                <!--style="width: 15%; float: left;">-->
+                <input type="tel" class="form-control new-form-control col-md-10"
+                       id="phone_number" maxlength="10" minlength="10"
+                       placeholder="Your Phone number" style="font-size: 15px;"
+                       name="mobileno" required=""
+                       formControlName="mobileno" placeholder=""
+                       [formControl]="explore.controls['mobileno']" autocomplete="mobileno"
+                       title="mobileno"
+                       style="width: 84%"></div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="form-group"><label>Medical Condition <span class="red">*</span></label><br>
+                <textarea cols="5" rows="5" id="medicalProblem" name="medicalProblem"
+                          formControlName="medicalProblem" placeholder="" style="font-size: 15px;"
+                          [formControl]="explore.controls['medicalProblem']" autocomplete="medicalProblem"
+                          title="medicalProblem"
+                          style="height:100%; width:100%; resize: vertical;" required=""></textarea></div>
+            </div>
+
+            <div class="form-group label-controls" id="ageblock" style=""><label class="control-label col-sm-12"
+                                                                                 for="email">Patient Age <span
+              class="red">*</span></label>
+              <div class="col-sm-12"><input type="number" class="form-control new-form-control" id="age"
+                                            placeholder="Example: 30" name="age" style="font-size: 15px;"
+                                            formControlName="age" placeholder=""
+                                            [formControl]="explore.controls['age']" autocomplete="age" title="age">
+              </div>
+            </div>
+            <div class="form-group label-controls">
+              <div class="col-sm-12 text-center">
+                <ion-button type="submit" class="btn btn-danger" [disabled]="!explore.valid" (click)="sub()">SUBMIT</ion-button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

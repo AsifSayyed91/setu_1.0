@@ -1,0 +1,178 @@
+
+<!--<ion-header>
+  <ion-toolbar>
+    <label class="label-titles">Vitals Details</label>
+    <ion-buttons end>
+      <ion-button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>-->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Vitals</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding class="bgimg">
+  <img class="connect" src="assets/img/CONNECTDEVICE.png">
+  <h6 class="whiteclass"><b>App ID / Date :</b>{{appdetails?.appointmentId}} / {{appdetails?.appointmentDate}}</h6>
+  <h6 class="whiteclass"><b>Reason :</b>{{appdetails?.appointmentreason}}</h6>
+
+  <form [formGroup]="VitalForm" (ngSubmit)="onAddVitals(VitalForm.value)">
+    <ion-row>
+      <ion-col col-5 class="whiteclass">Height(cm)</ion-col>
+      <ion-col col-5>
+        <input type="number" [formControl]="VitalForm.controls['vitalHeight']" #vH
+               (change)="calculateBMI(vH.value, '');checkThreeTwoDecimalDigitHG(vH.value,'300')"
+               class="form-control" onkeydown="javascript: return event.keyCode == 69 ? false : true"/>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-5 class="whiteclass">Weight(kg)</ion-col>
+      <ion-col col-4>
+        <input type="number" [formControl]="VitalForm.controls['vitalWeight']" #vW
+               (change)="calculateBMI('', vW.value);checkThreeTwoDecimalDigitHG(vW.value,'750')"
+               class="form-control" onkeydown="javascript: return event.keyCode == 69 ? false : true"/>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-5 class="whiteclass">BMI(kg/m<sup>2</sup>)</ion-col>
+      <ion-col col-4>
+        <input type="number" [formControl]="VitalForm.controls['vitalBmi']" [attr.disabled]="true"
+               class="form-control"/>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-5 class="whiteclass">Body Temp(<sup>0</sup>F)</ion-col>
+      <ion-col col-4>
+        <input #vitalBodyTemp type="number" (change)="checkThreeTwoDecimalDigitBodyTemp(vitalBodyTemp.value,'120')"
+               [formControl]="VitalForm.controls['vitalBodyTemp']" class="form-control"
+               onkeydown="javascript: return event.keyCode == 69 ? false : true"/>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-5 class="whiteclass">Pulse(BPM)</ion-col>
+      <ion-col col-4>
+        <input #vitalPulse (change)="checklength3(vitalPulse.value,'vitalPulse')" type="number"
+               [formControl]="VitalForm.controls['vitalPulse']" class="form-control"
+               onkeydown="javascript: return event.keyCode == 69 ? false : true"/>
+        <!--<input type="number" [formControl]="vitalForm.controls['pulse']">-->
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-5 class="whiteclass">Respiration Rate(BPM)</ion-col>
+      <ion-col col-4>
+        <input type="number" [formControl]="VitalForm.controls['vitalRespirationRate']" #vitalRespirationRate
+               (change)="checklength3(vitalRespirationRate.value,'vitalRespirationRate')"
+               class="form-control" onkeydown="javascript: return event.keyCode == 69 ? false : true"/>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-5 class="whiteclass">Systolic BP(mmHG)</ion-col>
+      <ion-col col-4>
+        <input type="number" [formControl]="VitalForm.controls['vitalSysBp']"
+               (change)="checklength3(vSysBP.value,'vitalSysBp')" #vSysBP (change)="calculateMAP(vSysBP.value, '')"
+               class="form-control" onkeydown="javascript: return event.keyCode == 69 ? false : true"/>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-5 class="whiteclass">
+        Diastolic BP(mmHG)
+      </ion-col>
+      <ion-col col-4>
+        <input type="number" [formControl]="VitalForm.controls['vitalDiaBp']"
+               (change)="checklength3(vDiaBP.value,'vitalDiaBp')" #vDiaBP (change)="calculateMAP('',vDiaBP.value)"
+               class="form-control" onkeydown="javascript: return event.keyCode == 69 ? false : true"/>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-5 class="whiteclass">
+        MAP(mmHG)
+      </ion-col>
+      <ion-col col-4>
+        <input type="number" [formControl]="VitalForm.controls['vitalMap']" [attr.disabled]="true"
+               class="form-control"/>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-5 class="whiteclass">SPO2(%)</ion-col>
+      <ion-col col-4>
+        <input (change)="checklength3(vitalSpo2.value,'vitalSpo2')" #vitalSpo2 type="number"
+               [formControl]="VitalForm.controls['vitalSpo2']" class="form-control"
+               onkeydown="javascript: return event.keyCode == 69 ? false : true"/>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-5 class="whiteclass">Blood Glucose(mmol/L)</ion-col>
+      <ion-col col-4>
+        <input (change)="checkThreeTwoDecimalDigitBG(vitalBloodGlucose.value,'180')" #vitalBloodGlucose type="number"
+               [formControl]="VitalForm.controls['vitalBloodGlucose']" class="form-control"
+               onkeydown="javascript: return event.keyCode == 69 ? false : true"/>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-5 class="whiteclass">Hemoglobin(g/dl)</ion-col>
+      <ion-col col-4>
+        <input (change)="checkThreeTwoDecimalDigitHG(vitalHimoglobin.value,'50')" #vitalHimoglobin OnlyNumber="true"
+               type="text" [formControl]="VitalForm.controls['vitalHimoglobin']" class="form-control"
+               onkeydown="javascript: return event.keyCode == 69 ? false : true"/>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-5 class="whiteclass">Fat(%)</ion-col>
+      <ion-col col-4>
+        <input (keyup)="checklength3(vitalFat.value,'vitalFat')" #vitalFat OnlyNumber="true" type="text"
+               [formControl]="VitalForm.controls['vitalFat']" class="form-control"
+               onkeydown="javascript: return event.keyCode == 69 ? false : true"/>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-5 class="whiteclass">Muscle Mass(%)</ion-col>
+      <ion-col col-4>
+        <input (change)="checklength3(vitalMuscleMass.value,'vitalMuscleMass')" #vitalMuscleMass OnlyNumber="true"
+               type="text" [formControl]="VitalForm.controls['vitalMuscleMass']" class="form-control"
+               onkeydown="javascript: return event.keyCode == 69 ? false : true"/>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-5 class="whiteclass">Pain Score</ion-col>
+      <ion-col col-4>
+        <input type="text" class="form-control" [formControl]="VitalForm.controls['vitalPainScore']"
+               onkeydown="javascript: return event.keyCode == 69 ? false : true"/>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col col-6>
+        <!--<ion-button class="button btn-success" id="submitBtn">SUBMIT</ion-button>-->
+        <div><img src="assets/mulk/SUBMIT.png" (click)="onAddVitals(VitalForm.value)"></div>
+        <!--<img style="width: 100%;" src="assets/img/icon/VITALS.png" (click)="Vitals(user)">-->
+      </ion-col>
+      <ion-col col-6>
+        <div><img src="assets/mulk/RESET.png"></div>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

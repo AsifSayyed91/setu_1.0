@@ -1,0 +1,303 @@
+<style type="text/css">
+  .bgimg {
+    /*background: url('assets/img/Mulk E Health A4-01 1.png');*/
+    background-color: black;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+  }
+
+  ::-webkit-input-placeholder {
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  ::placeholder {
+    color: whitesmoke !important;
+    opacity: 1;
+  }
+</style>
+<ion-content class="bgimg">
+  <ion-card style=" background-color: transparent;  ">
+    <div class="card-body">
+
+
+      <form [formGroup]="registration" class="textsize" (ngSubmit)="onRegisterRecord(registration.value)" autocomplete="off">
+        <h4 class="text-center" style="font-weight: bold;font-size: 25px;margin-bottom: 16px; text-align: center">Register</h4>
+
+        <!--<div class="primg" style="margin-bottom: 5px">
+        <img src="{{imagepath}}" onError="this.src='assets/img/user.png'">
+        <input type="file" (change)="take($event)">
+        </div>-->
+        <div class="input-group mb-3" style="margin-bottom: 15px !important;border: 0px solid #d67810; ">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><strong><span style="color: red"> * </span>Title</strong></span>
+          </div>
+          <ion-select class="form-control ng-untouched ng-pristine ng-invalid" #titleId style="font-size: 12px;border: 1px solid black; border-radius: 10px"
+                      formControlName="titleId" type="text" (change)="setGender(titleId.value)">
+            <ion-select-option value="0">Select Title</ion-select-option>
+            <ion-select-option *ngFor="let mstTitle of msttitlelist" [value]=mstTitle.titleId>
+              {{mstTitle.titleName}}
+            </ion-select-option>
+          </ion-select>
+        </div>
+
+        <div class="input-group mb-3" style="margin-bottom: 15px !important;border: 0px solid #d67810;">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><strong><span style="color: red"> * </span>First Name</strong></span>
+          </div>
+          <ion-input type="text" class="form-control" placeholder="First Name" style="font-size: 12px;border: 1px solid black; border-radius: 10px"
+                     autocomplete="username"  formControlName="firstName" title="User First Name"
+                     capitalize (keypress)="inputFilter($event)"/>
+        </div>
+
+        <div class="input-group mb-3" style="margin-bottom: 15px !important;border: 0px solid #d67810;">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><strong><span style="color: red"> * </span>Last Name</strong></span>
+          </div>
+          <ion-input type="text" class="form-control" placeholder="Last Name" style="font-size: 12px;border: 1px solid black; border-radius: 10px"
+                     autocomplete="username"  formControlName="lastName" title="User Last Name"
+                     capitalize (keypress)="inputFilter($event)"/>
+        </div>
+
+        <!--<div class="input-group mb-3" style="margin-bottom: 15px !important;border: 0px solid #d67810;">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><strong><span style="color: red"> * </span>DOB</strong></span>
+          </div>
+          <input type="date" class="form-control" (change)="selectedDate($event)" placeholder="DOB"
+                 title="Date of Birth"  formControlNamr="dob">
+        </div>-->
+
+
+
+        <!--<div class="input-group mb-3" style="margin-bottom: 15px !important;">-->
+        <!--<div class="input-group-prepend">-->
+        <!--<span class="input-group-text"><strong>DOB</strong></span>-->
+        <!--</div>-->
+        <!--<ion-datetime type="date" class=" form-control m-0 w-100"presentation="date"-->
+        <!--[preferWheel]="true"formControlName="dob" style="font-size: 12px"-->
+        <!--placeholder="Select Date"-->
+        <!--displayFormat="YYYY/MM/DD"-->
+        <!--(ionChange)="selectedDate()"></ion-datetime>-->
+        <!--</div>-->
+
+        <div class="input-group mb-3" style="margin-bottom: 15px !important;">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><strong>DOB</strong></span>
+          </div>
+          <ion-datetime-button  class="form-control"datetime="datetime" style="width: 100%;border: 1px solid black; border-radius: 10px"></ion-datetime-button>
+
+          <ion-modal class=" form-control m-0 w-100"[keepContentsMounted]="true">
+            <ng-template>
+              <ion-datetime type="date" style="color: white" formControlName="dob"
+                            presentation="date" placeholder="Select Date"
+                            displayFormat="YYYY/MM/DD"id="datetime"(ionChange)="selectedDate()"></ion-datetime>
+            </ng-template>
+          </ion-modal>
+
+        </div>
+
+
+
+        <div class="input-group mb-3" style="margin-bottom: 15px !important;border: 0px solid #d67810;">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><strong><span style="color: red"> * </span>ID DOC</strong></span>
+          </div>
+          <ion-select class=" form-control m-0 w-100"formControlName="userNationalityId" (ionChange)="onSelectNatinality($event)" style="font-size: 12px;border: 1px solid black; border-radius: 10px" title="Identification Type">
+            <ion-select-option  value="0">Nationality</ion-select-option>
+            <ion-select-option *ngFor="let mstNationality of nationalityList" [value]="mstNationality.nationalityId">
+              {{ mstNationality.nationalityName }}
+            </ion-select-option>
+          </ion-select>
+        </div>
+
+
+
+        <div class="input-group mb-3" style="margin-bottom: 15px !important;border: 0px solid #d67810;">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><strong><span style="color: red"> * </span>ID No</strong></span>
+          </div>
+
+          <ion-input class="form-control m-0 w-100"[placeholder]="nationalityName" style="font-size: 12px;border: 1px solid black; border-radius: 10px" autocomplete="Pid" title="Emirates ID" formControlName="userUid" #sekey></ion-input>
+        </div>
+
+        <div class="input-group mb-3" style="margin-bottom: 10px !important;">
+          <div class="input-group-prepend">
+            <!--<span class="input-group-text"><strong>Upload ID Document (Front Page)</strong></span>-->
+            <span class="input-group-text"><strong><span style="color: red" style="font-size: 12px; color: red"> * </span>Upload ID Document (Front Page)</strong></span>
+
+          </div>
+          <ion-input id="file" type="file" style="font-size: 12px;border: 1px solid black; border-radius: 10px" title="Upload Identification Document Front Page" class="form-control"
+                     (change)="uploadIdentifyDocFp($event)"/>
+        </div>
+
+
+        <div class="input-group mb-3" style="margin-bottom: 15px !important;border: 0px solid #d67810;">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><strong><span style="color: red"> * </span>Gender</strong></span>
+          </div>
+          <ion-select title="Select Gender" class="form-control"  formControlName="gender" style="font-size: 12px;border: 1px solid black; border-radius: 10px">
+            <ion-select-option value="0">Select Gender</ion-select-option>
+            <ion-select-option *ngFor="let gender of genderList | async" [value]=gender.genderId>{{gender.genderName}}
+            </ion-select-option>
+          </ion-select>
+        </div>
+
+
+
+        <div class="input-group mb-3" style="margin-bottom: 15px !important;border: 0px solid #d67810;">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><strong><span style="color: red"> * </span>Email</strong></span>
+          </div>
+          <ion-input type="email" placeholder="Enter Email Id Or User Name" formControlName="email" (ionChange)="checkMail()" debounce="500" autocapitalize="off" class="form-control"></ion-input>
+          <div *ngIf="email?.touched && email?.errors" class="error" style="margin: 5px auto; border: 1px solid black; border-radius: 10px">
+            <div *ngIf="email.errors?.pattern">
+              <span style="margin-left: 20px; font-size: 12px;border: 1px solid black; border-radius: 10px">Invalid Email Id.</span>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+        <!--<ion-item class="ion-no-padding" style="margin-bottom: 10px !important;">-->
+        <!--<ion-label position="stacked">-->
+        <!--<strong>City</strong>-->
+        <!--</ion-label>-->
+
+        <div class="input-group mb-3" style="margin-bottom: 15px !important;border: 0px solid #d67810;">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><strong><span style="color: red"> * </span>City</strong></span>
+          </div>
+
+          <ion-select class="form-control m-0 w-100" label="Outline select" label-placement="floating" fill="outline" #stateId (ionChange)="itemSelected($event)" style="border: 1px solid black; border-radius: 10px">
+            <ion-select-option disabled style="font-size: 12px;border: 1px solid black; border-radius: 10px">Select City</ion-select-option>
+            <ion-select-option *ngFor="let city of cityListForDubai" [value]="city.stateId" style="font-size: 12px;">
+              {{ city.stateName }}</ion-select-option>
+
+          </ion-select>
+        </div>
+        <!--</ion-item>-->
+
+
+
+
+        <div class="input-group mb-3" style="margin-bottom: 15px !important;border: 0px solid #d67810;">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><strong><span style="color: red"> * </span>Area</strong></span>
+          </div>
+
+          <ion-select formControlName="area"  class="form-control m-0 w-100"required title="Select area" label="Outline select" label-placement="floating" fill="outline" #stateId (ionChange)="itemSelected($event)" style="border: 1px solid black; border-radius: 10px">
+            <ion-select-option disabled style="font-size: 12px;">Select Area</ion-select-option>
+            <ion-select-option *ngFor="let area of areaList" [value]="area.areaId" selected>{{ area.areaName }}</ion-select-option>
+
+          </ion-select>
+        </div>
+
+        <div class="input-group mb-3" style="margin-bottom: 15px !important;border: 0px solid #d67810;">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><strong><span style="color: red"> * </span>Country</strong></span>
+          </div>
+          <ion-input class=" form-control m-0 w-100"readonly="true" [value]="mstCountry.countryName" style="font-size: 12px; border: 1px solid black; border-radius: 10px"></ion-input>
+        </div>
+
+        <ion-grid>
+          <ion-row>
+            <ion-col>Your Country Code(971)</ion-col>
+            <ion-col>Enter Your Mobile No(56XXXXXXX)</ion-col>
+
+          </ion-row>
+        </ion-grid>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-input OnlyNumber="true" type="number" class="form-control m-0 w-100"
+                         style="font-size: 12px;border: 1px solid black; border-radius: 10px" formControlName="userMobileCode"required/>
+              <!--<ion-input formControlName="userMobileCode" required style="font-size: 12px;"></ion-input>-->
+            </ion-col>
+
+            <ion-col><ion-input OnlyNumber="true" type="number" class="form-control m-0 w-100" (keyup)="CheckMobileLength($event)"
+                                #mobile [max]="mobileLength" (change)="validMob(mobile.value)" style="font-size: 12px;border: 1px solid black; border-radius: 10px"
+                                [placeholder]="mobileNoPlaceHolder" [attr.minlength]="mobileLength" [attr.maxlength]="mobileLength"
+                                formControlName="mobileno"required
+                                autocomplete="mobileno" title="UserMobileNo"/></ion-col>
+
+          </ion-row>
+        </ion-grid>
+
+
+        <div class="row" style="margin-top:-10px !important; margin-bottom: 10px !important;">
+          <div class="col-12 text-right" style="display: flex; justify-content: right;"*ngIf="mobilevalid">
+            <ion-button class="ion-text-right" type="button" style="color: #fff; font-size: 12px;" class="btn btn-link px-0"
+                        (click)="sendOtp(registration.value)" >Send OTP
+            </ion-button>
+          </div>
+          <div class="col-12 text-right"style="display: flex; justify-content: right;" *ngIf="mobileotpsend">
+            <ion-button class="ion-text-right" type="button" class="btn btn-link px-0" style="color: #fff; font-size: 12px;"
+                        (click)="resendotp(registration.value)">Resend OTP
+            </ion-button>
+          </div>
+        </div>
+
+        <div class="input-group mb-3"
+             style="margin-top: 10px !important; margin-bottom: 10px !important;border: 1px solid #d67810;"
+             *ngIf="mobileotpsend">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><strong>Mobile OTP</strong></span>
+          </div>
+          <ion-input type="number" class="form-control"  formControlName="mobileotp" style="font-size: 12px;border: 1px solid black; border-radius: 10px"
+                     [(ngModel)]="demoOTP" minlength="4" maxlength="4" placeholder="Mobile OTP" autocomplete="mobileno"
+                     title="UserMobileNo"/>
+        </div>
+
+        <ion-grid>
+          <ion-row>
+            <ion-col size="1">
+              <ion-checkbox *ngIf="!checkshow" (click)="checkshowNot()"></ion-checkbox>
+              <ion-checkbox *ngIf="checkshow" (click)="checkshowYes()" Checked ></ion-checkbox>
+              <!--<ion-input type="checkbox" *ngIf="!checkshow" (click)="checkshowNot()"/>-->
+              <!--<ion-input type="checkbox" *ngIf="checkshow" (click)="checkshowYes()" Checked />-->
+            </ion-col>
+            <ion-col><p style="font-size: 12px; margin-top: 2px;color: #fff;">I ACCEPT THAT THE TELE-CONSULTATION HAS ITS<span
+              style="color: red"> *</span> <a
+              href="" title="
+I ACCEPT THAT THE TELE-CONSULTATION HAS ITS OWN LIMITATIONS AND DOCTORS ARE
+NOT LIABLE FOR IMPROPER DIAGNOSIS, TREATMENT AND ANY ADVERSE DRU REACTIONS.
+THE TELECONSULTATION MAY BE DIGITALLY RECORDED.THE TELECONSULTANTS, REMOTE
+CENTERS AND ALL THE PERSONNEL DIRECTLY OR INDIRECTLY INVOLVED WILL NOT BE
+HELD RESPONSIBLE IN THE UNLIKELY EVENT OF AN ERROR IN DIAGNOSIS OR MANAGEMENT
+DUE TO THE OCCURENCE OF SUB OPTIMAL TECHNICAL CONDITIONS WHILE EVERY ATTEMPT
+IS MADE TO ENSURE IDLE CONDITIONS UNFORESEEN SITUATIONS MAY OCCUR">OWN LIMITATIONS...</a></p></ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <ion-button type="submit" [disabled]="!registration.valid" expand="block" style="display: block;text-align: center;--ion-text-color:white;margin: 0px auto;background: linear-gradient(to left, #09c1df, #182230, #09c1df, #182230, #09c1df);" class="btn btn-primary px-4" >Register
+        </ion-button>
+
+        <!--<button type="submit" [disabled]="!registration.valid" style="display: block;text-align: center;margin: 0px auto;background: linear-gradient(to right, #182230, #09c1df);" class="btn btn-primary px-4" >Register-->
+        <!--</button>-->
+      </form>
+      <!--<div class="row ">-->
+      <!--<div class="col-6 text-left">-->
+      <!--</div>-->
+      <!--<div class="col-6 text-right leftp">-->
+      <!--<span type="button" class="btn btn-link px-0" style="color: #FFFFFF; font-size: 15px" (click)="onLogin()">Login Now?</span>-->
+      <!--</div>-->
+      <!--</div>-->
+
+      <ion-grid>
+        <ion-row>
+          <ion-col></ion-col>
+          <ion-col class="ion-text-right"> <span type="button" class="btn btn-link px-0" style=" font-size: 15px; text-align: right;" (click)="onLogin()">Login Now?</span>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+    </div>
+  </ion-card>
+</ion-content>

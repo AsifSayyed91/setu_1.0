@@ -1,0 +1,276 @@
+
+<!--<ion-header>
+  <ion-toolbar class="bar">
+    <ion-buttons start left>
+      <div ion-button show menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </div>
+    </ion-buttons>
+    <label class="label-titles">Medical Tourism</label>
+    <ion-buttons end>
+      <div ion-button icon-only (click)="popoverMenu($event)">
+        <ion-icon name="more"></ion-icon>
+      </div>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>-->
+
+<!--<ion-header>
+  <ion-toolbar>
+    <label class="label-titles">Medical Tourism</label>
+    <ion-buttons end>
+      <ion-button ion-button icon-only (click)="goBack()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>-->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/explore-services"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="align-items: center">Medical Tourism</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding class="bgimg" id="chronicTextArea">
+
+  <form class="pd-10" id="medicalTourism" autocomplete="off"
+        [formGroup]="medicalTourism" (ngSubmit)="addFile(medicalTourism.value)">
+
+
+
+    <div class="input-group mb-3" style="margin-bottom: 15px !important;border: 0px solid #d67810;">
+      <div class="input-group-prepend">
+        <span class="input-group-text"><strong><span style="color: red"> * </span>Country</strong></span>
+      </div>
+
+      <ion-select title="Select Country" class="form-control" required (change)="onSelectCountrty(selectedg.value)"
+              #selectedg formControlName="countryId" style="border: 1px solid black; border-radius: 10px">
+        <ion-select-option value="0">Select Country</ion-select-option>
+        <ion-select-option *ngFor="let country of countrylist" required  value="{{country.countryId}}">{{country.countryName}}
+        </ion-select-option>
+      </ion-select>
+
+    </div>
+
+    <!--<div class="input-group mb-3" style="margin-bottom: 15px !important;border: 0px solid #d67810;">-->
+      <!--<div class="input-group-prepend">-->
+        <!--<span class="input-group-text"><strong><span style="color: red"> * </span>Country</strong></span>-->
+      <!--</div>-->
+      <!--&lt;!&ndash;<ion-input class=" form-control m-0 w-100"readonly="true" [value]="mstCountry.countryName" style="font-size: 12px;"></ion-input>&ndash;&gt;-->
+    <!--</div>-->
+
+    <!--<div class="input-group mb-3" style="margin-bottom: 15px !important;border: 0px solid #d67810;">-->
+      <!--<div class="input-group-prepend">-->
+        <!--<span class="input-group-text"><strong><span style="color: red"> * </span>Country</strong></span>-->
+      <!--</div>-->
+      <!--<ion-input class=" form-control m-0 w-100"readonly="true" [value]="mstCountry.countryName" style="font-size: 12px;"></ion-input>-->
+    <!--</div>-->
+
+
+    <div class="input-group mb-3" style="margin-bottom: 15px !important;border: 0px solid #d67810;">
+      <div class="input-group-prepend">
+        <span class="input-group-text"><strong><span style="color: red"> * </span>Department</strong></span>
+      </div>
+
+      <ion-select title="Select Department" class="form-control"
+                  required (ionChange)="onSelectDepartment(selecteD.value)"
+                  [formControl]="medicalTourism.controls['departmentId']" #selecteD
+                  style="border: 1px solid black; border-radius: 10px">
+        <ion-select-option value="0" required>Select Department </ion-select-option>
+        <ion-select-option *ngFor="let department of departmentList" [value]="department.departmentId">
+          {{ department.departmentName }}
+        </ion-select-option>
+      </ion-select>
+      <!--<ion-select title="Select Department" class="form-control"-->
+                  <!--required (change)="onSelectDepartment(selecteD.value)"-->
+              <!--[formControl]="medicalTourism.controls['departmentId']" #selecteD>-->
+        <!--<ion-select-option value="0" required>Select Department </ion-select-option>-->
+        <!--<option *ngFor="let department of departmentList" required-->
+                <!--value="{{department.departmentId}}">{{department.departmentName}}-->
+        <!--</option>-->
+
+      <!--</ion-select>-->
+    </div>
+
+    <div class="input-group mb-3" style="margin-bottom: 15px !important;border: 0px solid #d67810;">
+      <div class="input-group-prepend">
+        <h6 style="color: white; font-size: 20px;text-align: center"><label for="file">Name</label></h6>
+      </div>
+      <ion-input type="text" class="form-control" placeholder="First Name" style="font-size: 12px; border: 1px solid black; border-radius: 10px"
+                 autocomplete="username"  formControlName="name" title="User First Name"
+                 capitalize (keypress)="inputFilter($event)"/>
+    </div>
+
+    <!--<div class="form-group  mb-3">-->
+      <!--<h6 style="color: white; font-size: 20px;text-align: center"><label for="file">File</label></h6>-->
+      <!--<input formControlName="file" id="file" type="file" class="form-control"-->
+             <!--(change)="onFileChange($event)">-->
+    <!--</div>-->
+
+    <div class="input-group mb-3" style="margin-bottom: 10px !important;">
+      <div class="input-group-prepend">
+        <!--<span class="input-group-text"><strong>Upload ID Document (Front Page)</strong></span>-->
+        <h6 style="color: white; font-size: 20px;text-align: center">File</h6>
+
+      </div>
+      <ion-input id="file" type="file" style="font-size: 12px" title="Upload Identification Document Front Page" class="form-control"
+                 accept="image/x-png,image/jpeg,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/msword,application/pdf"
+
+                 (change)="onFileChange($event)"/>
+    </div>
+
+
+
+
+    <div class="row" style="font-size: 18px; margin: -10px auto;  padding: 14px;">
+      <div class="col-md-5" style="padding: 0px">
+        <h6 style=" font-size: 20px;text-align: center">Enquiry</h6>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 5px;">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <div class="row">
+                <textarea
+                  class="form-control new-form-control" id="enquiry"
+                  name="enquiry" required="" formControlName="enquiry"
+                  [formControl]="medicalTourism.controls['enquiry']"
+                  style="margin-top: 0px; margin-bottom: 0px; height: 55px; width: 100% !important; padding: 37px; border: 1px solid black; border-radius: 10PX;">
+                </textarea>
+        </div>
+      </div>
+      <br><br>
+      <ion-button shape="round"  type="submit" style="font-size: large; margin: 0px auto;width:41%;display: block;margin-top: 33px;"
+              class="login-bt" value="Submit">SUBMIT
+      </ion-button>
+    </div>
+  </form>
+
+
+  <!--<ion-grid>
+    <ion-row>
+      <ion-col>
+        <div>
+          <img src="assets/mulk/explore/Cost Estimation_1.png" class="img-responsive" id="left"
+               style=" margin-left: 12%;width:80%;height: 80%;display: block;text-align: center;
+               margin: 18px auto;">
+        </div>
+
+
+        <div>
+          <img src="assets/mulk/explore/Medical Conceirge Services.png" class="img-responsive" id="right"
+               style=" margin-left: 12%;width:80%;;height: 93%;display: block;text-align: center;
+               margin: 18px auto;">
+        </div>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>-->
+
+
+
+  <ion-row>
+
+    <ion-col class="col-6">
+      <ion-card class="carde">
+        <img src="assets/mulk/MT/AIR Ambulance.png " class="img-responsive">
+        <!--<span class="cards">CHRONIC DISEASE MANAGEMENT</span>-->
+      </ion-card>
+    </ion-col>
+
+    <ion-col class="col-6">
+      <ion-card class="carde">
+        <!-- <img src="assets/mulk/explore/3 Medicine Delivery (1).png"
+              class="img-responsive">-->
+        <img src="assets/mulk/MT/Medical Escorts.png" class="img-responsive">
+      </ion-card>
+    </ion-col>
+
+    <!-- <ion-col class="col-6" (click)="medicine()">
+       <ion-card class="carde">
+         <img src="assets/mulk/explore/Medical.png"
+              class="image" style="display: block;text-align: center;
+       margin: 18px auto;">
+         <span class="cards">MEDICINE DELIVERY</span>
+       </ion-card>
+     </ion-col>-->
+
+  </ion-row>
+
+  <ion-row>
+    <ion-col class="col-6">
+      <ion-card class="carde">
+        <img src="assets/mulk/MT/FLIGHT STRECHERS.png" class="img-responsive">
+        <!--<span class="cards">HOME HEALTH SERVICES</span>-->
+      </ion-card>
+    </ion-col>
+
+    <!--<ion-col class="col-6" (click)="homehealth()">
+      <ion-card class="carde">
+        <img src="assets/mulk/explore/explore2.png" class="image" style="margin: -7px auto;">
+        <span class="cards">HOME HEALTH SERVICES</span>
+      </ion-card>
+    </ion-col>-->
+
+
+    <ion-col class="col-6">
+      <ion-card class="carde">
+        <img src="assets/mulk/MT/Medical CON.png" class="img-responsive">
+        <!--<span class="cards" style="margin: 16px auto"> MEDICAL TOURISM</span>-->
+      </ion-card>
+    </ion-col>
+
+    <!--<ion-col class="col-6" (click)="medicalTourism()">
+      <ion-card class="carde">
+        <img src="assets/mulk/explore/medical-tourism.png" class="image" style="width: 101%;
+  display: block;
+  margin: 19px auto;">
+        <span class="cards" style="margin: 16px auto"> MEDICAL TOURISM</span>
+      </ion-card>
+    </ion-col>
+-->
+
+  </ion-row>
+
+
+  <!--<ion-row>
+    <ion-col class="offset-md-3">
+      <ion-card class="carde">
+        <img  src="assets/mulk/MT/COST ESTIMATION (1).png" class="img-responsive">
+      </ion-card>
+    </ion-col>
+  </ion-row>
+-->
+
+  <ion-refresher slot="start" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <!-- <div *ngIf="pagination && medicalTourismList.length >= 1">
+     <div *ngFor="let mTourism of medicalTourismList | paginate : config; let i=index" class="input-wrapper">
+       <ion-card style="padding: 0px!important;border-radius: 20px;">
+         <ion-item style="padding: 0px!important;">
+           <p><b>Date : </b> {{mTourism?.date | date:'dd-MM-yyyy'}} </p>patientId
+           <p><b>Country : </b> {{mTourism.countryId?.countryName}} </p>
+           <p><b>Hospital : </b> {{mTourism.hospitalId?.hospitalName}} </p>
+           <p><b>Department : </b> {{mTourism.departmentId?.departmentName}} </p>
+           <p><b>Query : </b> {{mTourism.enquiry}}</p>
+           <span (click)="medicalTourism_view(mTourism?.medicalTourismId)" item-end>
+                   <img style="color:#fff;margin: 0px auto;width: 104%;display: block;margin-top: 33px;"
+                        src="assets/img/icons/prescription.png"></span>
+         </ion-item>
+       </ion-card>
+     </div>
+     <div style="text-align: left;">
+       <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
+       <pagination-controls (pageChange)="getPage($event)" [id]="config.id"></pagination-controls>
+     </div>
+   </div>-->
+
+</ion-content>

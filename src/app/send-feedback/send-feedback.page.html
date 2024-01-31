@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="text-align: center">Send FeedBack</ion-title>
+    <ion-buttons slot="end">
+      <!--<div ion-button icon-only (click)="showNotificationsPanel($event)">-->
+      <!--<ion-icon name="notifications"><span>{{notifictionList.length}}</span></ion-icon>-->
+      <!--</div>-->
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list lines="full">
+    <ion-item>
+      <ion-label position="stacked">Your Feedback</ion-label>
+      <ion-textarea rows="5" [(ngModel)]="feedback"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Rating</ion-label>
+      <ion-range [(ngModel)]="rating" min="1" max="5" pin="true" snaps="true"></ion-range>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="block" (click)="submitFeedback()">Submit</ion-button>
+</ion-content>
+s

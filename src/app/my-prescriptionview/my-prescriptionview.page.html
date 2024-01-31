@@ -1,0 +1,124 @@
+<!--<ion-header>
+  <ion-toolbar>
+    <label class="label-titles">Prescription Details</label>
+    <ion-buttons end>
+      <ion-button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>-->
+
+<!--<ion-header>-->
+  <!--<ion-toolbar class="bar">-->
+    <!--<ion-buttons start left>-->
+      <!--<div ion-button show menuToggle>-->
+        <!--<ion-icon name="menu"></ion-icon>-->
+      <!--</div>-->
+    <!--</ion-buttons>-->
+    <!--<label class="label-titles">Prescription Details</label>-->
+  <!--</ion-toolbar>-->
+<!--</ion-header>-->
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="text-align: center">My Prescription</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content style="background-color: #fff!important;">
+  <div class="labels">
+    <h5>Case Paper Number : {{prescriptionReceipts?.ipVpId?.vpVisitId?.visitId}}</h5>
+    <ion-button color="success" type="button" style="font-size: large;" class="login-bt" value="Order To Pharmacy"
+                (click)="sendToPharmacy(patientId, vpId)">Order To Pharmacy</ion-button>
+  </div>
+  <!-- <h4><strong>MR.No </strong> : {{prescriptionReceipts?.ipVpId?.vpTimelineId?.timelinePatientId?.patientMrNo}} </h4>
+   <h4><strong>Name </strong> :
+     {{prescriptionReceipts?.ipVpId?.vpTimelineId?.timelinePatientId?.patientUserId?.userTitleId?.titleName}}
+     {{prescriptionReceipts?.ipVpId?.vpTimelineId?.timelinePatientId?.patientUserId?.userFirstname}}
+     {{prescriptionReceipts?.ipVpId?.vpTimelineId?.timelinePatientId?.patientUserId?.userLastname}} </h4>
+   <h4><strong>Age / Gender </strong> :
+     {{prescriptionReceipts?.ipVpId?.vpTimelineId?.timelinePatientId?.patientUserId?.userAge}} /
+     {{prescriptionReceipts?.ipVpId?.vpTimelineId?.timelinePatientId?.patientUserId?.userGenderId?.genderName}}</h4>
+   <h4><strong>Prescribed by </strong> :
+     {{prescriptionReceipts?.ipVpId?.vpTimelineId?.timelineDoctorAdviceCreatedStaffName}} </h4>
+
+   <h4><strong>Registration No </strong> :
+     {{prescriptionReceipts?.ipVpId?.vpTimelineId?.timelineStaffId?.staffErNo}} </h4>
+
+   <h4><strong>Visit Schedule </strong> : {{prescriptionReceipts?.ipVpId?.vpVisitId?.visitDate | date}} </h4>
+   <img style="color:#fff;width: 20%;margin:0px auto;display: block;margin-top:50px;"
+        src="{{patientimagepath}}/{{prescriptionReceipts?.duFileName}}">
+   <div class="presc_lable">
+     <h5>Prescription List</h5>
+   </div>
+
+   <ion-card *ngFor="let p of prescriptionReceipt; let i = index">
+     <ion-list>
+       <ion-item>
+         <span> {{i + 1}}.</span>
+         <span><b>{{p.ipInvItemId?.itemName}}</b></span>
+         <span>{{p.ipInvItemId?.itemStrength}}</span>
+         <span>{{p.ipInvItemId?.itemIdtId?.idtName}} for</span>
+         <span><b>{{p.ipDdId}} days</b></span>
+         <span>{{p.ipinstruction}}</span>
+         <span> {{p.ipVaId?.vaAsId?.asName}}</span>
+         <span>{{p.ipDiId?.diName}}</span>
+         <span>Dose : <b>{{p.ipDfId?.dfName}}</b></span>
+         <span>Route : {{p.ipRouteId?.routeName}}</span>
+         <span>({{p.ipQuantity}} QTY) </span>
+       </ion-item>
+     </ion-list>
+   </ion-card>-->
+
+  <div  class="input-wrapper">
+    <ion-card style="padding: 0px!important;border-radius: 20px;">
+      <ion-item style="padding: 0px!important;">
+        <p><b>Date : </b> {{prescriptionReceipt?.createdDate | date:'dd-MM-yyyy'}} </p>
+        <!--  <p><b>Doctor : </b> Dr. {{prescriptionReceipt?.vpTimelineId?.timelineEMRFinalStaffId?.staffUserId.userFullname}}</p>-->
+        <h4 *ngIf="prescriptionReceipt?.doctorId"><strong> Doctor Name : </strong>{{prescriptionReceipt?.doctorId?.staffUserId?.userFullname}} </h4>
+        <h4 *ngIf="prescriptionReceipt?.doctorId == null"><strong> Doctor Name : </strong>NA </h4>
+        <!--<p><b>File Name : </b>{{prescriptionReceipt?.duFileName}} </p>-->
+        <p><b>Document Name : </b>{{prescriptionReceipt?.duName}} </p>
+        <img style="color:#fff;width: 20%;margin:0px auto;display: block;margin-top:50px;"
+             src="{{patientimagepath}}/{{prescriptionReceipt?.duFileName}}">
+      </ion-item>
+    </ion-card>
+  </div>
+  <div style="text-align: left;">
+    <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
+    <pagination-controls (pageChange)="getPage($event)" [id]="config.id"></pagination-controls>
+  </div>
+
+
+  <!--<ion-row>
+    <ion-col col-7></ion-col>
+    <ion-col col-5>
+      <div>
+        <img
+          src="{{usersign_url}}{{prescriptionReceipts?.ipVpId?.vpTimelineId?.timelineEMRFinalStaffId?.staffSignName}}">
+
+        <img style="color:#fff;width: 20%;margin:0px auto;display: block;margin-top:50px;"
+             src="{{patientimagepath}}/{{prescriptionReceipts?.duFileName}}">
+      </div>
+    </ion-col>
+  </ion-row>-->
+  <ion-row>
+    <ion-col col-7></ion-col>
+    <ion-col col-5>
+      <div>
+        <h5 style="margin: 2px auto;">{{'Finalized By'}}</h5>
+        <h5 style="margin: 0px auto;"><strong>{{'Dr.'}}
+          {{prescriptionReceipts?.ipVpId?.vpTimelineId?.timelineDoctorAdviceCreatedStaffName}}</strong>
+          ({{prescriptionReceipts?.ipVpId?.vpTimelineId?.timelineEMRFinalStaffId?.staffEducation}})</h5>
+
+      </div>
+    </ion-col>
+  </ion-row>
+
+
+</ion-content>
+

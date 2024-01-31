@@ -1,0 +1,135 @@
+
+<ion-header>
+  <ion-toolbar class="bar">
+    <ion-buttons start left>
+      <div ion-button show menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </div>
+    </ion-buttons>
+    <label class="label-titles">My Referral</label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bgimg">
+  <ion-refresher slot="start" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+
+  <form class="pd-10" id="diagnostics" autocomplete="off"
+        [formGroup]="diagnostics" (ngSubmit)="submit(diagnostics.value)">
+
+    <!-- <ion-grid>
+       <ion-row>
+         <ng-container *ngFor="let partner of myPartnerList">
+           <ion-col class="col-12" style="padding: 5px">
+             <ion-card style="background-color:#ebebeb;border-radius:10px;height: 84%;">
+               <img src="{{patientimagepath}}/{{partner?.partnerLogo}}"
+                 style="width: 100%; height: 78px;display: block;text-align: center;margin: 5px auto;">
+             </ion-card>
+           </ion-col>
+         </ng-container>
+       </ion-row>
+     </ion-grid>-->
+
+
+    <ion-grid>
+      <ion-row>
+        <ng-container *ngFor="let partner of partnerListByCondition">
+          <ion-col class="col-12" style="padding: 5px">
+            <ion-card style="background-color:#ebebeb;border-radius:10px;height: 84%;">
+              <img src="{{patientimagepath}}/{{partner?.uspImage}}"
+                   style="width: 100%; height: 78px;display: block;text-align: center;margin: 5px auto;">
+            </ion-card>
+          </ion-col>
+        </ng-container>
+      </ion-row>
+    </ion-grid>
+
+
+    <div class="input-group mb-3" style="margin-bottom: 15px !important;border: 0px solid #d67810;">
+      <div class="input-group-prepend">
+        <span class="input-group-text"><strong><span style="color: red"> * </span>Partner</strong></span>
+      </div>
+      <select title="Select Department" name="partner" id="partnerId" class="form-control" required [formControl]="diagnostics.controls['partnerId']">
+        <option value="0" required>Select Partner</option>
+        <option *ngFor="let partner of partnerListByCondition" required value="{{partner.partnerId}}">{{partner.partnerName}}
+        </option>
+      </select>
+
+
+    </div>
+
+    <div *ngFor="let refferals of refferalsReceipt let i=index" class="input-wrapper">
+      <ion-card style="padding: 0px!important;border-radius: 20px;">
+        <ion-item style="padding: 0px!important;">
+          <!--<div *ngIf="refferals.refferalType == 1"><p ><b>Referral Type : </b>  Lab </p></div>-->
+          <div *ngIf="refferals?.refferalType == 435"><p ><b>Referral Type : </b>  Lab </p></div>
+          <div *ngIf="refferals?.refferalType == 2"><p ><b>Referral Type : </b>  Radiology </p></div>
+          <!--<div *ngIf="refferals.refferalType == 0"><p><b>Referral Type : </b> Raidology </p></div>-->
+          <p><b>Date : </b> {{refferals?.createdDate | date:'dd-MM-yyyy'}} </p>
+          <!--<p><b>Doctor Name : </b> {{refferals?.doctorId?.staffUserId?.userFullname}}</p>-->
+          <h4 *ngIf="refferals?.doctorId"><strong> Doctor Name : </strong>{{refferals?.doctorId?.staffUserId?.userFullname}} </h4>
+          <h4 *ngIf="refferals?.doctorId == null"><strong> Doctor Name : </strong>NA </h4>
+          <p><b>Document Name : </b> {{refferals?.duName}}</p>
+          <!-- <p><b>Patient Name : </b> {{refferals.patientId?.patientUserId?.userName}} </p>-->
+          <!-- *ngIf="partner?.partnerLogo != null && partner?.partnerLogo != 'undefined'" src="{{patientimagepath}}/{{partner?.partnerLogo}}"-->
+
+          <div *ngIf="refferals?.refferalType != null; else elseBlock">
+            <div *ngIf="refferals?.addedByDoctorPortal == false; else doctorTrueBlock">
+              <img  style="color:#fff;width: 20%;margin:0px auto;display: block;margin-top:50px;"
+                    *ngIf="refferals.duFileName != null && refferals.duFileName != 'undefined'" alt="ReferralImage" src="{{patientimagepath}}/{{refferals?.duFileName}}">
+            </div>
+            <ng-template #doctorTrueBlock>
+              <img  style="color:#fff;width: 20%;margin:0px auto;display: block;margin-top:50px;"
+                    *ngIf="refferals.duPath != null && refferals.duPath != 'undefined'" alt="ReferralImage" src="{{patientimagepath}}/{{refferals?.duPath}}">
+            </ng-template>
+          </div>
+          <ng-template #elseBlock>
+            <img  style="color:#fff;width: 20%;margin:0px auto;display: block;margin-top:50px;"
+                  *ngIf="refferals.duFileName != null && refferals.duFileName != 'undefined'" alt="ReferralImage" src="{{patientimagepath}}/{{refferals?.duFileName}}">
+          </ng-template>
+
+          <!--<div *ngIf="(refferals?.refferalType != null) && (refferals?.addedByDoctorPortal == true)">-->
+          <!--<img  style="color:#fff;width: 20%;margin:0px auto;display: block;margin-top:50px;"-->
+          <!--*ngIf="refferals.duPath != null && refferals.duPath != 'undefined'" alt="ReferralImage" src="{{patientimagepath}}/{{refferals?.duPath}}">-->
+          <!--</div>-->
+
+
+          <input type="button" style="font-size: large; margin: 0px auto;width:41%;display: block;margin-top: 33px;" class="login-bt" value="Send"
+                 (click)="submit(refferals)">
+
+        </ion-item>
+      </ion-card>
+    </div>
+
+
+  </form>
+
+  <!--<div *ngFor="let referal of refferalsReceipt.content">
+  &lt;!&ndash;<div class="labels">
+    <input type="button" style="font-size: large;" class="login-bt" value="Send"
+           (click)="sendToLab(patientId, myRefferalsId)">
+  </div>&ndash;&gt;
+  <h4><strong>Doctor Name </strong> :
+    Dr.{{referal?.doctorId?.staffUserId?.userFullname}}</h4>
+  <h4><strong> Patient Name </strong> :
+    {{referal?.patientId?.patientUserId?.userName}} </h4>
+  <h4><strong>Refferal Letter </strong> :
+    {{referal.refferalLetter}} </h4>
+  <h4><strong>File</strong> :</h4>
+  <img style="color:#fff;width: 20%;margin:0px auto;display: block;margin-top:50px;"
+       src="{{patientimagepath}}/{{referal?.duFileName}}">
+</div>
+<div class="labels">
+
+    <input type="button" style="font-size: large;" class="login-bt" value="Send"
+    (click)="sendToLab(patientId, myRefferalsId)">
+
+</div>-->
+  <!--<div class="presc_lable">
+  </div>-->
+
+
+</ion-content>
+

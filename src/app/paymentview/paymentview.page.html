@@ -1,0 +1,82 @@
+<!--<ion-header>
+  <ion-toolbar>
+    <label class="label-titles">Payment Details</label>
+    <ion-buttons end>
+      <ion-button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>-->
+
+
+<ion-header>
+  <ion-toolbar class="bar">
+    <ion-buttons start left>
+      <div ion-button show menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </div>
+    </ion-buttons>
+    <label class="label-titles">Payment Details</label>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content style="background-color: #fff!important;">
+  <div style="margin: 10px auto;width: 95%;">
+    <h5><strong>MR.No </strong> : {{payment?.bsBillId?.billVisitId?.visitPatientId?.patientMrNo}} </h5>
+    <h5><strong>Bill No </strong> : {{payment?.bsBillId?.billNumber}} </h5>
+    <h5><strong>Bill Date </strong> : {{payment?.bsBillId?.billDate|date}} </h5>
+    <h5><strong>Name </strong> : {{payment?.bsBillId?.billVisitId?.visitPatientId?.patientUserId?.userFullname}} </h5>
+    <h5><strong>Visit Id </strong> : {{payment?.bsBillId?.billVisitId?.visitId}} </h5>
+    <h5><strong>Age / Gender </strong> : {{payment?.bsBillId?.billVisitId?.visitPatientId?.patientUserId?.userAge}} /
+      {{payment?.bsBillId?.billVisitId?.visitPatientId?.patientUserId?.userGenderId?.genderName}} </h5>
+  </div>
+
+  <div style="overflow-x:auto;">
+    <table class="mar_table">
+      <tr class="border">
+
+        <th>{{'Sr.No'}}</th>
+        <th>{{'Service Code'}}</th>
+        <th>{{'Service Name'}}</th>
+        <!--<th>{{'Qty '}}</th>-->
+        <!--<th>{{'Service Amt '}}</th>-->
+      </tr>
+      <tr *ngFor="let paymentReceipt of PaymentReceipt; let i=index">
+        <td>{{i+1}}</td>
+        <td>{{paymentReceipt?.bsServiceId?.serviceCode}}</td>
+        <td>{{paymentReceipt?.bsServiceId?.serviceName}}</td>
+        <!--<td>{{PaymentReceipt?.bsQuantity}}</td>-->
+        <!--<td>{{PaymentReceipt?.bsGrossRate}}</td>-->
+      </tr>
+    </table>
+  </div>
+
+  <div class="presc_lable">
+    <h5><b>Total Amount : </b> {{payment?.bsBillId?.billAmountPaid}}</h5>
+  </div>
+
+  <ion-row>
+    <ion-col col-7></ion-col>
+    <ion-col col-5>
+      <div>
+        <img src="{{usersign_url}}{{payment?.bsStaffId?.staffSignName}}">
+      </div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-7></ion-col>
+    <ion-col col-5>
+      <div>
+        <h5 style="margin: 2px auto;">{{'Finalized By'}}</h5>
+        <h5 style="margin: 0px auto;"><strong>{{'Dr.'}}
+          {{payment?.bsStaffId?.staffUserId?.userFullname}}</strong>
+          ({{payment?.bsStaffId?.staffEducation}})</h5>
+      </div>
+    </ion-col>
+  </ion-row>
+
+
+</ion-content>

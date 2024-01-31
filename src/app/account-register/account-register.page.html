@@ -1,0 +1,299 @@
+  <ion-content class="bgimg">
+    <ion-card style="margin-top: 10%;background-color: transparent; box-shadow: 0px 0px 4px 1px #fff; ">
+      <div class="card-body" style="padding: 1rem;">
+        <form [formGroup]="registration" (ngSubmit)="onRegisterRecord(registration.value)">
+          <h4 class="text-center" style="color: #fff">Register</h4>
+
+          <div class="primg" style="margin-bottom: 5px">
+            <img src="{{imagepath}}" onError="this.src='assets/img/user.png'">
+            <input type="file" (change)="take($event)">
+          </div>
+
+          <div class="input-group mb-3" style="margin-bottom: 10px !important;border: 1px solid #d67810;">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><strong>Title</strong></span>
+            </div>
+            <select class="form-control ng-untouched ng-pristine ng-invalid" #titleId
+                    [formControl]="registration.controls['titleId']" type="text" (change)="setGender(titleId.value)">
+              <option value="0">Select Title</option>
+              <option *ngFor="let mstTitle of msttitlelist" [value]=mstTitle.titleId>
+                {{mstTitle.titleName}}
+              </option>
+            </select>
+          </div>
+
+          <div class="input-group mb-3" style="margin-bottom: 10px !important;border: 1px solid #d67810;">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><strong>First Name</strong></span>
+            </div>
+            <input type="text" class="form-control" placeholder="First Name"
+                   autocomplete="username" [formControl]="registration.controls['firstName']" title="User First Name"
+                   capitalize (keypress)="inputFilter($event)">
+          </div>
+          <div class="input-group mb-3" style="margin-bottom: 10px !important;border: 1px solid #d67810;">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><strong>Last Name</strong></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Last Name"
+                   autocomplete="username" [formControl]="registration.controls['lastName']" title="User Last Name"
+                   capitalize (keypress)="inputFilter($event)">
+          </div>
+
+
+          <div class="input-group mb-3" style="margin-bottom: 10px !important;border: 1px solid #d67810;">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><strong>DOB</strong></span>
+            </div>
+            <input type="date" class="form-control" (change)="selectedDate($event)" placeholder="DOB"
+                   title="Date of Birth" [formControl]="registration.controls['dob']">
+          </div>
+
+          <div class="input-group mb-3" style="margin-bottom: 10px !important;">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><strong>Age</strong></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Age" autocomplete="userage" title="UserAge"
+                   [formControl]="registration.controls['age']" readonly>
+          </div>
+
+          <div class="input-group mb-3" style="margin-bottom: 10px !important;border: 1px solid #d67810;">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><strong>Gender</strong></span>
+            </div>
+            <select title="Select Gender" class="form-control" [formControl]="registration.controls['gender']" disabled>
+              <option value="0">Select Gender</option>
+              <option *ngFor="let gender of genderList | async" [value]=gender.genderId>{{gender.genderName}}
+              </option>
+            </select>
+          </div>
+
+          <div class="input-group mb-3" style="margin-bottom: 10px !important;border: 1px solid #d67810;">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><strong>Mobile No</strong></span>
+            </div>
+            <input type="number" class="form-control" (keyup)="CheckMobileLength($event)"
+                   [formControl]="registration.controls['mobileno']" minlength="{{mobileLength}}" maxlength="10"
+                   placeholder="Mobile Number" autocomplete="mobileno" title="UserMobileNo">
+          </div>
+
+          <div class="row" style="margin-top:-10px !important; margin-bottom: 10px !important;">
+            <div class="col-12 text-right" *ngIf="mobilevalid">
+              <ion-button type="button" class="btn btn-link px-0" (click)="sendOtp(registration.value)">Send OTP
+              </ion-button>
+            </div>
+            <div class="col-12 text-right" *ngIf="mobileotpsend">
+              <ion-button type="button" class="btn btn-link px-0" (click)="resendotp(registration.value)">Resend OTP
+              </ion-button>
+            </div>
+          </div>
+
+          <div class="input-group mb-3"
+               style="margin-top: 10px !important; margin-bottom: 10px !important;border: 1px solid #d67810;"
+               *ngIf="mobileotpsend">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><strong>Mobile OTP</strong></span>
+            </div>
+            <input type="number" class="form-control" [formControl]="registration.controls['mobileotp']"
+                   [(ngModel)]="demoOTP" minlength="4" maxlength="4" placeholder="Mobile OTP" autocomplete="mobileno"
+                   title="UserMobileNo">
+          </div>
+
+          <div class="input-group mb-3" style="margin-bottom: 10px !important;border: 1px solid #d67810;">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><strong>Email</strong></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Email" [formControl]="registration.controls['email']"
+                   autocomplete="email" title="User Email">
+          </div>
+
+          <div class="input-group mb-3" style="margin-bottom: 10px !important;">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><strong>Blood Group</strong></span>
+            </div>
+            <select [formControl]="registration.controls['bloodgroup']" title="Select Blood Group" class="form-control">
+              <option value="0">Select Blood Group</option>
+              <option *ngFor="let blood of bloodGroupList | async" [value]=blood.bloodgroupId>
+                {{blood.bloodgroupName}}
+              </option>
+            </select>
+          </div>
+
+          <div class="input-group mb-3" style="margin-bottom: 10px !important;">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><strong>Address</strong></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Address" [formControl]="registration.controls['address']"
+                   autocomplete="address" title="User Address">
+          </div>
+
+
+          <div class="input-group mb-3" style="margin-bottom: 10px !important;">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><strong>PINCODE/P.O.Box No.</strong></span>
+            </div>
+            <input type="number" [formControl]="registration.controls['pincode']" class="form-control"
+                   placeholder="Pincode" autocomplete="pincode">
+          </div>
+
+
+          <div class="input-group mb-3" style="margin-bottom: 10px !important;">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><strong>Country</strong></span>
+            </div>
+            <select #country [formControl]="registration.controls['countryId']" title="Select Country"
+                    class="form-control" (change)="selectCountry(country.value)">
+              <option value="0">Select Country</option>
+              <option *ngFor="let res of countrylist" [value]=res.countryId>
+                {{res.countryName}}
+              </option>
+            </select>
+          </div>
+
+          <div class="input-group mb-3" style="margin-bottom: 10px !important;">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><strong>State</strong></span>
+            </div>
+            <select #state [formControl]="registration.controls['stateId']" (change)="selectState(state.value)"
+                    title="Select State" class="form-control">
+              <option value="0">Select State</option>
+              <option *ngFor="let res of statelist" [value]=res.stateId>
+                {{res.stateName}}
+              </option>
+            </select>
+          </div>
+
+
+          <div class="input-group mb-3" style="margin-bottom: 10px !important;">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><strong>City</strong></span>
+            </div>
+            <select #city [formControl]="registration.controls['city']" title="Select City" class="form-control"
+                    (change)="selectCity(city.value)">
+              <option value="0">Select City</option>
+              <option *ngFor="let res of citylist" [value]=res.cityId>
+                {{res.cityName}}
+              </option>
+            </select>
+          </div>
+
+
+          <div class="input-group mb-3" style="margin-bottom: 10px !important;">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><strong>ID Doc</strong></span>
+            </div>
+            <select #nationality title="Identification Type" [formControl]="registration.controls['userNationalityId']"
+                    (change)="onSelectNatinality(nationality.value)" class="form-control">
+              <option value="0" disabled>Nationality</option>
+              <option *ngFor="let mstNationality of nationalityList" [value]=mstNationality.nationalityId>
+                {{mstNationality.nationalityName}}
+              </option>
+            </select>
+          </div>
+
+          <div class="input-group mb-3" style="margin-bottom: 10px !important;">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><strong>ID No</strong></span>
+            </div>
+            <!--<input [formControl]="registration.controls['pid']" class="form-control" placeholder="National ID"-->
+            <!--autocomplete="Pid" title="National ID" #sekey (change)="checknationalid(sekey.value)">-->
+            <input class="form-control" [placeholder]="nationalityName" autocomplete="Pid" title="Emirates ID"
+                   [formControl]="registration.controls['userUid']" #sekey>
+          </div>
+
+          <div class="input-group mb-3" style="margin-bottom: 10px !important;">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><strong>Upload ID Document (Front Page)</strong></span>
+            </div>
+            <input id="file" type="file" title="Upload Identification Document Front Page" class="form-control"
+                   (change)="uploadIdentifyDocFp($event)">
+          </div>
+
+          <!--<div class="input-group mb-3" style="margin-bottom: 10px !important;">-->
+          <!--<div class="input-group-prepend">-->
+          <!--<span class="input-group-text"><strong>Insurance Company</strong></span>-->
+          <!--</div>-->
+          <!--<select title="Insurance company" class="form-control"-->
+          <!--[formControl]="registration.controls['userInsuranceId']">-->
+          <!--<option value="0" disabled>Select Insurance Company</option>-->
+          <!--<option *ngFor="let company of mstCompanyList" [value]=company.companyId>{{company.companyName}}-->
+          <!--</option>-->
+          <!--</select>-->
+          <!--</div>-->
+
+          <!--<div class="input-group mb-3" style="margin-bottom: 10px !important;">-->
+          <!--<div class="input-group-prepend">-->
+          <!--<span class="input-group-text"><strong>Card No.</strong></span>-->
+          <!--</div>-->
+
+          <!--<input class="form-control" placeholder="" [formControl]="registration.controls['userInsuranceCardNo']"-->
+          <!--autocomplete="Pid" title="Card No">-->
+          <!--</div>-->
+
+          <!--<div class="input-group mb-3" style="margin-bottom: 10px !important;">-->
+          <!--<div class="input-group-prepend">-->
+          <!--<span class="input-group-text"><strong>Date Of Issue</strong></span>-->
+          <!--</div>-->
+          <!--<input type="date" class="form-control" (change)="selectedInsuranceDateOfIssue($event)"-->
+          <!--placeholder="userInsuranceDateOfIssue" title="Date of Issue">-->
+          <!--&lt;!&ndash;<span class="input-label form-required" style="color: red; font-weight: bold;">*</span>&ndash;&gt;-->
+          <!--</div>-->
+
+          <!--<div class="input-group mb-3" style="margin-bottom: 10px !important;">-->
+          <!--<div class="input-group-prepend">-->
+          <!--<span class="input-group-text"><strong>Date Of Expiry</strong></span>-->
+          <!--</div>-->
+          <!--<input type="date" class="form-control" (change)="selectedInsuranceDateOfExp($event)"-->
+          <!--placeholder="userInsuranceDateOfExp" title="Date of Expiry">-->
+          <!--&lt;!&ndash;<span class="input-label form-required" style="color: red; font-weight: bold;">*</span>&ndash;&gt;-->
+          <!--</div>-->
+
+          <!--<div class="input-group mb-3" style="margin-bottom: 10px !important;">-->
+          <!--<div class="input-group-prepend">-->
+          <!--<span class="input-group-text"><strong>Upload Insurance Card(Front Page)</strong></span>-->
+          <!--</div>-->
+          <!--<input id="file" type="file" title="Upload Insurance Card Front Page" class="form-control"-->
+          <!--(change)="uploadInssCardFp($event)">-->
+          <!--</div>-->
+
+          <ion-row>
+            <ion-col class="col-1">
+              <input type="checkbox" *ngIf="!checkshow" (click)="checkshowNot()">
+              <input type="checkbox" *ngIf="checkshow" (click)="checkshowYes()" Checked>
+            </ion-col>
+            <ion-col class="col-10">
+              <p style="font-size: 10px; margin-top: 2px;color: #fff;">I ACCEPT THAT THE TELE-CONSULTATION HAS ITS <a
+                title="
+  I ACCEPT THAT THE TELE-CONSULTATION HAS ITS OWN LIMITATIONS AND DOCTORS ARE
+  NOT LIABLE FOR IMPROPER DIAGNOSIS, TREATMENT AND ANY ADVERSE DRU REACTIONS.
+  THE TELECONSULTATION MAY BE DIGITALLY RECORDED.THE TELECONSULTANTS, REMOTE
+  CENTERS AND ALL THE PERSONNEL DIRECTLY OR INDIRECTLY INVOLVED WILL NOT BE
+  HELD RESPONSIBLE IN THE UNLIKELY EVENT OF AN ERROR IN DIAGNOSIS OR MANAGEMENT
+  DUE TO THE OCCURENCE OF SUB OPTIMAL TECHNICAL CONDITIONS WHILE EVERY ATTEMPT
+  IS MADE TO ENSURE IDLE CONDITIONS UNFORESEEN SITUATIONS MAY OCCUR"><a style="color: deepskyblue;">OWN LIMITATIONS...</a></a>
+              </p>
+            </ion-col>
+          </ion-row>
+          <ion-button type="submit" class="btn btn-block btn-success" [disabled]="!registration.valid">Create
+            Account
+          </ion-button>
+        </form>
+        <div class="row">
+          <div class="col-6 text-left">
+          </div>
+          <div class="col-6 text-right">
+            <ion-button type="button" class="btn btn-link px-0" style="color: #fff" (click)="onLogin()">Login Now?</ion-button>
+          </div>
+        </div>
+      </div>
+    </ion-card>
+  </ion-content>
+
+  <ion-footer class="hide-on-keyboard-open" style="background-color:whitesmoke;height: 45px;" *ngIf="footer">
+    <div text-center style="margin-top:5px">
+      <p>Powered By
+        <a href="http://www.cellbeanshealthcare.com/">
+          <img src="./assets/imgs/logo_cellbeans.png" width="100" height="30" style="margin-bottom: 11px">
+        </a>
+      </p>
+    </div>
+  </ion-footer>

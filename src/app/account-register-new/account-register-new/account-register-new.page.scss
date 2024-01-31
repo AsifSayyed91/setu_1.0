@@ -1,0 +1,230 @@
+page-account-register-new {
+  .primg img {
+    border: 1px solid #cccccc;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: block;
+    center-positions: fixed;
+    overflow: hidden;
+    background: white;
+
+
+    //s: 10px auto;
+  }
+  .ion-label{
+    margin-bottom: 5%;
+  }
+  .white-border-input {
+    border: 1px solid white;
+    border-radius: 5px; /* Optional: Add border radius for rounded corners */
+    color: white; /* Optional: Set the text color to white */
+    background-color: transparent; /* Optional: Set the background color to transparent */
+  }
+
+  /* For Desktop View */
+  @media screen and (min-width: 1024px) {
+    form {
+      display: block;
+      center-positions: fixed;
+      overflow: hidden;
+      //margin: 90px;
+      font: inherit;
+      color: inherit;
+      margin-left: 200px;
+      margin-right: 200px;
+    }
+  }
+
+  .leftp {
+    padding-right: 150px;
+
+  }
+  ion-datetime-button {
+    --background: success;
+    --color: warning;
+  }
+
+  .icon {
+    margin: 0px auto !important;
+    color: #000 !important;
+  }
+  .searchbar-md .searchbar-input {
+    background: aliceblue;
+    font-size: 12px !important;
+    margin-top: -3px !important;
+    margin-left: -6px !important;
+    font-weight: 400 !important;
+    color: #141414 !important;
+ //   background-color: #fff !important;
+    padding: 0px 7px;
+    border-radius: 0px;
+    background-position: left 0px center;
+    height: 20px;
+    line-height: 10px;
+    box-shadow: unset;
+  }
+
+  .searchbar-ios {
+    padding: 0 0px !important;
+    min-height: 22px !important;
+    border-top: 0.55px solid transparent !important;;
+    border-bottom: 0.55px solid rgba(0, 0, 0, 0.05) !important;;
+    background: rgba(0, 0, 0, 0.2) !important;;
+  }
+
+  .searchbar-ios .searchbar-search-icon {
+    left: 0px;
+    top: 0px;
+    //background: url();
+    margin-left: calc(50% - 60px);
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background-repeat: no-repeat;
+    background-size: 13px;
+  }
+
+  .searchbar-input {
+    padding-left: 0px !important;
+  }
+  .searchbar-ios .searchbar-input {
+    font-size: 12px !important;
+    margin-top: -5px !important;
+    margin-left: 0px !important;
+    font-weight: 400 !important;
+    color: #141414 !important;
+    background-color: #fff !important;
+    padding: 0px 7px;
+    border-radius: 0px;
+    background-position: left 0px center;
+    height: 20px;
+    line-height: 10px;
+    box-shadow: unset;
+  }
+
+  .searchbar-md .searchbar-search-icon {
+    left: 16px;
+    top: 11px;
+    background: none;
+    width: 21px;
+    height: 21px;
+  }
+  ion-auto-complete {
+    width: 100% !important;
+  }
+
+  .searchbar-md .searchbar-clear-icon {
+    right: 0px;
+    top: 0;
+    padding: 0;
+    background-position: center;
+    position: absolute;
+    width: 10px;
+    height: 100%;
+    margin-top: 3px;
+    background-repeat: no-repeat;
+    background-size: 22px;
+  }
+}
+
+reg {
+
+  color: white;
+  opacity: 10.65;
+ // background-color: transparent;
+  border-color: #fff;
+  font-size: large
+}
+
+.checkbox {
+  width: 25px;
+  height: 23px;
+  left: 62px;
+  top: 610px;
+}
+
+.text {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+}
+
+.last {
+  margin-top: 26px;
+  color: white !important;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 19px;
+  line-height: 24px;
+  text-align: center;
+}
+
+@media screen and (min-width: 1024px) {
+  page-account-register-new form {
+    margin-left: 250px;
+    margin-right: 250px;
+    font: inherit;
+    color: inherit;
+  }
+}
+
+ion-content .bgimg .item-native {
+  background-color: white !important;
+}
+
+.form-control{
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: none;
+  color: #000
+
+}
+.textsize{
+  font-size: 15px;
+}
+
+.divider {
+  display: flex;
+
+  &:before,
+  &:after {
+    content: "";
+    flex: 1;
+  }
+}
+
+.line {
+  align-items: center;
+  margin: 1em -1em;
+  color: #cccccc;
+
+  &:before,
+  &:after {
+    height: 1px;
+    margin: 0 1em;
+  }
+}
+
+.one-line {
+  &:before,
+  &:after {
+    background: #cccccc;
+  }
+}
+
+.auth-form ion-grid,
+.auth-form ion-row {
+  height: 100%;
+  justify-content: center;
+}
+
+.already {
+  display: block;
+  text-align: center;
+  padding-bottom: 10px;
+}

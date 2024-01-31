@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar class="bar">
+    <ion-buttons start left>
+      <div ion-button show menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </div>
+    </ion-buttons>
+    <label class="label-titles">Aesthetics</label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="bgimg">
+
+
+  <ion-refresher label="Start" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <form class="pd-10" id="aesthetics" autocomplete="off"
+        [formGroup]="aesthetics" (ngSubmit)="addFile(aesthetics.value)">
+    <div class="row">
+      <div class="form-group col-sm-4">
+        <h6  style="color: white; font-size: 20px;text-align: center"><label for="doc_name">Document Name</label></h6>
+        <input formControlName="doc_name" id="doc_name" type="text" placeholder="Document Name" class="form-control">
+      </div>
+
+      <div class="form-group col-sm-4">
+        <h6  style="color: white; font-size: 20px;text-align: center"><label for="file">File</label></h6>
+        <input formControlName="file" id="file" type="file" class="form-control"
+               (change)="onFileChange($event)">
+      </div>
+    </div>
+
+
+
+    <div class="row" style="font-size: 18px; margin: -10px auto;  padding: 14px;">
+      <div class="col-md-5" style="color: #ffffff;padding: 0px">
+        <h6 style="color: white; font-size: 20px;text-align: center">Enquiry</h6>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 5px;">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <div class="row">
+                <textarea class="form-control new-form-control" id="enquiry"
+                          name="enquiry" required="" formControlName="enquiry"
+                          [formControl]="aesthetics.controls['enquiry']"
+                          style="margin-top: 0px; margin-bottom: 0px; height: 55px;width: 100% !important; padding: 37px; border: 1px solid #ccc; border-radius: 10PX;">
+                </textarea>
+        </div>
+      </div>
+      <br><br>
+      <input type="submit" style="font-size: large; margin: 0px auto;width:41%;display: block;margin-top: 33px;"
+             class="login-bt" value="Submit">
+    </div>
+  </form>
+
+
+  <ion-refresher label="Start" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+
+  <ion-refresher label="Start" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+</ion-content>

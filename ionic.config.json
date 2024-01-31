@@ -1,0 +1,7 @@
+{
+  "name": "Mulk Med",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

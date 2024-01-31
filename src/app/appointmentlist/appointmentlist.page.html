@@ -1,0 +1,243 @@
+<style type="text/css">
+  .bgimg {
+    /*background: url('assets/img/Mulk E Health A4-01 1.png');*/
+    background-color: black;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+  }
+</style>
+
+
+<!--<ion-header>-->
+<!--<ion-toolbar class="bar">-->
+<!--<ion-buttons start left>-->
+<!--<div ion-button show menuToggle>-->
+<!--<ion-icon name="menu"></ion-icon>-->
+<!--</div>-->
+<!--</ion-buttons>-->
+<!--<label class="label-titles">My Appointment</label>-->
+<!--<ion-buttons end>-->
+<!--<div ion-button icon-only (click)="showNotificationsPanel($event)">-->
+<!--<ion-icon name="notifications"><span>{{notifictionList.length}}</span></ion-icon>-->
+<!--</div>-->
+<!--</ion-buttons>-->
+<!--</ion-toolbar>-->
+<!--</ion-header>-->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="text-align: center">My Appointment</ion-title>
+    <ion-buttons slot="end">
+      <div ion-button icon-only (click)="showNotificationsPanel($event)">
+        <ion-icon name="notifications"><span>{{notifictionList.length}}</span></ion-icon>
+      </div>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<!--<div *ngIf="toggleNotification">-->
+<!--test-->
+<!--</div>-->
+
+<ion-content class="bgimg">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <!--<ion-row style="padding-left: 30px">-->
+
+  <ion-row>
+    <ion-col>
+      <img src="assets/mulk/myappoint/appo1.png"
+           style="display: block;margin-left: auto;margin-right: auto;">
+    </ion-col>
+  </ion-row>
+
+
+
+  <!--<ion-row>-->
+  <!--<img src="assets/mulk/myappoint/appo1.png" class="center">-->
+  <!--</ion-row>-->
+  <div *ngIf="!pagination">
+    <ion-list class="m-n">
+      <ion-item no-lines *ngFor="let i of [0,1,2,3,4,5,6,7]">
+        <skeleton-item height="8px" width="90%"></skeleton-item>
+        <skeleton-item height="6px" width="70%"></skeleton-item>
+        <skeleton-item height="6px" width="70%"></skeleton-item>
+        <ion-avatar item-end>
+          <skeleton-item height="50px" width="50px"></skeleton-item>
+        </ion-avatar>
+      </ion-item>
+    </ion-list>
+  </div>
+
+
+
+  <div *ngIf="pagination && appointmentlist.length == 0" class=" input-wrapper3">
+    <!-- <ion-row style="margin-left: 0px;margin-right: 0px; border-bottom: 1px solid #ccc">
+     <ion-col col-12 class="textcen" (click)="FilterSearch()" style="border-right: 1px solid #ccc">
+     <button style="font-size: 13px;" class="btn btn-default" type="button">Filter
+     <ion-icon ios="ios-funnel" md="ios-funnel"></ion-icon>
+     </button>
+     </ion-col>
+     </ion-row>
+
+     <ion-row>
+     <ion-col>
+     <img src="assets/mulk/myappoint/appo1.png" class="img">
+     </ion-col>
+     </ion-row>-->
+    <div style="margin: 10px auto;" *ngIf="filtershow">
+      <ion-row style="margin-right: 0px;margin-left: 0px; background-color: black;
+  color: gainsboro;">
+        <ion-col col-2>
+          <input class="form-control" [(value)]='today' type="date"
+                 (change)="onSelectedfromDate($event)" required>
+        </ion-col>
+        <ion-col col-2>
+          <input class="form-control" [(value)]='today' type="date"
+                 (change)="onSelectedtoDate($event)" required>
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-right: 0px;margin-left: 0px">
+        <ion-col col-6>
+          <button class="btn btn-primary" style="width: 100%;" (click)="Search()">Search</button>
+        </ion-col>
+        <ion-col col-6>
+          <button class="btn btn-danger" style="width: 100%;" (click)="Reset()">Reset</button>
+        </ion-col>
+      </ion-row>
+    </div>
+    <img style="width: 20%;margin:0px auto;display: block;margin-top:50px;" src="assets/mulk/alpty.png">
+    <p><b
+      style="color:#fff;font-weight: bold; margin: 10px auto;display: block; text-align: center;font-size: 12px;font-family: monospace;">You
+      have no Appointments.</b></p>
+  </div>
+
+  <div *ngIf="pagination && appointmentlist.length >= 1"class=" input-wrapper3">
+    <ion-row style="margin-left: 0px;margin-right: 0px; border-bottom: 1px solid #ccc">
+      <ion-col col-12 class="textcen" (click)="FilterSearch()" style="border-right: 1px solid #ccc">
+        <ion-button style="font-size: 13px; " class="btn btn-default" type="button">Filter
+          <ion-icon ios="ios-funnel" style="color: #fff!important;" md="ios-funnel"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <div style="margin: 10px auto;" *ngIf="filtershow">
+      <ion-row style="margin-right: 0px;margin-left: 0px">
+        <ion-col col-2>
+          <input class="form-control" [(value)]='today' type="date"
+                 (change)="onSelectedfromDate($event)" required>
+        </ion-col>
+        <ion-col col-2>
+          <input class="form-control" [(value)]='today' type="date"
+                 (change)="onSelectedtoDate($event)" required>
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-right: 0px;margin-left: 0px">
+        <ion-col col-6>
+          <button class="btn btn-primary" style="width: 100%;" (click)="Search()">Search</button>
+        </ion-col>
+        <ion-col col-6>
+          <button class="btn btn-danger" style="width: 100%;" (click)="Reset()">Reset</button>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div *ngFor="let user of appointmentlist | paginate : config; let i=index">
+      <ion-card style="padding: 10px;">
+        <div class="myappoint">
+          <p>My <b>{{user?.appointmentServiceId?.serviceName}}</b> for <b>{{user?.appointmentreason}}</b> with <b>Dr.{{user?.appointmentStaffId?.staffUserId?.userFullname
+            }}</b> is
+            <b
+              *ngIf="user.appointmentIsConfirm==false && user.appointmentIsCancelled==false && user.appointmentIsDrAccept==false && user.appointmentIsClosed==false"><b
+              style="color: #4285f4">Request</b></b>
+            <b
+              *ngIf="user.appointmentIsConfirm==true && user.appointmentIsCancelled==false && user.appointmentIsDrAccept==false && user.appointmentIsClosed==false"><b
+              style="color: #34a852">Confirmed</b></b>
+            <b *ngIf="user.appointmentIsCancelled==true"><b style="color: #ea4335">Cancelled</b></b>
+            <b
+              *ngIf="user.appointmentIsDrAccept==true && user.appointmentIsClosed==false && user.appointmentIsCancelled==false"><b
+              style="color: #34aa59">Accepted</b></b>
+            <b *ngIf="user.appointmentIsClosed==true"><b style="color: #162c1d">Closed</b></b>
+          </p>
+          <p>Schedule <b style="color: #34aa59"> {{user?.appointmentDate | date:'dd/MM/yyyy'}} </b> for <b
+            style="color:#4285f4"> {{user?.appointmentSlot}} </b></p>
+          <!--<p><b>Doctor : </b> Dr. {{user?.appointmentStaffId?.staffUserId?.userFullname }} ( {{user?.appointmentStaffId?.staffSpecialityId?.specialityName}} ) </p>-->
+          <p><b> Payment Remark : </b>AED  {{user?.appointmentServiceAmount}} {{user?.appointmentPaymentRemark}}
+            {{user?.appointmentPaymentId}} </p>
+        </div>
+        <p><b>Booking Details : </b> {{user?.createdDate | date:'dd/MM/yyyy'}} {{user?.createdDate | date:
+          'shortTime'}} </p>
+        <ion-row style="margin-right: 0px; margin-left: 0px">
+          <ion-col col-3 *ngIf="payment" >
+            <!--<img *ngIf="user.paymentStatus==false && user.appointmentServiceAmount > 0" style="width: 100%;" src="assets/img/icon/PAY.png"-->
+            <!--(click)="appointmentPay(user)" >-->
+            <img *ngIf=" user.appointmentServiceAmount > 0" style="width: 60%;" src="assets/img/icon/PAY.png"
+                 (click)="appointmentPay(user)" >
+
+
+
+            <img *ngIf="user.paymentStatus==true || !user.appointmentServiceAmount>0" style="width: 60%;" src="assets/img/icon/PAYDisable.png" disabled>
+          </ion-col>
+
+          <ion-col col-3 *ngIf="!payment">
+
+          </ion-col>
+
+          <!--<ion-col col-3 >-->
+          <!--<img style="width: 100%;" src="assets/img/icon/apply-coupon.png"-->
+          <!--(click)="appyPrevilegesCard(user)" >-->
+          <!--</ion-col>-->
+
+          <ion-col col-3>
+            <img (click)="takephoto(user?.appointmentId)" style="width: 60%;" src="assets/img/icon/UPLOAD.png">
+          </ion-col>
+
+          <ion-col col-3>
+            <img style="width: 60%;" src="assets/img/icon/VITALS.png" (click)="Vitals(user)">
+          </ion-col>
+
+          <!--<ion-col col-3 *ngIf="payment">
+          <img
+          *ngIf="user.appointmentDate == today && user.paymentStatus == true"
+          (click)="joinCall(user)" style="width: 100%;" src="assets/img/icon/JOINCALL.png">
+          <img
+          *ngIf="user.appointmentDate == today && user.paymentStatus == false"
+          style="width: 100%;" src="assets/img/icon/JOINCALLDISABLE.png">
+
+          <img
+          *ngIf="user.appointmentDate != today && user.paymentStatus == true"
+          style="width: 100%; cursor:no-drop;" src="assets/img/icon/JOINCALLDISABLE.png">
+
+          </ion-col>
+
+          <ion-col col-3 *ngIf="!payment">-->
+          <ion-col col-3 >
+            <img (click)="joinCall(user)" style="width: 60%;" src="assets/img/icon/JOINCALL.png">
+
+            <div *ngFor="let n of notifictionList">
+              <div style="width: 10px;height:10px;border-radius:10px;background-color: #63a71c;position: absolute;top:0;right:10px" *ngIf="n[0]==user?.appointmentId"></div>
+            </div>
+
+
+          </ion-col>
+        </ion-row>
+        <!--<button class="btn btn-primary" title="Pay" (click)="appointmentPay(user)">Pay</button>-->
+      </ion-card>
+    </div>
+
+    <!--<ion-fab right bottom (click)="bookApp()">
+    <button ion-fab color="primary"><ion-icon name="add-circle"></ion-icon></button>
+    </ion-fab>
+-->
+    <div style="text-align: left">
+      <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
+      <pagination-controls (pageChange)="getPage($event)" [id]="config.id"></pagination-controls>
+    </div>
+  </div>
+
+</ion-content>

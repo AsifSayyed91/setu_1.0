@@ -1,0 +1,47 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons start left>
+      <div ion-button show menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </div>
+    </ion-buttons>
+    <label class="label-titles">Our Hospitals</label>
+    <!--<ion-buttons end>
+      <div ion-button icon-only (click)="popoverMenu($event)">
+        <ion-icon name="more"></ion-icon>
+      </div>
+    </ion-buttons>-->
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content class="bgimg">
+
+  <ion-refresher label="Start" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <img *ngIf="hospital" src="assets/mulk/explore/9 Hospitals.png" class="img">
+
+  <ion-grid>
+    <ion-row>
+      <ng-container *ngFor="let hospital of mstUnitList;">
+        <ion-col class="col-12" style="padding: 5px" *ngIf="hospital?.unitImage != null && hospital?.unitImage != 'undefined'" >
+          <ion-card style="background-color:#ebebeb;border-radius:10px;height: 84%;">
+            <img  src="{{patientimagepath}}/{{hospital?.unitImage}}"
+                  style="width: 100%;display: block;text-align: center;margin: 5px auto;">
+
+          </ion-card>
+        </ion-col>
+      </ng-container>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

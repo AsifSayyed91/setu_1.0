@@ -1,0 +1,120 @@
+<ion-header>
+  <ion-toolbar class="bar">
+    <ion-buttons start left>
+      <div ion-button show menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </div>
+    </ion-buttons>
+    <label class="label-titles">Our Partners</label>
+    <!--<ion-buttons end>
+      <div ion-button icon-only (click)="popoverMenu($event)">
+        <ion-icon name="more"></ion-icon>
+      </div>
+    </ion-buttons>-->
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="bgimg">
+
+  <ion-refresher slot="start" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+
+  <ion-row>
+    <ion-col>
+      <img src="assets/mulk/prescription/My_Prescription1.png" class="img">
+    </ion-col>
+  </ion-row>
+
+  <div *ngIf="tab=='1'">
+    <ion-row>
+      <!--<ion-col class="col-6" (click)="chronicPatientManagment(id)">
+        <ion-card class="carde">
+          <img src="assets/mulk/explore/1 Chronic Disease Mgmt (1).png" class="img-responsive">
+
+        </ion-card>
+      </ion-col>-->
+
+
+      <ion-col class="col-6" (click)="pharmacy()">
+        <ion-card class="carde" style="background-color: #ccc">
+          <!--<img src="assets/mulk/explore/3 Medicine Delivery (1).png" class="img-responsive">-->
+          <img src="assets/mulk/explore/8 Pharmacy.png" class="img-responsive">
+        </ion-card>
+      </ion-col>
+
+      <ion-col class="col-6" (click)="Physiotherapy()">
+        <ion-card class="carde" style="background-color: #ccc">
+          <img src="assets/mulk/explore/7 Physiotherapy.png" class="img-responsive">
+        </ion-card>
+      </ion-col>
+
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col class="col-6" (click)="homehealth()">
+        <ion-card class="carde" style="background-color: #ccc">
+          <img src="assets/mulk/explore/2 Home Health Services (1).png" class="img-responsive">
+          <!--<span class="cards">HOME HEALTH SERVICES</span>-->
+        </ion-card>
+      </ion-col>
+
+
+      <ion-col class="col-6" (click)="medicalTourism()">
+        <ion-card class="carde" style="background-color: #ccc">
+          <img src="assets/mulk/explore/4 Medical Tourism (1).png" class="img-responsive">
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col class="col-6" (click)="radiology()">
+        <ion-card class="carde" style="background-color: #ccc">
+          <img src="assets/mulk/explore/5 Radiology.png" class="img-responsive">
+        </ion-card>
+      </ion-col>
+
+      <ion-col class="col-6" (click)="Lab()">
+        <ion-card class="carde" style="background-color: #ccc">
+          <img src="assets/mulk/explore/6 Lab (1).png" class="img-responsive">
+        </ion-card>
+      </ion-col>
+
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col class="col-6" (click)="Hospitals()">
+        <ion-card class="carde" style="background-color: #ccc">
+          <img src="assets/mulk/explore/9 Hospitals.png" class="img-responsive">
+        </ion-card>
+      </ion-col>
+
+
+      <ion-col class="col-6" (click)="Aesthetics()">
+        <ion-card class="carde" style="background-color: #ccc">
+          <img src="assets/mulk/explore/Aesthetics.png" class="img-responsive">
+        </ion-card>
+      </ion-col>
+
+
+      <!--<ion-col class="col-6" (click)="Aesthetics()">
+        <ion-card class="carde">
+          <img src="assets/mulk/explore/Aesthetics.png" class="img-responsive">
+          <span class="cards" style="margin: 16px auto"> AESTHETICS</span>
+        </ion-card>
+      </ion-col>-->
+    </ion-row>
+  </div>
+
+
+</ion-content>

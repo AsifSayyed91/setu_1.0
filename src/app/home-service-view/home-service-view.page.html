@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <label class="label-titles">Home Health Service Details</label>
+    <ion-buttons end>
+      <ion-button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="background-color: #fff!important;">
+
+  <div *ngFor="let query of queriesReciept">
+    <div class="labels">
+
+    </div>
+    <h4><strong>Patient Name</strong> :
+      {{query?.patientId?.patientUserId?.userName}} </h4>
+    <h4><strong>Query</strong> :
+      {{query.query}} </h4>
+  </div>
+  <div class="presc_lable">
+    <!--<h5>Prescription List</h5>-->
+  </div>
+
+
+</ion-content>
+

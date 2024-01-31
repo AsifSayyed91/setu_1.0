@@ -1,0 +1,259 @@
+ .toolbar-title-md {
+    padding: 0 12px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #fff;
+  }
+
+  .ion-ios-funnel:before {
+    content: "\f182";
+    color: #fff;
+  }
+
+  .ion-md-funnel:before {
+    content: "\f2f7";
+    color: #fff;
+  }
+
+  .textcen {
+    flex-basis: 0;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 100%;
+    font-size: 0px;
+    display: block;
+    margin: 0px auto;
+    text-align: center;
+  }
+  h5 {
+    font-size: 16px;
+    color: #fff;
+    margin-left: 20px;
+    font-family: 'Roboto';
+  }
+
+  .btn-warning {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #fff;
+    margin: 6px auto;
+  }
+
+  .btn-dark {
+    color: #fff;
+    background-color: #fff;
+    border-color: #fff;
+    margin: 6px auto;
+  }
+
+  .fa-filter:before {
+    content: "\f0b0";
+    margin-left: 5px;
+    color: #0f6092;
+  }
+
+  .fa-sort-amount-desc:before {
+    content: "\f161";
+    margin-left: 5px;
+    color: #0f6092;
+  }
+  .fa-star:before {
+    content: "\f005";
+    color: #ffc107;
+  }
+
+  label {
+    display: inline-block;
+    font-weight: 500;
+    font-size: 12px;
+  }
+
+  .docimg {
+    width: 100%;
+    border: 1px solid #6b6b6b;
+    margin-top: 25px;
+    border-radius: 14px;
+  }
+
+  .fa-location-arrow:before {
+    content: "\f124";
+    color: #1680db;
+    border: 1px solid #1680db;
+    border-radius: 50%;
+    padding: 1px;
+  }
+
+  .fa-stethoscope:before {
+    content: "\f0f1";
+    color: #fff;
+    font-weight: bold;
+  }
+
+  .fa-mortar-board:before, .fa-graduation-cap:before {
+    content: "\f19d";
+    color: #5eb5d7;
+  }
+
+  .fa-globe:before {
+    content: "\f0ac";
+    color: #1d1157;
+  }
+
+  .docvc {
+    vertical-align: middle;
+    border-style: none;
+    float: right;
+    margin-bottom: -10px;
+    width: 25%;
+  }
+
+  .row {
+    display: -webkit-box;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 0px;
+    margin-left: 0px;
+  }
+  h6 {
+    font-size: 17px !important;
+    font-weight: 700 !important;
+    margin-left: 5px !important;
+  }
+
+
+  .h6-0 {
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    margin-left: 5px !important;
+    color: #fff !important;
+  }
+
+  .font {
+    font-family: 'Roboto';
+  }
+
+  .bg {
+    background-color: #287AF4;
+    color: #ffffff;
+    border-radius: 5px;
+    margin-left: 15px;
+  }
+
+  .bg1 {
+    background-color: green;
+    color: #ffffff;
+    border-radius: 5px;
+    margin-left: 15px;
+  }
+
+  .bg2 {
+    background-color: #287AF4 !important;
+    color: #ffffff !important;
+    border-radius: 5px !important;
+    text-align: center !important;
+    display: block !important;
+    margin: 0px auto !important;
+  }
+
+  .backsearch {
+    width: 95%;
+    margin: 2px auto;
+    display: block;
+  }
+
+  .labtext1 {
+    color: whitesmoke;
+    font-size: 12px;
+    margin-bottom: 6px;
+    margin-top: 5px;
+    margin-left: 18px;
+  }
+
+  .wt {
+    width: 100%;
+  }
+
+  .toolbar-title-md {
+    padding: 0 1px !important;
+    font-size: 25px !important;
+    font-weight: 500 !important;
+    margin-left: 10px !important;
+
+  }
+
+  .font1 {
+    font-size: 12px;
+    margin: 5px auto;
+    color: #fff !important;
+    font-family: 'Roboto';
+
+  }
+
+  .pd-0 {
+    padding: 0px !important;
+  }
+  .dropdown {
+    color: whitesmoke;
+    font-weight: bold;
+    margin-left: 20px;
+  }
+
+  .h5-0 {
+    color: #000 !important;
+    font-size: 10px;
+
+  }
+
+  .h3-0 {
+    color: #000 !important;
+    margin-left: 19px;
+    font-weight: bolder;
+    font-size: 15px !important;
+  }
+
+
+  .back {
+    margin: 0px 0px -2px 0px;
+    border: 0px solid #ccc;
+    border-radius: 11px;
+    background-color: #e5e1e1;
+    padding: 10px;
+  }
+
+  .back1 {
+    margin: 9px 0px -14px 0px;
+    border: 0px solid #ccc;
+    border-radius: 11px;
+    background-color: #242322;
+    padding: 10px;
+  }
+
+  .docimg {
+    width: 108% !important;
+    border: 2px solid #b5b2b2 !important;
+    text-align: center !important;
+    height: 90px;
+    border-radius: 10px;
+
+  }
+
+  .doctorTest {
+    color: #f4f4f4;
+    font-size: 19px;
+    margin-left: 132px;
+    margin-bottom: 12px;
+  }
+
+
+  .img-responsive{
+    margin: 0 auto;
+    display: block;
+  }
+
+ .bgimg {
+   background: url('/src/assets/img/Mulk E Health A4-01 1.png');
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   background-position: center;
+   background-size: cover;
+ }

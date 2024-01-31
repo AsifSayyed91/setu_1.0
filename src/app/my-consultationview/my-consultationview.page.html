@@ -1,0 +1,659 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="align-items: center">My CasePaper</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding class="bgimg" id="chronicTextArea">
+
+
+<ion-content style="background-color: black;" class="bgimg">
+  <div class="labels">
+    <h5 class="">Case Paper Number:{{currentVisit.visitId}}</h5>
+  </div>
+
+  <h4><strong>Patient Name </strong> :
+    {{currentVisit.visitPatientId?.patientUserId?.userTitleId?.titleName}}
+    {{currentVisit.visitPatientId?.patientUserId?.userFirstname}}
+    {{currentVisit.visitPatientId?.patientUserId?.userMiddlename}}
+    {{currentVisit.visitPatientId?.patientUserId?.userLastname}}
+  </h4>
+  <h4><strong>MR No.</strong> :
+    {{currentVisit.visitPatientId?.patientMrNo}}
+  </h4>
+  <h4><strong>Age/ Gender</strong> :
+    <!--{{age}}[Y]-->
+    <!--{{month}}[M]-->
+    <!--{{day}}[D] /-->
+    {{currentVisit.visitPatientId?.patientUserId?.userGenderId?.genderName}}
+  </h4>
+  <!--<h4><strong>Blood Group</strong> :-->
+  <!--{{currentVisit?.visitPatientId?.patientUserId?.userBloodgroupId?.bloodgroupName}}-->
+  <!--</h4>-->
+  <h4><strong>Mobile No.</strong> :
+    {{currentVisit.visitPatientId?.patientUserId?.userMobileCode}}
+    {{currentVisit.visitPatientId?.patientUserId?.userMobile}}
+  </h4>
+  <!--<h4><strong> Phone No.</strong> :-->
+  <!--{{currentVisit?.visitPatientId?.patientUserId?.userResidencePhone}}-->
+  <!--</h4>-->
+  <!--<h4><strong> Refer Entity </strong> :-->
+  <!--{{currentVisit.referBy?.reRetId?.retName}}-->
+  <!--</h4>-->
+  <!--<h4><strong> Referred By </strong> :-->
+  <!--{{currentVisit?.referBy?.reName}}-->
+  <!--</h4>-->
+  <h4><strong> ID Proof No.</strong> :
+    {{currentPatient?.patientUserId?.userUid}}
+  </h4>
+  <h4><strong> ID Proof </strong> :
+    {{currentPatient?.patientUserId?.userNationalityId?.nationalityName}}
+  </h4>
+
+  <h4><strong> Address </strong> :
+    {{currentPatient?.patientUserId?.userAddress}} , {{currentPatient?.patientUserId?.userArea}},
+    {{currentPatient?.patientUserId?.userCityId?.cityName}},
+    {{currentPatient?.patientUserId?.userCityId?.cityStateId?.stateName}} ,
+    {{currentPatient?.patientUserId?.userCityId?.cityStateId?.stateCountryId?.countryName}}
+  </h4>
+
+  <div class="label">
+    <h5 class="">Doctor</h5>
+  </div>
+  <h4><strong>{{'Name'}}</strong> :{{'Dr.'}}
+    {{timeline.timelineEMRFinalStaffId?.staffUserId?.userFirstname}}
+    {{timeline.timelineEMRFinalStaffId?.staffUserId?.userLastname}}
+  </h4>
+  <h4><strong>{{'Qualification'}}</strong> :
+    ({{timeline.timelineEMRFinalStaffId?.staffEducation}})
+  </h4>
+
+  <h4><strong *ngIf="timeline.timelineEMRFinalStaffId?.staffErNo != null">{{'Registration Number'}} :</strong>
+    {{timeline.timelineEMRFinalStaffId?.staffErNo}}
+  </h4>
+  <h4><strong>{{'Mobile'}}</strong> :
+    {{timeline.timelineEMRFinalStaffId?.staffUserId?.userMobile}}
+  </h4>
+
+  <h4><strong>{{'Email'}} </strong> :
+    {{timeline.timelineEMRFinalStaffId?.staffUserId?.userEmail}}
+  </h4>
+  <h4><strong>{{'Address'}}</strong> :
+    {{timeline.timelineEMRFinalStaffId?.staffUserId?.userAddress}},
+    {{timeline.timelineEMRFinalStaffId?.staffUserId?.userCityId?.cityName}},
+    {{timeline.timelineEMRFinalStaffId?.staffUserId?.userCityId?.cityStateId?.stateName}},
+    {{timeline.timelineEMRFinalStaffId?.staffUserId?.userCityId?.cityStateId?.stateCountryId?.countryName}}
+    - {{timeline.timelineEMRFinalStaffId?.staffUserId?.userPincode}}
+  </h4>
+
+
+  <div class="label">
+    <h5 class="">Vist Details</h5>
+  </div>
+  <h4><strong>{{'Visit Date'}} :</strong> {{currentVisit.createdDate | date}}</h4>
+  <h4><strong>{{'Visit Time'}} : </strong>{{currentVisit.createdDate | date:'shortTime'}}</h4>
+  <h4><strong>{{'Doctor'}}:</strong>{{'Dr.'}} {{timeline.timelineEMRFinalStaffId?.staffUserId?.userFirstname}}
+    {{timeline.timelineEMRFinalStaffId?.staffUserId?.userLastname}}
+  </h4>
+
+
+  <div class="label">
+    <h5 class="">Primary Assessment</h5>
+  </div>
+
+  <div class="ui-grid-row">
+    <h4><strong>{{'History'}} </strong></h4>
+    <h6 [innerHTML]="temrVisitHistory?.vhContent"></h6>
+
+    <h4><strong>{{'Chief Complaints'}} : </strong></h4>
+    <h6 *ngFor="let item of chipComplaintes; let isLast=last"> {{item.vccCcId?.ccName}} ({{item.vccCcNo}}
+      {{item.vccCcUnit}}){{isLast ? '' : ', '}}
+    </h6>
+
+    <h4><strong>{{'Symptoms'}} : </strong></h4>
+
+    <div *ngFor="let item of chipSymptoms; let isLast=last">
+      <h6> {{item.vsSymptomId?.symptomName}} ({{item.vsNo}} {{item.vsUnit}}){{isLast ? '' : ', '}} </h6>
+    </div>
+
+    <h4><strong>{{'Non Drug Allergies'}} : </strong></h4>
+    <div *ngFor="let item of chipAllergies; let isLast=last">
+      <h6>{{item.vndaNdaId?.ndaName}} [{{item.vndaAsId?.asName}}] {{isLast ? '' : ', '}}</h6>
+    </div>
+    <h4><strong>{{'Drug Allergies'}} : </strong></h4>
+
+    <h6 *ngFor="let item of allergyList; let isLast=last"> {{item.vaCompoundId?.compoundName}} [{{item.vaAsId?.asName}}]
+      {{isLast ? '' : ', '}}</h6>
+  </div>
+
+  <div class="label">
+    <h5 class="">Vital Details</h5>
+  </div>
+  <h4 *ngFor="let vital of temrVitalList">
+    <ion-row>
+      <ion-col class="col-6">
+        <h4><strong>{{'Height'}} : </strong>{{vital.vitalHeight}} {{'cm'}}</h4>
+      </ion-col>
+      <ion-col class="col-6">
+        <h4><strong>{{'Weight'}} : </strong>{{vital.vitalWeight}} {{'kg'}}</h4>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="col-6">
+        <h4><strong>{{'BMI'}} : </strong>{{vital.vitalBmi}} {{'(kg/m'}}<sup>2</sup>)</h4>
+      </ion-col>
+      <ion-col class="col-6">
+        <h4><strong>{{'Body Temp'}} : </strong>{{vital.vitalBodyTemp}} <sup>{{'0'}}</sup>F</h4>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="col-6">
+        <h4><strong>{{'Pulse'}} : </strong>{{vital.vitalPulse}} {{'BPM'}}</h4>
+      </ion-col>
+      <ion-col class="col-6">
+        <h4><strong>{{'Respiration Rate'}} : </strong>{{vital.vitalRespirationRate}} {{'BPM'}}</h4>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="col-6">
+        <h4><strong>{{'Systolic BP'}} : </strong>{{vital.vitalSysBp}} {{'mmHG'}}</h4>
+      </ion-col>
+      <ion-col class="col-6">
+        <h4><strong>{{'Diastolic BP'}} : </strong>{{vital.vitalDiaBp}} {{'mmHG'}}</h4>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="col-6">
+        <h4><strong>{{'MAP'}} : </strong>{{vital.vitalMap}} {{'mmHG'}}</h4>
+      </ion-col>
+      <ion-col class="col-6">
+        <h4><strong>{{'SPO2'}} : </strong>{{vital.vitalSpo2}} {{'(&#37;)'}}</h4>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="col-6">
+        <h4><strong>{{'Blood Glucose'}} : </strong>{{vital.vitalBloodGlucose}} {{'mmol/L'}}</h4>
+      </ion-col>
+      <ion-col class="col-6">
+        <h4><strong>{{'Hemoglobin'}} : </strong>{{vital.vitalHimoglobin}} {{'g/dl'}}</h4>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="col-6">
+        <h4><strong>{{'Fat'}} : </strong>{{vital.vitalFat}} {{'(&#37;)'}}</h4>
+      </ion-col>
+      <ion-col class="col-6">
+        <h4><strong>{{'Muscle Mass'}} : </strong>{{vital.vitalMuscleMass}} {{'(&#37;)'}}</h4>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="col-6">
+        <h4><strong>{{'Remark'}} : </strong>{{vital.vitalRemark}}</h4>
+      </ion-col>
+      <ion-col class="col-6">
+
+      </ion-col>
+    </ion-row>
+  </h4>
+
+  <div class="label">
+    <h5 class="">Diagnosis</h5>
+  </div>
+  <h6 *ngFor="let diagonasis of diagonasisArray;let j = index">
+    {{j+1}}. {{diagonasis.vdIcId?.icCode}} {{diagonasis.vdIcId?.icDescription}} <strong
+    *ngIf="diagonasis.vdIsFinalDiagnosis == '0'">{{'Provisional'}}</strong>
+    <strong *ngIf="diagonasis.vdIsFinalDiagnosis == '1'"> {{'Final'}}</strong>
+  </h6>
+
+
+  <div class="label">
+    <h5 class="">CPOE</h5>
+  </div>
+  <div>
+    <!--<h4>{{'Doctor’s Advice / Treatment Plan'}}</h4>-->
+    <!--<h6 *ngIf="timeline" [innerHTML]="timeline?.timelineDoctorAdvice"></h6>-->
+    <h4>{{'Clinical Procedure'}} : </h4>
+    <h6 *ngFor="let procedure of clinicalProcedureList; let i = index">
+      {{i+1}}.{{procedure?.dcProcedureId?.procedureName}}
+      {{procedure?.dcProcedureId?.procedureSpeiclityId?.specialityName}}
+    </h6>
+
+    <h4>{{'Investigation Ordered'}} : </h4>
+    <h6 *ngFor="let serviceList of investigationService; let i = index">
+      {{i+1}}.{{serviceList?.viServiceId?.serviceCode}} {{serviceList?.viServiceId?.serviceName}}
+      {{serviceList.viServiceId?.serviceGroupId?.groupName}}
+    </h6>
+
+    <h4>{{'Prescription'}} : </h4>
+    <h6 *ngFor="let p of filteredPrescription; let i = index">{{i + 1}} {{p.ipInvItemId?.itemName}}
+      {{p.ipInvItemId?.itemStrength}} {{p.ipInvItemId?.itemIdtId?.idtName}} for {{p.ipDfId?.dfName}} {{p.ipDdId}}
+      days {{p.ipQuantity}} {{p.ipDiId?.diName}} Dose:{{p.ipinstruction}} Route: {{p.ipRouteId?.routeName}}
+      {{p.ipVaId?.vaAsId?.asName}} ({{p.ipQuantity}} QTY)
+    </h6>
+
+    <h4>{{'Follow up Date'}} : </h4>
+    <h6 *ngIf="timeline">{{timeline?.timelineFollowDate | date:'longDate'}}</h6>
+  </div>
+
+  <div class="label">
+    <h5 class="">Referral Letters</h5>
+  </div>
+  <div *ngFor="let rfLatter of referalLatterList; let i = index">
+    <h6> {{i+1}}. Dr. {{rfLatter?.rhStaffId?.staffUserId?.userFirstname}}
+      {{rfLatter?.rhStaffId?.staffUserId?.userLastname}}
+      {{rfLatter?.rhSpecialityId?.specialityName}} {{rfLatter?.rhSubject}}</h6>
+  </div>
+  <hr>
+
+  <ion-row>
+    <ion-col class="col-6">
+    </ion-col>
+
+    <ion-col class="col-6" *ngIf="timeline">
+      <div class="pull-right">
+        <div *ngIf="timeline.timelineEMRFinalStaffId?.staffSignName != null" style="margin-left: -20px;">
+          <img style="text-align: center;margin:0px auto;display: block;"
+               src="{{usersign_url}}{{timeline.timelineEMRFinalStaffId?.staffSignName}}"
+               alt="{{timeline.timelineEMRFinalStaffId?.staffSignName}}" width="150"
+               height="60">
+        </div>
+        <h5 style="margin: 0px auto;">{{'Finalized By'}}</h5>
+        <h5 style="margin: 0px auto; margin-bottom: 10px"><strong>{{'Dr.'}}
+          {{timeline.timelineEMRFinalStaffId?.staffUserId?.userFirstname}}
+          {{timeline.timelineEMRFinalStaffId?.staffUserId?.userLastname}} </strong>
+          ({{timeline.timelineEMRFinalStaffId?.staffEducation}})</h5>
+      </div>
+    </ion-col>
+  </ion-row>
+
+
+  <div class="container" style="background-color:white; display: none;">
+    <section id="print-section">
+      <div class="col-12 bordered">
+        <div class="col-12">
+          <table class="" style="width:100%">
+            <tbody>
+            <tr style="background: #fff;">
+              <td class="col-10">
+                <h3 *ngIf="mstUnit" style="margin:0">
+                  <strong style="margin-left: 20px; font-size:20px">{{mstUnit.unitName}}
+                    {{mstUnit?.unitpostfix}} </strong> <br/>
+                  <strong style="margin-left: 20px; font-size:18px">{{mstUnit.unitcenter}}</strong><br/>
+                  <small style="margin-left: 20px; font-size:16px">{{mstUnit.unitAddress}}</small>
+
+                </h3>
+                <h4 style="margin: 5px; margin-left: 20px">
+                                <span style="margin-right: 10px;">
+                                    <i class="fa fa-phone-square" aria-hidden="true">
+                                    {{mstUnit.unitMobile}} , {{mstUnit?.unitPhone}}</i>
+                                </span>
+                  <span style="margin-right: 10px;"><i class="fa fa-globe" aria-hidden="true"></i>
+                                     www.firstcare.mv</span>
+                  <span><i class="fa fa-envelope" aria-hidden="true"></i> {{mstUnit.unitEmail}}</span></h4>
+              </td>
+              <td class="col-2">
+                <img style="height: 60%" class="img-responsive" src="assets/img/casepaper_logo.png"/>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="col-12">
+          <div style="margin: 20px 0px 10px 0px">
+            <div
+              style="background: #337ab7;padding: 6px;display: block; color: #fff;text-align: center; margin: 5px auto;">
+              <h5 class="text-center">Case Paper Number: {{currentVisit.visitId}}</h5>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="row">
+                  <div class="col-6"><strong>Patient Name </strong> :
+                    {{currentVisit.visitPatientId?.patientUserId?.userTitleId?.titleName}}
+                    {{currentVisit.visitPatientId?.patientUserId?.userFirstname}}
+                    {{currentVisit.visitPatientId?.patientUserId?.userMiddlename}}
+                    {{currentVisit.visitPatientId?.patientUserId?.userLastname}}
+                  </div>
+                  <div class="col-6"><strong>MR No.</strong> : {{currentVisit.visitPatientId?.patientMrNo}}</div>
+                </div>
+                <div class="row">
+                  <div class="col-6"><strong>Age/ Gender</strong> :
+                    <!--{{age}}[Y]-->
+                    <!--{{month}}[M]-->
+                    <!--{{day}}[D] /-->
+                    {{currentVisit.visitPatientId?.patientUserId?.userGenderId?.genderName}}
+                  </div>
+                  <!--<div class="col-6"><strong>Blood Group</strong> :-->
+                  <!--{{currentVisit?.visitPatientId?.patientUserId?.userBloodgroupId?.bloodgroupName}}-->
+                  <!--</div>-->
+                </div>
+                <div class="row">
+                  <div class="col-6"><strong>Mobile No.</strong> :
+                    {{currentVisit.visitPatientId?.patientUserId?.userMobileCode}}
+                    {{currentVisit.visitPatientId?.patientUserId?.userMobile}}
+                  </div>
+                  <!--<div class="col-6"><strong> Phone No.</strong> :-->
+                  <!--{{currentVisit?.visitPatientId?.patientUserId?.userResidencePhone}}-->
+                  <!--</div>-->
+                </div>
+                <div class="row">
+                  <div class="col-6"><strong> ID Proof No.</strong> : {{currentPatient?.patientUserId?.userUid}}</div>
+                  <div class="col-6"><strong> ID Proof </strong> :
+                    {{currentPatient?.patientUserId?.userNationalityId?.nationalityName}}
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="col-12"><strong> Address </strong> : {{currentPatient?.patientUserId?.userAddress}} ,
+                    {{currentPatient?.patientUserId?.userArea}},
+                    {{currentPatient?.patientUserId?.userCityId?.cityName}},
+                    {{currentPatient?.patientUserId?.userCityId?.cityStateId?.stateName}} ,
+                    {{currentPatient?.patientUserId?.userCityId?.cityStateId?.stateCountryId?.countryName}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Doctor Details-->
+        <div class="col-12 zeropadding">
+          <div style="margin: 20px 0px 10px 0px">
+            <div
+              style="background: #337ab7;padding: 6px;display: block;font-size: 16px; color: #fff;text-align: left; margin: 5px auto;">
+              <h5>{{'Doctor'}}</h5>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="row">
+                  <div class="col-6"><strong>{{'Name'}}</strong> :{{'Dr.'}}
+                    {{timeline.timelineEMRFinalStaffId?.staffUserId?.userFirstname}}
+                    {{timeline.timelineEMRFinalStaffId?.staffUserId?.userLastname}}
+                  </div>
+                  <div class="col-6"><strong>{{'Qualification'}}</strong> :
+                    ({{timeline.timelineEMRFinalStaffId?.staffEducation}})
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-6"><strong *ngIf="timeline.timelineEMRFinalStaffId?.staffErNo != null">{{'Registration
+                    Number'}} :</strong> {{timeline.timelineEMRFinalStaffId?.staffErNo}}
+                  </div>
+                  <div class="col-6"><strong>{{'Mobile'}}</strong> :
+                    {{timeline.timelineEMRFinalStaffId?.staffUserId?.userMobile}}
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-6"><strong>{{'Email'}} </strong> :
+                    {{timeline.timelineEMRFinalStaffId?.staffUserId?.userEmail}}
+                  </div>
+                  <div class="col-6"><strong>{{'Address'}}</strong> :
+                    {{timeline.timelineEMRFinalStaffId?.staffUserId?.userAddress}},
+                    {{timeline.timelineEMRFinalStaffId?.staffUserId?.userCityId?.cityName}},
+                    {{timeline.timelineEMRFinalStaffId?.staffUserId?.userCityId?.cityStateId?.stateName}},
+                    {{timeline.timelineEMRFinalStaffId?.staffUserId?.userCityId?.cityStateId?.stateCountryId?.countryName}}
+                    - {{timeline.timelineEMRFinalStaffId?.staffUserId?.userPincode}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--</div>-->
+          </div>
+        </div>
+
+        <!--Visit Details-->
+        <div class="col-12 zeropadding">
+          <div style="margin: 20px 0px 10px 0px">
+            <div
+              style="background: #337ab7;padding: 6px;display: block; color: #fff;text-align: left;font-size: 16px; margin: 5px auto;">
+              <h5>{{'Visit Details'}}</h5>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div>
+                  <div class="row">
+                    <div class="col-6"><strong>{{'Visit Date'}}</strong> :{{currentVisit.createdDate | date}}</div>
+                    <div class="col-6"><strong>{{'Visit Time'}}</strong> : {{currentVisit.createdDate |
+                      date:'shortTime'}}
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-6"><strong>{{'Doctor'}}</strong> :{{'Dr.'}}
+                      {{timeline.timelineEMRFinalStaffId?.staffUserId?.userFirstname}}
+                      {{timeline.timelineEMRFinalStaffId?.staffUserId?.userLastname}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Primary Assessment-->
+        <div class="col-12 zeropadding">
+          <div style="margin: 20px 0px 10px 0px">
+            <div
+              style="background: #337ab7;padding: 6px;display: block; color: #fff;text-align: left;font-size: 16px; margin: 5px auto;">
+              <h5>{{'Primary Assessment'}}</h5>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div style="margin-bottom: 0px; margin-top: 2px">
+                  <div class="row">
+                    <div class="col-12"><strong>{{'History'}}</strong> :<span
+                      [innerHTML]="temrVisitHistory?.vhContent"></span></div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-12"><strong>{{'Chief Complaints'}}</strong> : <span
+                      *ngFor="let item of chipComplaintes; let isLast=last">
+                                          {{item.vccCcId?.ccName}} ({{item.vccCcNo}} {{item.vccCcUnit}}){{isLast ? '' : ', '}}</span>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-12"><strong>{{'Symptoms'}}</strong> : <span
+                      *ngFor="let item of chipSymptoms; let isLast=last">
+                                         {{item.vsSymptomId?.symptomName}} ({{item.vsNo}} {{item.vsUnit}}){{isLast ? '' : ', '}}</span>
+                    </div>
+                  </div>
+
+
+                  <div class="row">
+                    <div class="col-12"><strong>{{'Non Drug Allergies '}}</strong> : <span
+                      *ngFor="let item of chipAllergies; let isLast=last">
+                                {{item.vndaNdaId?.ndaName}} [{{item.vndaAsId?.asName}}] {{isLast ? '' : ', '}}</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12"><strong>{{'Drug Allergies '}}</strong> :<span
+                      *ngFor="let item of allergyList; let isLast=last">
+                                            {{item.vaCompoundId?.compoundName}} [{{item.vaAsId?.asName}}] {{isLast ? '' : ', '}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Vital Details-->
+        <div class="col-12 zeropadding">
+          <div style="margin: 20px 0px 10px 0px">
+            <div
+              style="background: #337ab7;padding: 6px;display: block; color: #fff;text-align: left;font-size: 16px; margin: 5px auto;">
+              <h5>{{'Vital Details'}}</h5>
+            </div>
+            <div *ngFor="let vital of temrVitalList" class="row">
+              <div class="col-6">
+                <div class="row">
+                  <div class="col-6">
+                    <div><strong>{{'Height'}}</strong> :{{vital.vitalHeight}} {{'cm'}}</div>
+                    <div><strong>{{'Weight'}}</strong> :{{vital.vitalWeight}} {{'kg'}}</div>
+                    <div><strong>{{'BMI'}}</strong> :{{vital.vitalBmi}} {{'(kg/m'}}<sup>2</sup>)</div>
+                  </div>
+                  <div class="col-6">
+                    <div><strong>{{'Temperature'}}</strong> :{{vital.vitalBodyTemp}} <sup>{{'0'}} </sup>F</div>
+                    <div><strong>{{'Blood Pressure'}}</strong> :{{vital.vitalSysBp}} / {{vital.vitalDiaBp}} {{'mmHG'}}
+                    </div>
+                    <div><strong>{{'Pulse'}}</strong> :{{vital.vitalPulse}} {{'BPM'}}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="row">
+                  <div class="col-6">
+                    <div><strong>{{'Respiration Rate'}}</strong>:{{vital.vitalRespirationRate}} {{'BPM'}}</div>
+                    <div><strong>{{'Blood Glucose'}}</strong> :{{vital.vitalBloodGlucose}} {{'mmol/L'}}</div>
+                    <div><strong>{{'Hemoglobin'}}</strong> :{{vital.vitalHimoglobin}} {{'g/dl'}}</div>
+                  </div>
+                  <div class="col-6">
+                    <div><strong>{{'SPO2'}}</strong> :{{vital.vitalSpo2}} {{'(&#37;)'}}</div>
+                    <div><strong>{{'Remark'}}</strong> :{{vital.vitalRemark}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Diagnosis-->
+        <div class="col-12 zeropadding">
+          <div style="margin: 20px 0px 10px 0px">
+            <div
+              style="background: #337ab7;padding: 6px;display: block; color: #fff;text-align: left;font-size: 16px; margin: 5px auto;">
+              <h5>{{'Diagnosis'}}</h5>
+            </div>
+            <div class="row">
+              <div *ngFor="let diagonasis of diagonasisArray;let j = index" class="col-12">
+                <span>{{j+1}} .</span> <span>{{diagonasis.vdIcId?.icCode}} </span> <span> {{diagonasis.vdIcId?.icDescription}} </span>
+                <span *ngIf="diagonasis.vdIsFinalDiagnosis == '0'"> <strong>{{'Provisional'}}</strong></span>
+                <span *ngIf="diagonasis.vdIsFinalDiagnosis == '1'"> <strong>{{'Final'}}</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 zeropadding">
+          <div style="margin: 20px 0px 10px 0px">
+            <div
+              style="background: #337ab7;padding: 6px;display: block; color: #fff;text-align: left;font-size: 16px; margin: 5px auto;">
+              <h5>{{'CPOE'}}</h5>
+            </div>
+            <div class="">
+              <div class="col-12">
+                <!--<div class="row">-->
+                <!--<span class="zeropadding">{{'Doctor’s Advice / Treatment Plan'}} </span>-->
+                <!--<span *ngIf="timeline" colspan="10" [innerHTML]="timeline.timelineDoctorAdvice"></span>-->
+                <!--</div>-->
+                <div class="row">
+                  <header>
+                    <strong>{{'Clinical Procedure'}} </strong>
+                  </header>
+                  <div *ngFor="let procedure of clinicalProcedureList; let i = index">
+                    <span> {{i+1}}.</span>
+                    <span>{{procedure?.dcProcedureId?.procedureName}}</span>
+                    <span>{{procedure?.dcProcedureId?.procedureSpeiclityId?.specialityName}}</span>
+                    <span [innerHTML]="procedure?.dcContent"></span>
+                  </div>
+                </div>
+                <div class="row">
+                  <header>
+                    <strong>{{'Investigation Ordered'}} </strong>
+                  </header>
+                  <div *ngFor="let serviceList of investigationService; let i = index">
+                    <span> {{i+1}}.</span>
+                    <span>{{serviceList?.viServiceId?.serviceCode}}</span>
+                    <span>{{serviceList?.viServiceId?.serviceName}}</span>
+                    <span>{{serviceList.viServiceId?.serviceGroupId?.groupName}}</span>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <header>
+                    <strong>{{'Prescription'}} </strong>
+                  </header>
+                  <div *ngFor="let p of filteredPrescription; let i = index">
+                    <span> {{i + 1}}.</span>
+                    <span>{{p.ipInvItemId?.itemName}}</span>
+                    <span>{{p.ipInvItemId?.itemStrength}}</span>
+                    <span>{{p.ipInvItemId?.itemIdtId?.idtName}} for</span>
+                    <span>{{p.ipDdId}} days</span>
+                    <span>{{p.ipinstruction}}</span>
+                    <span> {{p.ipVaId?.vaAsId?.asName}}</span>
+                    <span>{{p.ipDiId?.diName}}</span>
+                    <span>Dose:{{p.ipDfId?.dfName}}</span>
+                    <span>Route:{{p.ipRouteId?.routeName}}</span>
+                    <span>({{p.ipQuantity}} QTY) </span>
+                  </div>
+                </div>
+                <div class="row">
+                  <header><strong>{{'Suggested Follow up Date'}}</strong></header>
+                  <div *ngIf="timeline">{{timeline.timelineFollowDate | date:'longDate'}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Referal Laters-->
+        <div class="col-12 zeropadding">
+          <div style="margin: 20px 0px 10px 0px">
+            <div
+              style="background: #337ab7;padding: 6px;display: block; color: #fff;text-align: left;font-size: 16px; margin: 5px auto;">
+              <h5>{{'Referral Letters'}}</h5>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div *ngFor="let rfLatter of referalLatterList; let i = index">
+                  <span>{{i+1}} .</span>
+                  <span> Dr. {{rfLatter?.rhStaffId?.staffUserId?.userFirstname}} {{rfLatter?.rhStaffId?.staffUserId?.userLastname}}</span>
+                  <span>{{rfLatter?.rhSpecialityId?.specialityName}}</span>
+                  <span>{{rfLatter?.rhSubject}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-9">
+          </div>
+
+          <div class="col-3" *ngIf="timeline.timelineEMRFinalStaffId?.staffSignName != null">
+            <img style="text-align: center; margin:0px auto;display: block;"
+                 src="{{usersign_url}}{{timeline.timelineEMRFinalStaffId?.staffSignName}}" alt="signature" width="150"
+                 height="60">
+          </div>
+          <div class="col-12" *ngIf="timeline">
+            <div class="pull-right">
+              <h5 style="margin: 5px auto;">{{'Finalized By'}}</h5>
+              <h5 style="margin: 0px auto;"><strong>{{'Dr.'}}
+                {{timeline.timelineEMRFinalStaffId?.staffUserId?.userFirstname}}
+                {{timeline.timelineEMRFinalStaffId?.staffUserId?.userLastname}} </strong>
+                ({{timeline.timelineEMRFinalStaffId?.staffEducation}})</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="col-12">
+      <div class="pull-right">
+        <a (click)="navigateBack()" class="btn btn-danger">{{'Back'}}</a>
+        <ion-button class="btn btn-sm btn-primary" (click)="downloadPdf()">print</ion-button>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

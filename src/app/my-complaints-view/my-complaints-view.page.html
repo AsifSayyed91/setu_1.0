@@ -1,0 +1,43 @@
+<!--<ion-header>
+  <ion-toolbar>
+    <label class="label-titles">My Complaints Details</label>
+    <ion-buttons end>
+      <ion-button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>-->
+
+<ion-header>
+  <ion-toolbar class="bar">
+    <ion-buttons start left>
+      <div ion-button show menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </div>
+    </ion-buttons>
+    <label class="label-titles">My Complaints Details</label>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content style="background-color: #fff!important;">
+
+  <div *ngFor="let myComplaints of complaintsList">
+    <div class="labels">
+
+    </div>
+    <h4><strong>Date : </strong>{{myComplaints?.createdDate | date:'dd-MM-yyyy'}}</h4>
+    <h4><strong> Patient Name </strong> :
+      {{myComplaints?.patientId?.patientUserId?.userName}} </h4>
+    <h4><strong>My Complaints</strong> :
+      {{myComplaints.complaint}} </h4>
+    <h4 *ngIf="myComplaints?.doctorId"><strong> Doctor Name : </strong>{{myComplaints?.doctorId?.staffUserId?.userFullname}} </h4>
+    <h4 *ngIf="myComplaints?.doctorId == null"><strong> Doctor Name : </strong>NA </h4>
+  </div>
+  <div class="presc_lable">
+  </div>
+
+
+</ion-content>
+

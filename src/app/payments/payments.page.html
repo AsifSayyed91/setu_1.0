@@ -1,0 +1,64 @@
+
+<!--<ion-header>
+  <ion-toolbar>
+    <label class="label-titles">Payments Bills</label>
+  </ion-toolbar>
+</ion-header>-->
+
+<ion-header>
+  <ion-toolbar class="bar">
+    <ion-buttons start left>
+      <div ion-button show menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </div>
+    </ion-buttons>
+    <label class="label-titles">Payments Bills</label>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content class="bgimg">
+  <ion-refresher label="Start" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngIf="!pagination">
+    <ion-list class="m-n">
+      <ion-item no-lines *ngFor="let i of [0,1,2,3,4,5,6,7]">
+        <skeleton-item height="8px" width="90%"></skeleton-item>
+        <skeleton-item height="6px" width="70%"></skeleton-item>
+        <skeleton-item height="6px" width="70%"></skeleton-item>
+        <ion-avatar item-end>
+          <skeleton-item height="50px" width="50px"></skeleton-item>
+        </ion-avatar>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div *ngIf="pagination && paymenntlist.length == 0">
+    <img style="color:#fff;width: 25%;margin:0px auto;display: block;margin-top:50px;" src="assets/mulk/pty.png">
+    <p><b
+      style="color:#fff;font-weight: bold; margin: 10px auto;display: block; text-align: center;font-size: 12px;font-family: monospace;">You
+      have no Bill's.</b></p>
+  </div>
+
+  <div *ngIf="pagination && paymenntlist.length >= 1">
+    <div *ngFor="let pay of paymenntlist | paginate : config; let i=index" style="margin: 0px 0px 0px 10px;">
+      <ion-card style="padding: 0px!important;border-radius: 20px;">
+        <ion-list>
+          <ion-item style="padding: 0px!important;">
+            <p><b>Bill.No : </b> {{pay?.billNumber}} </p>
+            <p><b>Date : </b> {{pay?.billDate | date:'dd-MM-yyyy'}} </p>
+            <p><b>Amount : </b> {{pay?.billAmountPaid}}</p>
+            <span item-end (click)="payment_view(pay?.billId)"><img src="assets/img/icons/Bill.png"></span>
+          </ion-item>
+        </ion-list>
+      </ion-card>
+    </div>
+    <div style="text-align: left" *ngIf="paginations">
+      <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
+      <pagination-controls (pageChange)="getPage($event)" [id]="config.id"></pagination-controls>
+    </div>
+  </div>
+</ion-content>

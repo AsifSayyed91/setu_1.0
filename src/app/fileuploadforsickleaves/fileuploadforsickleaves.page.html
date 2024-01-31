@@ -1,0 +1,36 @@
+
+<ion-header>
+  <ion-toolbar>
+    <label class="label-titles">Upload Image</label>
+    <ion-buttons end>
+      <ion-button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="bgimg">
+  <div class="text-center">
+    <form [formGroup]="myForm" (ngSubmit)="submit(myForm.value)">
+      <div class="row">
+        <div class="form-group col-sm-4">
+          <h6><label for="name">Name</label></h6>
+          <input formControlName="name" id="name" type="text" placeholder="Document Name" class="form-control">
+        </div>
+
+        <div class="form-group col-sm-4">
+          <h6><label for="file">File</label></h6>
+          <input formControlName="file" id="file" type="file" class="form-control"
+                 (change)="onFileChange($event)">
+        </div>
+      </div>
+
+      <ion-button type="submit" class="btn btn-primary px-4">
+        Upload
+      </ion-button>
+    </form>
+
+  </div>
+</ion-content>

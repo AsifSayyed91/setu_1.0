@@ -1,0 +1,295 @@
+<!--<style type="text/css">-->
+  <!--.bgimg {-->
+    <!--/*background: url('assets/img/Mulk E Health A4-01 1.png');*/-->
+    <!--background-color: black;-->
+    <!--background-repeat: no-repeat;-->
+    <!--background-attachment: fixed;-->
+    <!--background-position: center;-->
+    <!--background-size: cover;-->
+  <!--}-->
+
+  <!--::-webkit-input-placeholder {-->
+    <!--font-size: 16px;-->
+    <!--color: white;-->
+    <!--text-align: center;-->
+    <!--font-weight: bold;-->
+  <!--}-->
+
+  <!--::placeholder {-->
+    <!--color: whitesmoke !important;-->
+    <!--opacity: 1;-->
+  <!--}-->
+<!--</style>-->
+<!--<ion-content class="bgimg">-->
+  <!--<ion-card style=" background-color: transparent;  ">-->
+    <!--<div class="card-body">-->
+
+
+      <!--<form formGroupName="registrationOtp" (ngSubmit)="onRegisterRecord(registrationOtp.value)" autocomplete="off">-->
+        <!--<h4 class="text-center" style="color: #fff;font-weight: bold;font-size: 25px;margin-bottom: 16px;">Register</h4>-->
+
+        <!--&lt;!&ndash;<div class="primg" style="margin-bottom: 5px">-->
+        <!--<img src="{{imagepath}}" onError="this.src='assets/img/user.png'">-->
+        <!--<input type="file" (change)="take($event)">-->
+        <!--</div>&ndash;&gt;-->
+        <!--<div class="input-group mb-3" style="margin-bottom: 15px !important;border: 0px solid #d67810; ">-->
+          <!--<div class="input-group-prepend">-->
+            <!--<span class="input-group-text"><strong><span style="color: red"> * </span>Title</strong></span>-->
+          <!--</div>-->
+          <!--<select class="form-control ng-untouched ng-pristine ng-invalid" #titleId-->
+                  <!--[formControl]="registrationOtp.controls['titleId']" type="text" (change)="setGender(titleId.value)">-->
+            <!--<option value="0">Select Title</option>-->
+            <!--<option *ngFor="let mstTitle of msttitlelist" [value]=mstTitle.titleId>-->
+              <!--{{mstTitle.titleName}}-->
+            <!--</option>-->
+          <!--</select>-->
+        <!--</div>-->
+
+        <!--<div class="input-group mb-3" style="margin-bottom: 15px !important;border: 0px solid #d67810;">-->
+          <!--<div class="input-group-prepend">-->
+            <!--<span class="input-group-text"><strong><span style="color: red"> * </span>First Name</strong></span>-->
+          <!--</div>-->
+          <!--<input type="text" class="form-control" placeholder="First Name"-->
+                 <!--autocomplete="username" [formControl]="registrationOtp.controls['firstName']" title="User First Name"-->
+                 <!--capitalize (keypress)="inputFilter($event)">-->
+        <!--</div>-->
+
+        <!--<div class="input-group mb-3" style="margin-bottom: 15px !important;border: 0px solid #d67810;">-->
+          <!--<div class="input-group-prepend">-->
+            <!--<span class="input-group-text"><strong><span style="color: red"> * </span>Last Name</strong></span>-->
+          <!--</div>-->
+          <!--<input type="text" class="form-control" placeholder="Last Name"-->
+                 <!--autocomplete="username" [formControl]="registrationOtp.controls['lastName']" title="User Last Name"-->
+                 <!--capitalize (keypress)="inputFilter($event)">-->
+        <!--</div>-->
+
+        <!--&lt;!&ndash;<div class="input-group mb-3" style="margin-bottom: 15px !important;border: 0px solid #d67810;">-->
+          <!--<div class="input-group-prepend">-->
+            <!--<span class="input-group-text"><strong><span style="color: red"> * </span>DOB</strong></span>-->
+          <!--</div>-->
+          <!--<input type="date" class="form-control" (change)="selectedDate($event)" placeholder="DOB"-->
+                 <!--title="Date of Birth" [formControl]="registrationOtp.controls['dob']">-->
+        <!--</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<div class="input-group mb-3" style="margin-bottom: 15px !important;">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="input-group-prepend">&ndash;&gt;-->
+        <!--&lt;!&ndash;<span class="input-group-text"><strong>DOB</strong></span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;<ion-datetime [formControl]="registrationOtp.controls['dob']"&ndash;&gt;-->
+        <!--&lt;!&ndash;placeholder="Select Date"&ndash;&gt;-->
+        <!--&lt;!&ndash;class="form-control"&ndash;&gt;-->
+        <!--&lt;!&ndash;displayFormat="YYYY/MM/DD"&ndash;&gt;-->
+        <!--&lt;!&ndash;(ionChange)="selectedDate()"></ion-datetime>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<div class="input-group mb-3" style="margin-bottom: 15px !important;border: 0px solid #d67810;">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="input-group-prepend">&ndash;&gt;-->
+        <!--&lt;!&ndash;<span class="input-group-text"><strong><span style="color: red"> * </span>Gender</strong></span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;<select title="Select Gender" class="form-control" [formControl]="registrationOtp.controls['gender']">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value="0">Select Gender</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;<option *ngFor="let gender of genderList | async" [value]=gender.genderId>{{gender.genderName}}&ndash;&gt;-->
+        <!--&lt;!&ndash;</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--<div class="input-group mb-3" style="margin-bottom: 15px !important;border: 0px solid #d67810;">-->
+          <!--<div class="input-group-prepend">-->
+            <!--<span class="input-group-text"><strong><span style="color: red"></span>City</strong></span>-->
+          <!--</div>-->
+          <!--<select class="form-control" #stateId (change)="itemSelected($event)"-->
+                  <!--style="border: 1px solid #000; font-size: 10px;">-->
+            <!--<option disabled style="font-size: 9px;">Select City</option>-->
+            <!--<option *ngFor="let city of cityListForDubai" [value]=city.stateId style="font-size: 16px;">{{city.stateName}}</option>-->
+          <!--</select>-->
+        <!--</div>-->
+
+        <!--<div class="input-group mb-3" style="margin-bottom: 15px !important;border: 0px solid #d67810;">-->
+          <!--<div class="input-group-prepend">-->
+            <!--<span class="input-group-text"><strong><span style="">  </span> Email</strong></span>-->
+          <!--</div>-->
+          <!--<input type="email" id="email" class="form-control" ngControl="email" #email="ngForm"-->
+                 <!--formControlName="email" placeholder="Enter Email Id Or User Name " (change)="checkMail()"-->
+                 <!--[formControl]="registrationOtp.controls['email']" autocomplete="email" title="User Email"-->
+                 <!--placeholder="Enter Email">-->
+        <!--</div>-->
+
+
+        <!--<div *ngIf="email?.touched && email?.errors" [ngClass]="'error'" style="margin: 5px auto;">-->
+          <!--<div *ngIf="email.errors?.pattern">-->
+            <!--<span style=" margin-left:20px; font-size: 12px;"> Invalid Email Id.</span>-->
+          <!--</div>-->
+        <!--</div>-->
+
+
+        <!--&lt;!&ndash;<div class="input-group mb-3" style="margin-bottom: 15px !important;border: 0px solid #d67810;">-->
+          <!--<div class="input-group-prepend">-->
+            <!--<span class="input-group-text"><strong><span style="color: red"> * </span>City</strong></span>-->
+          <!--</div>-->
+          <!--<div class="input-group-prepend" style="width: 91%;">-->
+            <!--<ng-template #withFlags let-attrs="attrs">-->
+              <!--<span [innerHTML]="attrs.data.cityName"></span>-->
+            <!--</ng-template>-->
+            <!--<ion-auto-complete class="form-control" #searchbar (itemSelected)="itemSelected($event)"-->
+                               <!--[dataProvider]="completeTestService" style="width: 100% !important;"-->
+                               <!--[(ngModel)]="mstCity.cityName"-->
+                               <!--[ngModelOptions]="{standalone: true}"-->
+                               <!--[template]="withFlags" [options]="{ placeholder : 'Search City' }"-->
+                               <!--value=mstCity?.cityName></ion-auto-complete>-->
+          <!--</div>-->
+        <!--</div>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<div class="input-group mb-3" style="margin-bottom: 15px !important;border: 0px solid #d67810;">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="input-group-prepend">&ndash;&gt;-->
+        <!--&lt;!&ndash;<span class="input-group-text"><strong><span style="color: red"></span>City</strong></span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;<select class="form-control" #stateId (change)="itemSelected($event)"&ndash;&gt;-->
+        <!--&lt;!&ndash;style="border: 1px solid #000; font-size: 10px;">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option disabled style="font-size: 9px;">Select City</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;<option *ngFor="let city of cityListForDubai" [value]=city.stateId style="font-size: 16px;">{{city.stateName}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;working&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="input-group mb-3" style="margin-bottom: 15px !important;border: 0px solid #d67810;">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="input-group-prepend">&ndash;&gt;-->
+        <!--&lt;!&ndash;<span class="input-group-text"><strong><span style="color: red"> *</span>Area</strong></span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;<select title="Select area" class="form-control" [formControl]="registrationOtp.controls['area']" required>>&ndash;&gt;-->
+        <!--&lt;!&ndash;&lt;!&ndash; <option value="0">Select Area</option>&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<option *ngFor="let area of areaList" [value]=area.areaId selected>{{area.areaName}}&ndash;&gt;-->
+        <!--&lt;!&ndash;</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<div class="input-group mb-3" style="margin-bottom: 10px !important;">-->
+          <!--<div class="input-group-prepend">-->
+            <!--<span class="input-group-text"><strong>State</strong></span>-->
+          <!--</div>-->
+          <!--<div class="form-control" placeholder="Enter State">{{mstCity?.cityStateId?.stateName}}</div>-->
+        <!--</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<div class="input-group mb-3" style="margin-bottom: 10px !important;">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="input-group-prepend">&ndash;&gt;-->
+        <!--&lt;!&ndash;<span class="input-group-text"><strong>Country</strong></span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="form-control" placeholder="Enter Country">{{mstCountry.countryName}}&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;  <div class="input-group mb-3" style="margin-bottom: 15px !important;border: 0px solid #d67810;">-->
+            <!--<div class="input-group-prepend">-->
+              <!--<span class="input-group-text"><strong><span style="color: red"> * </span>City</strong></span>-->
+            <!--</div>-->
+            <!--<div class="input-group-prepend" style="width: 87%;">-->
+              <!--<ng-template #withFlags let-attrs="attrs">-->
+                <!--<span [innerHTML]="attrs.data.cityName | boldprefix:attrs.keyword"></span>-->
+              <!--</ng-template>-->
+
+              <!--<ion-auto-complete class="form-control" #searchbar (itemSelected)="itemSelected($event)"-->
+                                 <!--[dataProvider]="completeTestService" style="width: 100% !important;" [(ngModel)]="mstCity.cityName"-->
+                                 <!--[ngModelOptions]="{standalone: true}"-->
+                                 <!--[template]="withFlags" [options]="{ placeholder : 'Search City' }"-->
+                                 <!--value=mstCity?.cityName></ion-auto-complete>-->
+            <!--</div>-->
+          <!--</div>&ndash;&gt;-->
+        <!--&lt;!&ndash; <div *ngIf="mstCity?.cityName != null && mstCity?.cityName != undefined">-->
+           <!--<h6-->
+             <!--style="margin: 2px 0;font-size: 12px;margin-top: 5px;font-weight: normal;color: #f5f2f2;margin-left: 5px; margin-bottom: 5px">-->
+             <!--{{mstCity?.cityName}} ,{{mstCity?.cityStateId?.stateCountryId?.countryName}}</h6>-->
+         <!--</div>&ndash;&gt;-->
+
+        <!--<div>-->
+          <!--<span style="color: red"> * </span>-->
+          <!--<label style="color: #fff">Your Phone Number</label>-->
+        <!--</div>-->
+        <!--<div class="d-flex">-->
+          <!--<div class="col-4 p-0 m-0" style="margin-bottom: 15px !important;border: 0px solid #d67810;">-->
+            <!--&lt;!&ndash;<ngx-intl-tel-input [preferredCountries]="['AE']" [(ngModel)]="selectedCountryCode"></ngx-intl-tel-input>&ndash;&gt;-->
+
+            <!--&lt;!&ndash;<div class="input-group-prepend">&ndash;&gt;-->
+            <!--&lt;!&ndash;<span class="input-group-text"><strong>Country Code</strong></span>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--<div class="form-control m-0 " placeholder="Enter ISD Code" style="font-size: 1.6rem">-->
+
+              <!--&lt;!&ndash;{{mstCity?.cityStateId?.stateCountryId?.countryIsdCode}}&ndash;&gt;-->
+              <!--<input  [formControl]="registrationOtp.controls['userMobileCode']"required>-->
+              <!--<span>{{userMobileCode}}</span>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="col-8 p-0 m-0 " style="margin-bottom: 15px !important;border: 0px solid #d67810;">-->
+            <!--&lt;!&ndash;<div class="input-group-prepend">&ndash;&gt;-->
+            <!--&lt;!&ndash;<span class="input-group-text"><strong><span style="color: red"> * </span> Mobile No</strong></span>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--<input OnlyNumber="true" type="number" class="form-control m-0 w-100" (keyup)="CheckMobileLength($event)"-->
+                   <!--#mobile [max]="mobileLength" (change)="validMob(mobile.value)"-->
+                   <!--[placeholder]="mobileNoPlaceHolder" [minlength]="mobileLength" [maxlength]="mobileLength"-->
+                   <!--[formControl]="registrationOtp.controls['mobileno']"required-->
+                   <!--autocomplete="mobileno" title="UserMobileNo">-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="row" style="margin-top:-10px !important; margin-bottom: 10px !important;">-->
+          <!--<div class="col-12 text-right" *ngIf="mobilevalid">-->
+            <!--<button type="button" style="color: #fff; font-size: 14px;" class="btn btn-link px-0"-->
+                    <!--(click)="sendOtp(registrationOtp.value)">Send OTP-->
+            <!--</button>-->
+          <!--</div>-->
+          <!--<div class="col-12 text-right" *ngIf="mobileotpsend">-->
+            <!--<button type="button" class="btn btn-link px-0" style="color: #fff; font-size: 14px;"-->
+                    <!--(click)="resendotp(registrationOtp.value)">Resend OTP-->
+            <!--</button>-->
+          <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="input-group mb-3"-->
+             <!--style="margin-top: 10px !important; margin-bottom: 10px !important;border: 1px solid #d67810;"-->
+             <!--*ngIf="mobileotpsend">-->
+          <!--<div class="input-group-prepend">-->
+            <!--<span class="input-group-text"><strong>Mobile OTP</strong></span>-->
+          <!--</div>-->
+          <!--<input type="number" class="form-control" [formControl]="registrationOtp.controls['mobileotp']"-->
+                 <!--[(ngModel)]="demoOTP" minlength="4" maxlength="4" placeholder="Mobile OTP" autocomplete="mobileno"-->
+                 <!--title="UserMobileNo">-->
+        <!--</div>-->
+
+        <!--<ion-row>-->
+          <!--<ion-col class="col-1">-->
+            <!--<input type="checkbox" *ngIf="!checkshow" (click)="checkshowNot()">-->
+            <!--<input type="checkbox" *ngIf="checkshow" (click)="checkshowYes()" Checked>-->
+          <!--</ion-col>-->
+          <!--<ion-col class="col-10" style="padding: 3px;">-->
+            <!--<p style="font-size: 10px; margin-top: 2px;color: #fff;">I ACCEPT THAT THE TELE-CONSULTATION HAS ITS<span-->
+              <!--style="color: red"> *</span> <a-->
+              <!--href="" title="-->
+<!--I ACCEPT THAT THE TELE-CONSULTATION HAS ITS OWN LIMITATIONS AND DOCTORS ARE-->
+<!--NOT LIABLE FOR IMPROPER DIAGNOSIS, TREATMENT AND ANY ADVERSE DRU REACTIONS.-->
+<!--THE TELECONSULTATION MAY BE DIGITALLY RECORDED.THE TELECONSULTANTS, REMOTE-->
+<!--CENTERS AND ALL THE PERSONNEL DIRECTLY OR INDIRECTLY INVOLVED WILL NOT BE-->
+<!--HELD RESPONSIBLE IN THE UNLIKELY EVENT OF AN ERROR IN DIAGNOSIS OR MANAGEMENT-->
+<!--DUE TO THE OCCURENCE OF SUB OPTIMAL TECHNICAL CONDITIONS WHILE EVERY ATTEMPT-->
+<!--IS MADE TO ENSURE IDLE CONDITIONS UNFORESEEN SITUATIONS MAY OCCUR">OWN LIMITATIONS...</a></p>-->
+          <!--</ion-col>-->
+        <!--</ion-row>-->
+        <!--&lt;!&ndash; <button type="submit" style="display: block;-->
+     <!--text-align: center;-->
+     <!--margin: 0px auto;background: linear-gradient(to right, #182230, #09c1df);" class="btn btn-primary px-4"-->
+                 <!--[disabled]="!registrationOtp.valid">Register-->
+         <!--</button>&ndash;&gt;-->
+        <!--<button type="submit" style="display: block;-->
+    <!--text-align: center;-->
+    <!--margin: 0px auto;background: linear-gradient(to right, #182230, #09c1df);" class="btn btn-primary px-4" >Register-->
+        <!--</button>-->
+      <!--</form>-->
+      <!--<div class="row ">-->
+        <!--<div class="col-6 text-left">-->
+        <!--</div>-->
+        <!--<div class="col-6 text-right leftp">-->
+          <!--<button type="button" class="btn btn-link px-0" style="color: #FFFFFF; font-size: 15px" (click)="onLogin()">Login Now?</button>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</ion-card>-->
+<!--</ion-content>-->

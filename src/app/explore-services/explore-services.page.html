@@ -1,0 +1,307 @@
+<style type="text/css">
+  .bgimg {
+    /*background: url('assets/img/Mulk E Health A4-01 1.png');*/
+    background-color: black;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+  }
+</style>
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="text-align: center">Explore Services</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<!--<ion-header>
+  <ion-navbar>
+    <label class="label-titles">Explore Services</label>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goBack()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>-->
+
+<ion-content class="bgimg">
+  <div *ngIf="tab=='1'">
+    <ion-row>
+
+      <ion-col class="col-6" (click)="chronicPatientManagment()">
+        <ion-card class="carde" style="background-color: #ccc">
+          <img src="assets/mulk/explore/1 Chronic Disease Mgmt (1).png" class="img-responsive">
+          <!--<span class="cards">CHRONIC DISEASE MANAGEMENT</span>-->
+        </ion-card>
+      </ion-col>
+
+      <ion-col class="col-6" (click)="homehealth()">
+        <ion-card class="carde" style="background-color: #ccc">
+          <img src="assets/mulk/explore/2 Home Health Services (1).png" class="img-responsive">
+          <!--<span class="cards">HOME HEALTH SERVICES</span>-->
+        </ion-card>
+      </ion-col>
+
+
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="col-6" (click)="medicalTourism()">
+        <ion-card class="carde" style="background-color: #ccc">
+          <img src="assets/mulk/explore/4 Medical Tourism (1).png" class="img-responsive">
+          <!--<span class="cards" style="margin: 16px auto"> MEDICAL TOURISM</span>-->
+        </ion-card>
+      </ion-col>
+
+
+
+
+      <ion-col class="col-6" (click)="diagnostics1()">
+        <ion-card class="carde" style="background-color: #ccc">
+          <img src="assets/mulk/explore/5 Radiology.png" class="img-responsive">
+          <!--<span class="cards" style="margin: 16px auto"> MEDICAL TOURISM</span>-->
+        </ion-card>
+      </ion-col>
+
+      <!--<ion-col class="col-6" (click)="medicalTourism()">
+        <ion-card class="carde" style="background-color: #ccc">
+          <img src="assets/mulk/explore/medical-tourism.png" class="image" style="width: 101%;
+    display: block;
+    margin: 19px auto;">
+          <span class="cards" style="margin: 16px auto"> MEDICAL TOURISM</span>
+        </ion-card>
+      </ion-col>
+-->
+
+    </ion-row>
+
+
+    <ion-row >
+      <ion-col class="col-6" (click)="Lab()">
+        <ion-card class="lab1" style="background-color: #ccc">
+          <img src="assets/mulk/explore/6 Lab (1).png" class="img-responsive">
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+
+  </div>
+
+  <div *ngIf="tab=='2'">
+    <div class="row justify-content-center">
+      <h3 class="tele">Explore High Quality And Affordable Service</h3>
+    </div>
+    <div class="container">
+      <div class="row justify-content-sm-start mt-2">
+        <div class="col-md-3">
+          <select class="form-control" #sId (change)="selectSpecailty(sId.value)"
+                  style="border: 1px solid #000;font-size: 15px;">
+            <option disabled> Select Speciality</option>
+            <option *ngFor="let sp of specailtyList" [value]=sp.specialityId>{{sp.specialityName}}</option>
+          </select>
+        </div>
+
+        <div class="col-md-3" style="padding-top: 10px;">
+          <select class="form-control" #unitId (change)="selectedUnitValue(unitId.value)"
+                  style="border: 1px solid #000;font-size: 15px;">
+            <option disabled>Select Location</option>
+            <option *ngFor="let city of cityList" [value]=city.cityId>{{city.cityName}}</option>
+          </select>
+        </div>
+      </div>
+
+
+      <div class="row mt-2">
+        <div class="col-md-3" *ngFor="let data of servicesDatalist">
+          <div class="card hospital-grid " style="margin: 15px;border-radius: 15px;"
+               (click)="getServiceSummary(data.id)">
+            <div class="card-body" style="height: 180px;">
+              <div class="hospital-icon6">
+                <img class="imgmeds"
+                     src="{{serviceIcon}}{{data.serviceIcon}}" alt="Hospital"
+                     title="Hospital">
+
+              </div>
+              <b><h4 class="hospital-name font-sm mt-2" style="text-align: center;font-size: 15px;"><a
+                style="cursor: pointer;">{{data.serviceTitle}}</a>
+              </h4></b>
+              <h6 style="text-align: center;">starting at <b>AED {{data.servicePrice}}</b></h6>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="tab=='3'">
+    <div class=" mt-3">
+      <div class="row justify-content-center">
+        <h3 class="tele" style="margin-left: 20px;">{{servicesData?.serviceTitle}}</h3>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-6">
+          <img style="display: block;text-align: center;margin: 0px auto"
+               src="{{serviceIcon}}{{servicesData?.serviceImg}}">
+        </div>
+        <div class="col-md-6">
+          <h5 class="mt-2 se">{{servicesData?.serviceTitle}}</h5>
+          <div class="mt-3 se">{{servicesData?.serviceDescription}}</div>
+          <div class="mt-3 se">{{servicesData?.serviceSummary}}</div>
+          <button class="btn btn-primary mt-3 active"
+                  style="display: block;text-align: center;margin: 0px auto;width: 70%" (click)="query('3')">Submit
+            Query
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="tab=='4'">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <div class="card">
+          <div class="panel-body panel-doctor-pif">
+            <h5 class="modeofconsultation"
+                style="text-align:center; padding: 10px;font-size: 15px;">Help Us With
+              Patient Details</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <div class="card panel panel-default ">
+          <div class="panel-body">
+            <form class="pd-10" id="genericForm" autocomplete="off"
+                  [formGroup]="explore" (ngSubmit)="onSubmitquery(explore.value)">
+
+              <div class="form-group label-controls"><label class="control-label col-sm-12" for="name">Name<span
+                class="red">*</span></label>
+                <div class="col-sm-12">
+                  <input type="text" class="form-control new-form-control" id="name"
+                         name="name" required="" style="font-size: 15px;"
+                         formControlName="name" placeholder=""
+                         [formControl]="explore.controls['name']" title="firstName"
+                         placeholder="Enter name">
+                </div>
+              </div>
+
+              <div class="form-group label-controls"><label class="control-label col-sm-12" for="email">Email<span
+                class="red">*</span></label>
+                <div class="col-sm-12">
+                  <input type="email" class="form-control new-form-control" id="email"
+                         formControlName="email" placeholder="" style="font-size: 15px;"
+                         [formControl]="explore.controls['email']" autocomplete="email" title="email" required="">
+                </div>
+              </div>
+
+              <div class="form-group label-controls"><label class="control-label col-sm-12" for="email">Upload
+                Document<span
+                  class="red">*</span></label>
+                <div class="col-sm-12">
+                  <input type="file" class="form-control new-form-control" id="email" style="font-size: 15px;"
+                         placeholder="Enter email" name="email" required="">
+                </div>
+              </div>
+
+              <div style="margin-top: 10px;margin-bottom: 10px"
+                   *ngIf="imagepath !=null && imagepath!=undefined && imagepath!=''">
+                <img src="{{imagepath}}" style="width: 200px;
+    height: 150px;
+    text-align: center;
+    display: block;
+    margin: 0px auto;">
+              </div>
+
+              <div class="form-group label-controls"><label class="control-label col-sm-12" for="phone">Phone
+                Number<span
+                  class="red">*</span></label>
+                <div class="col-sm-12">
+                  <!--<input type="text" id="country_phone_code" name="country_phone_code"-->
+                  <!--class="form-control new-form-control col-md-2" value="" readonly=""-->
+                  <!--style="width: 15%; float: left;">-->
+                  <input type="tel" class="form-control new-form-control col-md-10"
+                         id="phone_number" maxlength="10" minlength="10"
+                         placeholder="Your Phone number" style="font-size: 15px;"
+                         name="mobileno" required=""
+                         formControlName="mobileno" placeholder=""
+                         [formControl]="explore.controls['mobileno']" autocomplete="mobileno"
+                         title="mobileno"
+                         style="width: 84%"></div>
+              </div>
+
+              <div class="col-md-12">
+                <div class="form-group"><label>Medical Condition <span class="red">*</span></label><br>
+                  <textarea cols="5" rows="5" id="medicalProblem" name="medicalProblem"
+                            formControlName="medicalProblem" placeholder="" style="font-size: 15px;"
+                            [formControl]="explore.controls['medicalProblem']" autocomplete="medicalProblem"
+                            title="medicalProblem"
+                            style="height:100%; width:100%; resize: vertical;" required=""></textarea></div>
+              </div>
+
+              <div class="form-group label-controls" id="ageblock" style=""><label class="control-label col-sm-12"
+                                                                                   for="email">Patient Age <span
+                class="red">*</span></label>
+                <div class="col-sm-12"><input type="number" class="form-control new-form-control" id="age"
+                                              placeholder="Example: 30" name="age" style="font-size: 15px;"
+                                              formControlName="age" placeholder=""
+                                              [formControl]="explore.controls['age']" autocomplete="age" title="age">
+                </div>
+              </div>
+              <div class="form-group label-controls">
+                <div class="col-sm-12 text-center">
+                  <button type="submit" class="btn btn-danger" [disabled]="!explore.valid">SUBMIT</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row" *ngIf="tab=='3'" style="margin-top: 30px">
+    <button class="btn btn-primary mt-3 active"
+            style="display: block;text-align: center;margin: 0px auto; width:40%; margin-bottom: -20px;;">Associate
+      Hospital For Nutrition
+      Coaching
+    </button>
+  </div>
+
+  <div class="row text-center bg-light footer-fixed" *ngIf="tab=='3'">
+    <div class="col-md-12 ml-0 mr-5">
+      <div class="row">
+        <div class="row" style="padding-left: 66px;padding-top: 28px;">
+          <div class="col-6" *ngFor="let data of unitData">
+            <img class="on" src="assets/MulkSpec/hospital.png"><br><br>
+            <b style="font-size: 12px"> {{data.unitName}} </b>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</ion-content>
+
+<!--<ion-content class="bgimg" padding>
+<ion-refresher label="Start" (ionRefresh)="doRefresh($event)">
+<ion-refresher-content
+pullingIcon="arrow-dropdown"
+pullingText="Pull to refresh"
+refreshingSpinner="circles"
+refreshingText="Refreshing...">
+</ion-refresher-content>
+</ion-refresher>-->
+

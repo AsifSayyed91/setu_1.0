@@ -1,0 +1,74 @@
+<ion-content class="bgimg">
+  <ion-card style="margin-top: 30%;background-color: transparent; box-shadow:0px 0px 4px 1px #fff; ">
+    <ion-row class="row">
+      <img src="assets/img/mulk.png"
+           style="width: 100px; height: 100px;text-align: center;display: block;margin: 0px auto;">
+    </ion-row>
+
+    <form [formGroup]="forgotForm" (ngSubmit)="onForgots(forgotForm.value)">
+      <h6 class="text-center" style="color:#ffffff">Forgot Username</h6>
+      <p class="text-muted text-center" style="color:#ffffff !important;">Fill details to Forgot Username</p>
+
+      <div class="input-group" style="width: 80%; height: 30px;margin-left: 18%; margin: 10px auto;">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><ion-icon ios="ios-call" md="md-call"
+                                                   style="color: #000 !important;"></ion-icon></span>
+        </div>
+        <input style="height: 30px;" type="number" class="form-control"
+               (keyup)="CheckMobileLength($event)" [maxlength]="mobileLength"
+               [formControl]="forgotForm.controls['usermobile']" placeholder="Mobile Number" minlength="10"
+               maxlength="10" (keypress)="inputFilter($event)"
+               autocomplete="mobileno" title="UserMobileNo" required>
+      </div>
+
+      <div class="row" style="width: 80%; margin: 5px auto;">
+        <div class="col-12 text-right" *ngIf="mobilevalid">
+          <ion-button type="button" class="btn btn-link px-0" style="color: #fff;" (click)="Generateotps(forgotForm.value)">
+            Send OTP
+          </ion-button>
+        </div>
+        <div class="col-12 text-right" *ngIf="mobileotpsend">
+          <ion-button type="button" class="btn btn-link px-0" style="color: #fff;" (click)="Generateotps(forgotForm.value)">
+            Resend OTP
+          </ion-button>
+        </div>
+      </div>
+
+      <!---->
+      <div class="input-group" style="width: 80%; height: 30px;margin-left: 18%; margin: 10px auto;" *ngIf="password">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><ion-icon ios="ios-lock" md="md-lock"
+                                                   style="color: #000 !important;"></ion-icon></span>
+        </div>
+        <input style="height: 30px;" type="number" class="form-control" placeholder="Enter OTP"
+               [formControl]="forgotForm.controls['userOtp']"
+               autocomplete="current-password" required>
+      </div>
+
+      <div class="row" style="margin: 0px 10px 10px 0px;">
+        <div class="col-6 text-left">
+        </div>
+        <div class="col-6 text-right">
+          <ion-button type="button" class="btn btn-link px-0" style="color: #fff" (click)="login()">Login Now!</ion-button>
+        </div>
+      </div>
+
+      <div class="text-center" style="margin: 10px auto;">
+        <ion-button class="btn btn-success px-4"
+                style="color: #fff;background-color: #28a745; border-color: #28a745;height: 40px;width: 65%;"
+                type="submit" [disabled]="!forgotForm.valid ">Submit
+        </ion-button>
+      </div>
+    </form>
+  </ion-card>
+</ion-content>
+
+<ion-footer class="hide-on-keyboard-open" style="background-color:whitesmoke;height: 45px;" *ngIf="footer">
+  <div text-center style="margin-top:5px">
+    <p>Powered By
+      <a href="http://www.cellbeanshealthcare.com/">
+        <img src="./assets/imgs/logo_cellbeans.png" width="100" height="30" style="margin-bottom: 11px">
+      </a>
+    </p>
+  </div>
+</ion-footer>

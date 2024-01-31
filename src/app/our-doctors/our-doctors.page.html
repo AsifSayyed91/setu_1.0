@@ -1,0 +1,115 @@
+
+<ion-header>
+  <ion-toolbar>
+    <label class="label-titles">Our Doctors</label>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="bgimg">
+  <ion-row>
+    <ion-col col-10>
+    </ion-col>
+    <ion-col col-2 style="text-align: right; margin-right: 20px">
+      <ion-button title="Show Filters" class="btn btn-warning" (click)="Filters_showHide_EMR=!Filters_showHide_EMR">
+        <i class="fa fa-angle-double-right" style="color: #fff;" *ngIf="!Filters_showHide_EMR"></i>
+        <i class="fa fa-angle-double-left" style="color: #fff;" *ngIf="Filters_showHide_EMR"></i>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+  <div class="col-md-2 zeropadding" *ngIf="Filters_showHide_EMR">
+    <div class="form-group">
+      <label class="col-form-label" style="color: white">Unit</label>
+      <select class="form-control" #unitId (change)="selectedUnitValue(unitId.value)" required>
+        <option>Select Unit</option>
+        <option *ngFor="let unit of unitList" [value]=unit.unitId>{{unit.unitName}}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="col-form-label" style="color: white">Speciality</label>
+      <select class="form-control" #sdId>
+        <option disabled>Select Speciality</option>
+        <!--<option *ngFor="let sp of specailtyList" [value]=sp.specialityId>{{sp.specialityName}}</option>-->
+        <option *ngFor="let subDept of subDeptList" [value]=subDept.sdId>{{subDept.sdName}}
+        </option>
+      </select>
+    </div>
+  </div>
+  <!--<div class="text-left">-->
+  <!--<label class="dropdown">Speciality </label>-->
+  <!--<select class="form-control" #sId (change)="selectSpecailty(sId.value)"-->
+  <!--style="border: 1px solid #000;">-->
+  <!--<option disabled> Select Speciality</option>-->
+  <!--<option *ngFor="let sp of specailtyList" [value]=sp.specialityId>{{sp.specialityName}}</option>-->
+  <!--</select>-->
+  <!--</div>-->
+  <!--</div>-->
+
+  <div *ngIf="docshow" style="width: 95%;display: block;margin: 0px auto;">
+    <ion-card *ngFor="let doc of doctorList;let i=index" style="    border-radius: 20px;">
+      <ion-row>
+        <ion-col class="col-3" style="padding: 5px;">
+          <!--staffUserId?.userImage-->
+          <img src="assets/img/doctors.png" style="display: block; width:100px; height: 64px;border-radius: 60px;
+    margin-left: 14px;
+    border-color: #000;"
+               *ngIf="doc.staffUserId?.userGenderId?.genderId == '1'">
+
+          <img src="assets/img/nurse.png" style="display: block; width:100px; height: 64px;border-radius: 60px;
+    margin-left: 14px;
+    border-color: #000;"
+               *ngIf="doc.staffUserId?.userGenderId?.genderId == '2'">
+        </ion-col>
+
+        <ion-col class="col-8" style="margin-left: 10px;margin-top: 10px;">
+          <h5>Dr.{{doc.staffUserId?.userFullname}}</h5>
+          <h6>{{doc.staffEducation}}</h6>
+          <h6>{{doc.staffSpecialityId?.specialityName}}</h6>
+          <h6>{{doc.staffexprience}}</h6>
+        </ion-col>
+
+      </ion-row>
+
+      <ion-row style="margin: 0px auto;margin-left: 0px; margin-right: 0px;">
+        <ion-col col-3 *ngIf="doc?.followup=='false'" (click)="follow(loginUser.userId,doc.staffId,i)"
+                 style="margin: 5px auto; display: block;">
+          <img src="assets/mulk/Follow.png" style="width: 100%; margin: 0px auto;display: block; text-align: center;">
+        </ion-col>
+
+        <ion-col col-3 *ngIf="doc?.followup=='true'" style="margin: 5px auto; display: block;">
+          <img src="assets/mulk/Following.png"
+               style="width: 100%; margin: 0px auto;display: block; text-align: center;">
+        </ion-col>
+
+        <ion-col col-3 style="padding-left: 0px; padding-right: 0px;">
+          <h6 style="font-size:14px;color: #007bff;margin-top: 6px;">{{doc?.followupCount}} follower's
+          </h6>
+        </ion-col>
+
+        <ion-col col-1 style="padding-left: 0px;padding-right: 0px;max-width: 35px;" *ngIf="doc.doctorRating != 'NaN'">
+          <h6 style="font-size: 14px;color: #007bff">{{doc.doctorRating | number : '1.1-1'}}
+            <ion-icon ios="ios-star" md="md-star" style="color: #f9b403;margin: 0px auto"></ion-icon>
+          </h6>
+        </ion-col>
+        <ion-col col-4 style=" padding-left:0px;padding-right: 0px; margin-top: 5px" *ngIf="doc.doctorReview != '0.0'">
+          <h6 style="font-size:14px;color: #007bff">{{doc.doctorReview | number : '1.0-0'}} reviews
+          </h6>
+        </ion-col>
+
+        <ion-col col-1 style="padding-left: 0px;padding-right: 0px;max-width: 25px;" *ngIf="doc.doctorRating == 'NaN'">
+          <h6 style="font-size: 14px;color: #007bff;margin-top: 5px;">0
+            <ion-icon ios="ios-star" md="md-star" style="color: #f9b403;margin: 0px auto"></ion-icon>
+          </h6>
+        </ion-col>
+
+        <ion-col col-4 style=" padding-left:0px;padding-right: 0px; margin-top: 5px" *ngIf="doc.doctorReview == '0.0'">
+          <h6 style="font-size:14px;color: #007bff">0 reviews
+          </h6>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </div>
+</ion-content>

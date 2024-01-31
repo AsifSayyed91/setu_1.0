@@ -1,0 +1,103 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="text-align: center">Buy Medicine</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!--<ion-header>
+  <ion-toolbar>
+    <label class="label-titles">Pharmacy</label>
+    <ion-buttons end>
+      <ion-button ion-button icon-only (click)="goBack()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>-->
+
+<ion-content class="bgimg" padding>
+
+  <!--<ion-grid>-->
+    <!--<ion-row>-->
+      <!--<ng-container *ngFor="let partner of partnerListByCondition">-->
+        <!--<ion-col class="col-12" style="padding: 5px" *ngIf="partner?.uspImage != null && partner?.uspImage != '(NULL)'">-->
+          <!--<ion-card style="background-color:#ccc;border-radius:10px;height: 84%;" >-->
+            <!--<img  src="{{patientimagepath}}{{partner?.uspImage}}"-->
+                  <!--style="width: 100%; height: 78px;display: block;text-align: center;margin: 5px auto;">-->
+          <!--</ion-card>-->
+        <!--</ion-col>-->
+      <!--</ng-container>-->
+    <!--</ion-row>-->
+  <!--</ion-grid>-->
+
+
+  <form class="pd-10" id="medicineDelivery" autocomplete="off"
+        [formGroup]="medicineDelivery" (ngSubmit)="addFile(medicineDelivery.value)">
+    <div class="row">
+      <div class="form-group col-sm-4">
+        <h6  style=" font-size: 20px;text-align: center;"><label for="doc_name">Document Name</label></h6>
+        <ion-input label="Solid input" label-placement="floating" fill="solid" style="border: 1px solid white; border-radius: 10PX;" formControlName="doc_name" id="doc_name" type="text" placeholder="Document Name" class="form-control">
+        </ion-input>
+      </div>
+
+      <div class="form-group col-sm-4">
+        <h6  style=" font-size: 20px;text-align: center"><label for="file">File</label></h6>
+        <ion-input style="border: 1px solid white; border-radius: 10PX;" formControlName="file" id="file" type="file" class="form-control"
+               (change)="onFileChange($event)">
+        </ion-input>
+      </div>
+    </div>
+
+
+
+
+    <div class="row" style="font-size: 18px; margin: -10px auto;  padding: 14px;">
+      <div class="col-md-5" style="padding: 0px">
+        <h6 style=" font-size: 20px;text-align: center">Enquiry</h6>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 5px;">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <div class="row">
+                <ion-textarea label="Solid input" label-placement="floating" fill="solid" class="form-control new-form-control" id="enquiry"
+                          name="enquiry" required="" formControlName="enquiry"
+                          [formControl]="medicineDelivery.controls['enquiry']"
+                          style="margin-top: 0px; margin-bottom: 0px; height: 55px;width: 100% !important; padding: 37px; border: 1px solid #ccc; border-radius: 10PX;background-color: gainsboro;
+  color: black; ">
+                </ion-textarea>
+        </div>
+      </div>
+      <br><br>
+      <ion-button type="submit" style="font-size: large; margin: 0px auto;width:41%;display: block;margin-top: 33px;"
+             class="login-bt" value="Submit">Submit
+      </ion-button>
+    </div>
+
+    <!--  <div class="row" style="margin-top: 5px;">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+          <div class="row">
+                  <textarea class="form-control new-form-control" id="enquiry"
+                            name="enquiry" required="" formControlName="enquiry"
+                            [formControl]="medicineDelivery.controls['enquiry']"
+                            style="margin-top: 0px; margin-bottom: 0px; height: 55px; width: 100% !important; padding: 37px; border: 1px solid #ccc; border-radius: 10PX;">
+                  </textarea>
+          </div>
+        </div>
+        <br><br>
+        <input  type="submit" style="font-size: large; margin: 0px auto;width:41%;display: block;margin-top: 33px;"
+                class="login-bt" value="Submit">
+      </div>-->
+  </form>
+
+  <ion-refresher slot="start" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+
+</ion-content>

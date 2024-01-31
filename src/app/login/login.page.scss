@@ -1,0 +1,101 @@
+page-login {
+  .icon {
+    margin: 0px auto !important;
+    color: #000 !important;
+  }
+}
+
+.Privacyp-style {
+  text-align: center;
+  color: black;
+}
+
+.login-bt {
+  opacity: 10.65;
+  border-radius: 20px;
+  width: 194px;
+  height: 43px;
+  font-size: large;
+  background-color: #89d4cf;
+  background: linear-gradient(315deg, #89d4cf 0%, #6e45e1 91%);
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 25px;
+  line-height: 30px;
+  text-align: center;
+}
+
+.username {
+  position: absolute;
+  width: 292px;
+  height: 40px;
+  left: calc(50% - 292px / 2 + 1px);
+  top: calc(50% - 40px / 2 + 3px);
+
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+
+  color: #C4C4C4;
+}
+
+.trouble {
+  padding-top: 10px;
+  position: absolute;
+  width: 292px;
+  height: 40px;
+  left: calc(50% - 292px / 2 + 1.5px);
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.form-control:-ms-input-placeholder {
+  color: #999;
+}
+
+.btnlogin {
+  opacity: 10.65;
+  border-radius: 20px;
+  width: 194px;
+  height: 43px;
+  font-size: large;
+  background-color: #89d4cf;
+  background: linear-gradient(315deg, #89d4cf 0%, #6e45e1 91%);
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 30px;
+  text-align: center;
+}
+
+.loginbutton {
+  opacity: 10.65;
+  border-radius: 20px;
+  width: 194px;
+  height: 43px;
+  font-size: large;
+  background-color: #89d4cf;
+  background: linear-gradient(315deg, #89d4cf 0%, #6e45e1 91%);
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 30px;
+  text-align: center;
+  color: #fff;
+}
+
+/* For Desktop View */
+
+
+

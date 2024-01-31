@@ -1,0 +1,157 @@
+<style>
+  .bgimg {
+  //background: url('/src/assets/img/Mulk E Health A4-01 1.png');
+    background-color:white;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+  }
+</style>
+
+<ion-menu contentId="mycontent">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>
+        <ion-row>
+          <ion-col col-2 class="dash-header">
+            <img class="himg" *ngIf="user1.userImage==undefined && user1?.userGenderId?.genderId == 1" src="assets/img/MaleIcon.png">
+            <img class="himg" *ngIf="user1.userImage==undefined && user1?.userGenderId?.genderId == 2" src="assets/img/FemaleIcon.png">
+            <img class="himg" *ngIf="user1?.userImage !=undefined" src="{{userImage}}">
+          </ion-col>
+          <ion-col col-10 class="dash-header2">
+            <h6 style="font-weight: bold; margin-top: 13px; font-size: 18px;">
+              Hello
+            </h6>
+            <h6 style="font-weight: bold; margin-top: 13px; font-size: 15px;">
+              {{user1?.userTitleId?.titleName}} {{user1.userFirstname}} {{user1.userLastname}}
+            </h6>
+            <h6 style="font-size: 13px; margin: 1px auto; font-weight: 500;">{{user1.userName}}</h6>
+          </ion-col>
+        </ion-row>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="bgimg">
+    <h5 menuClose (click)="Dashboard()" class="menu" style="margin-top: 10px;">
+      <span class="spans"><img src="assets/img/icons/Dashboard 1_1.png"></span>Dashboard
+    </h5>
+    <hr>
+    <h5 menuClose (click)="Dashboard()" class="menu" style="margin-top: 10px;">
+      <span class="spans"><img src="assets/img/icons/3d-contact.png"></span>Contacts
+    </h5>
+    <hr>
+    <h5 menuClose (click)="complaint()" class="menu">
+      <span class="spans"><img src="assets/img/icons/sticky-notes.png"></span>Notes
+    </h5>
+
+    <hr>
+    <!--
+    -->
+    <hr>
+    <h5 menuClose (click)="complaint()" class="menu">
+      <span class="spans"><img src="assets/img/icons/key.png
+"></span>Settings
+    </h5>
+    <hr>
+    <h5 menuClose (click)="complaint()" class="menu">
+      <span class="spans"><img src="assets/img/icons/notification.png"></span>Notifications
+    </h5>
+
+    <hr>
+    <h5 menuClose (click)="complaint()" class="menu">
+      <span class="spans"><img src="assets/img/icons/privacy-policy.png"></span>Privacy Policy
+    </h5>
+    <hr>
+    <h5 menuClose (click)="complaint1()" class="menu">
+      <span class="spans"><img src="assets/img/icons/feedback-icon.png"></span>Send Feedback
+    </h5>
+    <!--<hr>-->
+    <!--<h5 menuClose (click)="BookanAppointmentFilter()" class="menu">-->
+      <!--<span class="spans"><img src="assets/img/icons/My Appointment_1.png"></span>Book An Appointment-->
+    <!--</h5>-->
+    <!--<hr>-->
+    <!--<hr>-->
+    <!--<h5 menuClose (click)="MyAppointment()" class="menu">-->
+      <!--<span class="spans"><img src="assets/img/icons/My Appointment_1.png"></span>My Appointment-->
+    <!--</h5>-->
+    <!--<hr>-->
+    <!--<h5 menuClose (click)="MyConsultation()" class="menu">-->
+      <!--<span class="spans"><img src="assets/img/icons/My Consultation_1.png"></span>My EMR-->
+    <!--</h5>-->
+
+    <!--<h5 menuClose (click)="MyPrescription()" class="menu">-->
+      <!--<span class="spans"><img src="assets/img/icons/My Prescription.jpg"></span>My Prescription-->
+    <!--</h5>-->
+    <!--<hr>-->
+
+    <!--<hr>-->
+    <!--<h5 menuClose (click)="LabReports()" class="menu">-->
+      <!--<span class="spans"><img src="assets/img/icons/My Lab Reports.jpg"></span> Laboratory-->
+    <!--</h5>-->
+    <!--<h5 menuClose (click)="Radiology()" class="menu">-->
+      <!--<span class="spans"><img src="assets/img/icons/My Radiology-new.png"></span> Radiology-->
+    <!--</h5>-->
+    <!--<hr>-->
+    <!--<h5 menuClose (click)="complaint()" class="menu">-->
+      <!--<span class="spans"><img src="assets/img/icons/notepad.png"></span>Inquiry-->
+    <!--</h5>-->
+    <!--<hr>-->
+    <!--&lt;!&ndash;<h5 menuClose (click)="MulkMedPrivilegeCard()" class="menu">&ndash;&gt;-->
+      <!--&lt;!&ndash;<span class="spans"><img src="assets/img/icons/mulkmed_privilagesCard.jpeg"></span>Mulk HnH Privilege Card&ndash;&gt;-->
+    <!--&lt;!&ndash;</h5>&ndash;&gt;-->
+    <!--<hr>-->
+    <!--<h5 menuClose (click)="Inquiry1()" class="menu">-->
+      <!--<span class="spans"><img src="assets/img/icons/medicin.jpeg"></span>Buy Medicines Online-->
+    <!--</h5>-->
+    <!--<hr>-->
+    <!--<h5 menuClose (click)="physuitherpy()" class="menu">-->
+      <!--<span class="spans"><img src="assets/img/icons/surgery.jpeg"></span>Surgeries-->
+    <!--</h5>-->
+    <!--<hr>-->
+    <div class="flex">
+      <img src="assets/img/mulkmed logo.png" style="height: 70px; text-align: center; display: block; margin: 0 15px;">
+      <div class="whiteclass margin-bottom-zero content-center" style="margin-top: 30px; align-items: center;">
+        <p >Contact Us</p>
+        <p>Setu</p>
+        <!--<p>Business Village, Dubai</p>-->
+        <!--<p (click)="GoToMulkMed()">www.mulkmed.com</p>-->
+        <!--<p (click)="supportMail()">support@mulkmed.com</p>-->
+        <!--<p  (click)="goToCallDialLiveDocCons()">00 971 569337544</p>-->
+        <!--&lt;!&ndash;<p  (click)="goToCallDialLiveDocCons()"> 00 971 42434555</p>&ndash;&gt;-->
+        <!--<p (click)="goToCallDialLiveDocCons_()">00 971 42434555</p>-->
+      </div>
+    </div>
+  </ion-content>
+</ion-menu>
+
+<div class="ion-page" id="mycontent">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title style="text-align: center">Dashboard</ion-title>
+      <ion-icon name="ellipsis-vertical-outline" id="popover-button" slot="end" style="margin-right: 10px"></ion-icon>
+      <ion-popover trigger="popover-button" [dismissOnSelect]="true" side="end"  position="bottom">
+        <ng-template>
+          <ion-list>
+            <ion-item [button]="false" [detail]="false" (click)="Profile()">Profile</ion-item>
+            <ion-item [button]="false" [detail]="false" (click)="Changepassword()">Change Password</ion-item>
+            <ion-item [button]="false" [detail]="false" (click)="Logout()" >Logout</ion-item>
+          </ion-list>
+        </ng-template>
+      </ion-popover>
+    </ion-toolbar>
+
+  </ion-header>
+  <ion-content class="ion-padding"> <ion-nav id="nav" [root]="rootPage" #mycontent swipeBack="true"></ion-nav></ion-content>
+</div>
+
+
+
+
+
+
+
+

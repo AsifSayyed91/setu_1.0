@@ -1,0 +1,210 @@
+page-dashboard {
+  .toolbar-title-md {
+    padding: 0 1px !important;
+    font-size: 25px !important;
+    font-weight: 500 !important;
+    margin-left: 10px !important;
+
+  }
+
+  .content-md {
+    color: #000;
+    background-color: transparent;
+  }
+
+  .all {
+    padding: 5px;
+    text-align: left;
+    color: #4876c6;
+    font-size: 13px;
+    background: #ccccccb3;
+  }
+
+  .mar_table {
+    margin: 10px 5px 0px 5px
+  }
+
+  .border {
+    border: 0px solid #abaaaa;
+  }
+
+  table, th, td {
+    border: 1px solid #cccccc;
+    font-size: 12px;
+    border-collapse: collapse;
+  }
+
+  .nav-item .nav-link .badge {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -16px;
+    margin-left: 0;
+  }
+  td {
+    padding: 5px;
+    text-align: left;
+  }
+  th {
+    padding: 5px;
+    text-align: center;
+  }
+
+  .tables {
+    margin: 10px 10px;
+    border: 1px solid #abaaaa;
+  }
+
+  .border-bottom {
+    border-bottom: 1px solid #abaaaa;
+  }
+
+  .border-right {
+    border-right: 1px solid #abaaaa;
+  }
+
+  /* Define what each icon button should look like */
+  .button {
+    color: white;
+    font-size: 20px;
+    padding: 5px 10px;
+    display: inline-block; /* Inline elements with width and height. TL;DR they make the icon buttons stack from left-to-right instead of top-to-bottom */
+    position: relative; /* All 'absolute'ly positioned elements are relative to this one */
+    padding: 2px 5px; /* Add some padding so it looks nice */
+  }
+
+  /* Make the badge float in the top right corner of the button */
+  .button__badge {
+    background-color: #fa3e3e;
+    border-radius: 2px;
+    color: white;
+    padding: 1px 3px;
+    font-size: 10px;
+    position: absolute; /* Position the badge within the relatively positioned button */
+    top: 0;
+    right: 0;
+  }
+  .lab {
+    background: #f2dfa7;
+    padding: 5px;
+    margin-top: -40px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .backs {
+    width: 100%;
+    height: 140px;
+    margin: 2px auto;
+    display: block;
+  }
+
+  .backsearch img {
+    width: 100%;
+    margin: 2px auto;
+    display: block;
+  }
+
+  .backs .text {
+    position: absolute;
+    z-index: 999;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    text-align: right;
+    top: 12%;
+    font-family: Arial, sans-serif;
+    color: #000;
+    width: 80%;
+  }
+}
+
+
+
+.wt {
+  width: 100%;
+}
+
+/*.content-ios {
+color: #000;
+!* background-color: #fff; *!
+}*/
+
+#list {
+  color: #2883eb;
+  font-size: 15px;
+}
+
+#list1 {
+  color: #2883eb;
+  font-size: 15px;
+}
+
+ion-card img {
+  text-align: center;
+  margin: 0px auto;
+  width: 85%;
+  display: block;
+}
+
+.row {
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+}
+
+.bg1img {
+  width: 161px;
+  height: 134px;
+  margin: 24px -30px;
+}
+
+.exploreService {
+  float: left;
+  margin-top: 13px;
+  width: 130px;
+  height: 175px;
+  margin: 15px -11px;
+}
+
+/*.bgimg{
+  align-content: center;
+}*/
+
+.bgimg {
+  margin: auto;
+  //width: 50%;
+  //border: 3px solid green;
+  padding: 10px;
+}
+.whatsapp{
+  position: relative;
+  bottom: 0px;
+  right: 20px;
+}
+
+.phone{
+  position: relative;
+  bottom: 0px;
+  left: 20px;
+}
+.flex{
+  display: flex;
+}
+.auto-align-item{
+  display: flex;
+  justify-content: space-around;
+}
+.blink {
+  animation: 2s linear infinite condemned_blink_effect;
+}
+
+@keyframes condemned_blink_effect {
+  0% {
+    visibility: hidden;
+  }
+  50% {
+    visibility: hidden;
+  }
+  100% {
+    visibility: visible;
+  }
+}

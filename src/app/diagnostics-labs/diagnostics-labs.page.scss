@@ -1,0 +1,200 @@
+ .toolbar-title-md {
+    padding: 0 1px !important;
+    font-size: 25px !important;
+    font-weight: 500 !important;
+    margin-left: 10px !important;
+
+  }
+
+  .content-md {
+    color: #000;
+    background-color: transparent;
+  }
+
+  .all {
+    padding: 5px;
+    text-align: left;
+    color: #4876c6;
+    font-size: 13px;
+    background: #ccccccb3;
+  }
+
+  .mar_table {
+    margin: 10px 5px 0px 5px
+  }
+
+  .border {
+    border: 0px solid #abaaaa;
+  }
+
+  table, th, td {
+    border: 1px solid #cccccc;
+    font-size: 12px;
+    border-collapse: collapse;
+  }
+
+  .nav-item .nav-link .badge {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -16px;
+    margin-left: 0;
+  }
+  td {
+    padding: 5px;
+    text-align: left;
+  }
+  th {
+    padding: 5px;
+    text-align: center;
+  }
+
+  .tables {
+    margin: 10px 10px;
+    border: 1px solid #abaaaa;
+  }
+
+  .border-bottom {
+    border-bottom: 1px solid #abaaaa;
+  }
+
+  .border-right {
+    border-right: 1px solid #abaaaa;
+  }
+
+  /* Define what each icon button should look like */
+  .button {
+    color: white;
+    font-size: 20px;
+    padding: 5px 10px;
+    display: inline-block; /* Inline elements with width and height. TL;DR they make the icon buttons stack from left-to-right instead of top-to-bottom */
+    position: relative; /* All 'absolute'ly positioned elements are relative to this one */
+    padding: 2px 5px; /* Add some padding so it looks nice */
+  }
+
+  /* Make the badge float in the top right corner of the button */
+  .button__badge {
+    background-color: #fa3e3e;
+    border-radius: 2px;
+    color: white;
+    padding: 1px 3px;
+    font-size: 10px;
+    position: absolute; /* Position the badge within the relatively positioned button */
+    top: 0;
+    right: 0;
+  }
+  .lab {
+    background: #f2dfa7;
+    padding: 5px;
+    margin-top: -40px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .backs img {
+    width: 95%;
+    margin: 2px auto;
+    display: block;
+  }
+
+  .backsearch img {
+    width: 95%;
+    margin: 2px auto;
+    display: block;
+  }
+
+  .backs .text {
+    position: absolute;
+    z-index: 999;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    text-align: right;
+    top: 12%;
+    font-family: Arial, sans-serif;
+    color: #000;
+    width: 80%;
+  }
+
+
+.content-md {
+  color: #000;
+  background-color: transparent;
+}
+
+.form-control {
+  display: block;
+  width: 90% !important;
+  margin: 0px auto !important;
+  height: 35px !important;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+}
+
+.labtext {
+  color: whitesmoke;
+  font-size: 10px;
+  margin-bottom: 6px;
+  margin-top: 5px;
+  margin-left: 18px;
+}
+
+.wt {
+  width: 100%;
+}
+
+.search {
+  border-radius: 20px !important;
+  font-size: 17px;
+}
+
+.bg3 {
+  background-color: #28D0F4;
+  color: #ffffff;
+}
+
+.toolbar-title-md {
+  padding: 0 1px !important;
+  font-size: 25px !important;
+  font-weight: 500 !important;
+  margin-left: 10px !important;
+
+}
+
+.boxes {
+  background-color: #ffffff;
+  border-radius: 30px;
+  height: 263px;
+  width: 330px;
+  margin: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mri {
+  background: #28D0F4;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+.radiology {
+  color: whitesmoke;
+  font-weight: bold;
+  margin-left: 100px;
+}
+.bgimg {
+  background: url('/src/assets/img/Mulk E Health A4-01 1.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}

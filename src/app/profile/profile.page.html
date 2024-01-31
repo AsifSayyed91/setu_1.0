@@ -1,0 +1,373 @@
+<style type="text/css">
+  .bgimg {
+    background: url('assets/img/Mulk E Health A4-01 1.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+  }
+</style>
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="text-align: center">My Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="bgimg">
+  <div style="display: grid;justify-content: center">
+  <div class="container" style=" background-color: #ffffff;
+  border-radius: 30px;
+  height: 263px;
+  width: 355px;
+  margin: 20px;" *ngIf="profile">
+    <div *ngIf="profile">
+      <!--<div class="xyz">-->
+      <!--<h6 style="padding: 0px; margin-left: 20px"> My Profile</h6>-->
+      <!--</div>-->
+      <ion-row style="margin-right: 0px;margin-right: 0px">
+        <ion-col col-4
+                 style="flex-basis: 0;-ms-flex-positive: 1;flex-grow: 1;padding-left: 10px;max-width: 35%;margin-left: 10px;padding: 0px; ! important">
+          <div *ngIf="loginUser?.userGenderId?.genderName=='Male'">
+            <div class="topborder" style="padding-top: 16px;">
+              <img *ngIf="loginUser.userImage == undefined" class="avatar" src="assets/img/MaleIcon.png">
+              <img *ngIf="loginUser.userImage != undefined" type="file" style="border-radius: 0px;" class="avatar"
+                   [src]="userImage">
+            </div>
+          </div>
+          <div *ngIf="loginUser?.userGenderId?.genderName=='Female'">
+            <div class="topborder" style="padding-top: 16px;">
+              <img *ngIf="loginUser?.userImage == undefined" class="avatar" src="assets/img/FemaleIcon.png">
+              <img *ngIf="loginUser?.userImage != undefined" type="file" class="avatar" style="border-radius: 0px;"
+                   [src]="userImage">
+            </div>
+          </div>
+          <h5 style="font-size: 13px;font-weight: 400;display: block;text-align: center;margin: 10px auto;"><b></b>
+          </h5>
+        </ion-col>
+        <ion-col col-7 style="text-align: left;padding: 0px; ! important;margin-left: -10px;padding-top: 16px;">
+          <h3>{{loginUser?.userTitleId?.titleName}} {{loginUser?.userFirstname}} {{loginUser?.userLastname}}</h3>
+          <h5><b>UserName : </b> {{loginUser?.userName}} </h5>
+          <h5><b>DOB : </b> {{loginUser?.userDob}} </h5>
+          <h5><b>Age : </b> {{loginUser?.userAge}} Years <b> Gender : </b> {{loginUser?.userGenderId?.genderName}} </h5>
+          <h5><b>Mobile : </b> {{loginUser?.userMobile}}</h5>
+          <h5><b>Email : </b> {{loginUser?.userEmail}}</h5>
+          <!--<h5><b>Blood Group : </b> {{loginUser?.userBloodgroupId?.bloodgroupName}}</h5>-->
+        </ion-col>
+      </ion-row>
+
+
+      <!--<ion-row >
+      <ion-col col-6>
+      </ion-col>
+      <ion-col col-6>
+      <button style="background-color: #28D0F4;border-radius: 10px;" (click)="ViewAddress(loginUser,'ADDRESS EDIT',1)">Edit Profile</button>
+      </ion-col>
+      </ion-row>-->
+
+
+      <div style="color: #fff; margin: 5px auto;">
+        <ion-row style="padding-top: 15px;">
+          <ion-col col-8 style="padding: 0px; margin-left: 20px">
+            <h6 class="font"> Address</h6>
+          </ion-col>
+          <ion-col col-4 item-end>
+            <button style="background-color: #28D0F4;border-radius: 10px;"
+                    (click)="ViewAddress(loginUser,'ADDRESS EDIT',1)"> Edit Details
+            </button>
+            <ion-icon style="text-align: right; display: block;color: #cc5708" ios="ios-create" md="md-create"
+                      (click)="ViewAddress(loginUser,'ADDRESS EDIT',1)"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <hr style="background-color: whitesmoke;margin-bottom: 0px;margin-top: 0px;">
+
+      <ion-row style="margin-left: 0px; margin-right: 0px">
+        <ion-col col-12>
+          <h4 class="h41">
+            {{loginUser?.userAddress}} {{loginUser?.userCityId?.cityName}}
+            {{loginUser?.userCityId?.cityStateId?.stateName}}
+            {{loginUser?.userCityId?.cityStateId?.stateCountryId?.countryName}} {{loginUser?.userPincode}}
+          </h4>
+        </ion-col>
+      </ion-row>
+
+      <div class="xyz">
+        <ion-row style="padding-top: 15px;">
+          <ion-col col-8 style="padding: 0px; margin-left: 20px">
+            <u><h6 class="font"> Identification</h6></u>
+          </ion-col>
+          <ion-col col-4 item-end>
+            <ion-icon style="text-align: right; display: block;color: #cc5708" ios="ios-create" md="md-create"
+                      (click)="ViewAddress(loginUser,'IDENTIFICATION EDIT',3)"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </div>
+      <hr style="background-color: whitesmoke;margin-bottom: 0px;margin-top: 0px;">
+
+      <ion-row style="margin-left: 0px; margin-right: 0px">
+        <ion-col col-5>
+          <h4 class="h41"><b>{{loginUser?.userNationalityId?.nationalityName}}</b></h4>
+        </ion-col>
+        <ion-col col-5>
+          <h4 class="h41">{{loginUser?.userUid}}</h4>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-left: 0px; margin-right: 0px">
+        <ion-col col-4>
+        </ion-col>
+        <ion-col col-6 *ngIf="loginUser?.userUid != undefined">
+          <div (click)="ViewImage(loginUser?.userIdDocFp,'VIEW ID CARD')"><img
+            src="assets/mulk/VIEWID.png"></div>
+        </ion-col>
+      </ion-row>
+
+      <div class="xyz">
+        <ion-row>
+          <ion-col col-8 style="padding: 0px; margin-left: 20px">
+            <u><h6 class="font"> Insurance Details</h6></u>
+          </ion-col>
+          <ion-col col-4 item-end>
+            <div (click)="ViewAddress(loginUser,'UPDATE INSURANCE DETAILS',2)"><img
+              src="assets/mulk/ADDUPDATE.png">
+            </div>
+          </ion-col>
+        </ion-row>
+      </div>
+
+
+      <!-- <ion-row style="margin-left: 0px; margin-right: 0px">
+       <ion-col col-5>
+       <h4 class="h41"><b>Passport no:</b></h4>
+       </ion-col>
+       <ion-col col-5>
+       <h4 class="h41">FF8764212</h4>
+       </ion-col>
+       </ion-row>
+
+       <ion-row style="margin-left: 0px; margin-right: 0px;padding-top: 15px;">
+       <ion-col col-5>
+       <h4 class="font"><b>Insurance Company</b></h4>
+       </ion-col>
+       <ion-col col-5>
+       <h4 class="h41">{{loginUser?.userInsuranceId?.companyName}}</h4>
+       </ion-col>
+       </ion-row>-->
+
+      <hr style="background-color: whitesmoke;margin-bottom: 0px;margin-top: 0px;">
+
+      <div *ngIf="loginUser?.userInsuranceCardNo != null">
+        <ion-row style="margin-left: 0px; margin-right: 0px">
+          <ion-col col-5>
+            <h4 class="font2"><b>Insurance Company</b></h4>
+          </ion-col>
+          <ion-col col-5>
+            <h4 class="font2">{{loginUser?.userInsuranceId?.companyName}}</h4>
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row style="margin-left: 0px; margin-right: 0px">
+          <ion-col col-5>
+            <h4 class="font2"><b>CARD NO </b></h4>
+          </ion-col>
+          <ion-col col-5>
+            <h4 class="font2">{{loginUser?.userInsuranceCardNo}}</h4>
+          </ion-col>
+        </ion-row>
+
+        <ion-row style="margin-left: 0px; margin-right: 0px">
+          <ion-col col-5 style="max-width: 48%">
+          </ion-col>
+          <ion-col col-5>
+            <div (click)="ViewImage(loginUser?.userInsuranceCardFp,'VIEW INSURANCE CARD')"><img
+              src="assets/mulk/VIEWIC.png">
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row style="margin-left: 0px; margin-right: 0px">
+          <ion-col col-5>
+            <h4 class="font2"><b>Issue Date</b></h4>
+          </ion-col>
+          <ion-col col-5>
+            <h4 class="font2">{{loginUser?.userInsuranceDateOfIssue}}</h4>
+          </ion-col>
+        </ion-row>
+
+        <ion-row style="margin-left: 0px; margin-right: 0px">
+          <ion-col col-5>
+            <h4 class="font2"><b>Expiry Date:</b></h4>
+          </ion-col>
+          <ion-col col-5>
+            <h4 class="font2">{{loginUser?.userInsuranceDateOfExp}}</h4>
+          </ion-col>
+        </ion-row>
+
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="Address" padding>
+    <form [formGroup]="Addressform" (ngSubmit)="onAddressform(Addressform.value)">
+      <div class="input-group mb-3" style="margin-bottom: 10px !important;">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><strong>Address</strong></span>
+        </div>
+        <input type="text" class="form-control" placeholder="Address" [formControl]="Addressform.controls['address']"
+               autocomplete="address" title="User Address">
+      </div>
+
+      <div class="input-group mb-3" style="margin-bottom: 10px !important;">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><strong>PINCODE/P.O.Box No.</strong></span>
+        </div>
+        <input type="number" [formControl]="Addressform.controls['pincode']" class="form-control" placeholder="Pincode"
+               autocomplete="pincode">
+      </div>
+
+
+      <div class="input-group mb-3" style="margin-bottom: 10px !important;">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><strong>Country</strong></span>
+        </div>
+        <select #country [formControl]="Addressform.controls['countryId']" title="Select Country" class="form-control"
+                (change)="selectCountry(country.value)">
+          <option value="0">Select Country</option>
+          <option *ngFor="let res of countrylist" [value]=res.countryId>
+            {{res.countryName}}
+          </option>
+        </select>
+      </div>
+
+      <div class="input-group mb-3" style="margin-bottom: 10px !important;">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><strong>State</strong></span>
+        </div>
+        <select #state [formControl]="Addressform.controls['stateId']" (change)="selectState(state.value)"
+                title="Select State" class="form-control">
+          <option value="0">Select State</option>
+          <option *ngFor="let res of statelist" [value]=res.stateId>
+            {{res.stateName}}
+          </option>
+        </select>
+      </div>
+
+
+      <div class="input-group mb-3" style="margin-bottom: 10px !important;">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><strong>City</strong></span>
+        </div>
+        <select #city [formControl]="Addressform.controls['city']" title="Select City" class="form-control"
+                (change)="selectCity(city.value)">
+          <option value="0">Select City</option>
+          <option *ngFor="let res of citylist" [value]=res.cityId>
+            {{res.cityName}}
+          </option>
+        </select>
+      </div>
+      <div style="display: block;text-align: center;">
+        <button class="default" type="submit"> UPDATE ADDRESS DETAILS</button>
+      </div>
+    </form>
+  </div>
+
+  <div *ngIf="Insurance" padding>
+    <form [formGroup]="Insuranceform" (ngSubmit)="onInsurance(Insuranceform.value)">
+      <div class="input-group mb-3" style="margin-bottom: 15px !important;">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><strong>Insurance Company</strong></span>
+        </div>
+        <select title="Insurance company" class="form-control"
+                [formControl]="Insuranceform.controls['userInsuranceId']">
+          <option value="0" disabled>Select Insurance Company</option>
+          <option *ngFor="let company of mstCompanyList" [value]=company.companyId>{{company.companyName}}
+          </option>
+        </select>
+      </div>
+
+      <div class="input-group mb-3" style="margin-bottom: 15px !important;">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><strong>Card No.</strong></span>
+        </div>
+
+        <input class="form-control" placeholder="" [formControl]="Insuranceform.controls['userInsuranceCardNo']"
+               autocomplete="Pid" title="Card No">
+      </div>
+
+      <div class="input-group mb-3" style="margin-bottom: 23px !important;">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><strong>Date Of Issue</strong></span>
+        </div>
+        <!--(change)="selectedInsuranceDateOfIssue($event)"-->
+        <input type="date" class="form-control" [formControl]="Insuranceform.controls['userInsuranceDateOfIssue']"
+               placeholder="userInsuranceDateOfIssue" title="Date of Issue" [(ngModel)]='InsuranceDateIssue'>
+      </div>
+
+      <div class="input-group mb-3" style="margin-bottom: 23px !important;">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><strong>Date Of Expiry</strong></span>
+        </div>
+        <!--(change)="selectedInsuranceDateOfExp($event)"-->
+        <input type="date" class="form-control" [formControl]="Insuranceform.controls['userInsuranceDateOfExp']"
+               placeholder="userInsuranceDateOfExp" title="Date of Expire" [(ngModel)]='InsuranceDateOfExp'>
+      </div>
+
+      <div class="input-group mb-3" style="margin-bottom: 23px !important;">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><strong>Upload Insurance Card(Front Page)</strong></span>
+        </div>
+        <input id="file" type="file" title="Upload Insurance Card Front Page" class="form-control"
+               (change)="uploadInssCardFp($event)">
+      </div>
+      <div style="display: block;text-align: center;">
+        <button class="default" type="submit"> UPDATE INSURANCE DETAILS</button>
+      </div>
+    </form>
+  </div>
+
+  <div *ngIf="Identification" padding>
+    <form [formGroup]="registration" (ngSubmit)="onRegisterRecord(registration.value)">
+      <div class="input-group mb-3" style="margin-bottom: 10px !important;">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><strong>ID Doc</strong></span>
+        </div>
+        <select #nationality title="Identification Type" [formControl]="registration.controls['userNationalityId']"
+                (change)="onSelectNatinality(nationality.value)" class="form-control">
+          <option value="0" disabled>Nationality</option>
+          <option *ngFor="let mstNationality of nationalityList" [value]=mstNationality.nationalityId>
+            {{mstNationality.nationalityName}}
+          </option>
+        </select>
+      </div>
+
+      <div class="input-group mb-3" style="margin-bottom: 10px !important;">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><strong>ID No</strong></span>
+        </div>
+        <input class="form-control" [placeholder]="nationalityName" autocomplete="Pid" title="Emirates ID"
+               [formControl]="registration.controls['userUid']" #sekey>
+      </div>
+
+      <div class="input-group mb-3" style="margin-bottom: 15px !important;">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><strong>Upload ID Document (Front Page)</strong></span>
+        </div>
+        <input id="file" type="file" title="Upload Identification Document Front Page" class="form-control"
+               (change)="uploadIdentifyDocFp($event)">
+      </div>
+
+      <div style="display: block;text-align: center;">
+        <button class="default" type="submit">UPDATE IDENTIFICATION DETAILS</button>
+      </div>
+
+    </form>
+  </div>
+  </div>
+</ion-content>

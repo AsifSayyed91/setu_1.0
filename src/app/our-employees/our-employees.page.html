@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar class="bar">
+    <ion-buttons start left>
+      <div ion-button show menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </div>
+    </ion-buttons>
+    <label class="label-titles">Our Employees</label>
+    <!--<ion-buttons end>
+      <div ion-button icon-only (click)="popoverMenu($event)">
+        <ion-icon name="more"></ion-icon>
+      </div>
+    </ion-buttons>-->
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="bgimg">
+
+  <ion-refresher label="Start" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+
+  <ion-row>
+    <ion-col>
+      <img src="assets/mulk/prescription/My_Prescription1.png" class="img">
+    </ion-col>
+  </ion-row>
+
+  <ion-grid>
+    <ion-row>
+      <ng-container *ngFor="let employees of employeeList;">
+        <ion-col class="col-12" style="padding: 5px" >
+          <ion-card style="background-color:#ebebeb;border-radius:10px;height: 84%;">
+            <ion-item style="padding: 0px!important;">
+              <p><b>Date : </b> {{employees?.createdDate | date:'dd-MM-yyyy'}} </p>
+              <p><b>Employee Name : </b> {{employees?.employeeName}}</p>
+              <p><b>Mobile Number : </b> {{employees?.mobile}} </p>
+              <p><b>Email : </b> {{employees?.email}} </p>
+              <p><b>Address : </b> {{employees?.address}} </p>
+              <span (click)="employeeView(employees.employeeId)" item-end>
+                  <img style="color:#fff;margin: 0px auto;width: 104%;display: block;margin-top: 33px;"
+                       src="assets/img/icons/prescription.png"></span>
+              <ion-button (click)="onDeleteRecord(employees.employeeId)"
+                      class="btn btn-danger btn-xs"><i
+                class="fa fa-minus-circle"></i></ion-button>
+            </ion-item>
+          </ion-card>
+        </ion-col>
+      </ng-container>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

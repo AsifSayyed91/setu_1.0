@@ -1,0 +1,117 @@
+
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/explore-services"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Chronic Disease Management</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content class="bgimg">
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div style="background-color: black">
+          <img src="assets/mulk/explore/Diseases all in One (2).png" class="img-responsive" id="left1"
+               style=" margin-left: 12%;width:50%;height: 30%;display: block;text-align: center;
+               margin: 10px auto;">
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <form class="pd-10" id="chronicForm" autocomplete="off"
+        [formGroup]="chronicPatient" (ngSubmit)="onAddRecord(chronicPatient.value)">
+
+    <div class="input-group mb-3" style=" margin-left: 12%;width: 81%;height: 93%;display: block;text-align: center;
+               margin: 10px auto;border: 0px solid #d67810;">
+
+      <h6 style=" font-size: 20px;text-align: center"><ion-label for="chronic">Chronic Disease Name</ion-label>
+      </h6>
+
+      <ion-select id="chronic" title="Select Chronic" class="form-control" required
+                  style="text-align:center; border: 1px solid black; border-radius: 10px "
+                  [formControl]="chronicPatient.get('chronicDiseasId').get('chronicDiseasId')">
+        <ion-select-option value="0" required>Select Disease</ion-select-option>
+        <ion-select-option *ngFor="let chronic of chronicDeasisList" required value="{{chronic.chronicDiseasId}}">{{chronic.chronicDeasisName}}
+        </ion-select-option>
+      </ion-select>
+
+    </div>
+
+    <h6 style="font-size: 20px;text-align: center">Enquiry</h6>
+
+
+    <div class="row" style="margin-top: 5px;">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <div class="row" style="padding-right: 5%;padding-left: 5%; ">
+          <ion-textarea class="form-control new-form-control" id="enquiry"
+                        name="enquiry" required="" formControlName="enquiry"
+                        [formControl]="chronicPatient.controls['enquiry']"
+          style="background-color: white; border: 1px solid black; border-radius: 10px">
+          </ion-textarea>
+        </div>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+    <br>
+
+
+
+    <ion-button type="submit" expand="block" style="padding-right: 5%;padding-left: 5%;color: black" class="btn btn-primary px-4" value="Submit" >Submit
+    </ion-button>
+
+    <div>
+      <img src="assets/mulk/explore/mulk_balansio_application.png" class="img-responsive center"style="height: 30%;width: 30%;margin-left: 35%; alignment: center">
+    </div>
+    <ion-row>
+      <ion-col class="col-12" *ngIf="isIOS === true">
+        <a href="https://apps.apple.com/ae/app/mulk-e-health-balansio/id1575720570">
+          <img src="assets/mulk/explore/appstore.jpg" class="img-responsive" style="width: 50%;margin: auto 25%;">
+        </a>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="col-12" *ngIf="isAndroid === true">
+        <a href="https://play.google.com/store/apps/details?id=com.prowellness.balansio.mulk">
+          <img src="assets/mulk/explore/google play.jpg" class="img-responsive"style="width:50%;margin:auto 20%;">
+        </a>
+      </ion-col>
+    </ion-row>
+
+
+  </form>
+
+
+
+  <div *ngIf="!pagination">
+    <ion-list class="m-n">
+      <ion-item no-lines *ngFor="let i of paginationArray">
+        <skeleton-item height="8px" width="90%"></skeleton-item>
+        <skeleton-item height="6px" width="70%"></skeleton-item>
+        <skeleton-item height="6px" width="70%"></skeleton-item>
+        <ion-avatar item-end>
+          <skeleton-item height="50px" width="50px"></skeleton-item>
+        </ion-avatar>
+      </ion-item>
+    </ion-list>
+  </div>
+
+</ion-content>

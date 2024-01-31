@@ -1,0 +1,132 @@
+.bgimg {
+  background: url('/src/assets/img/Mulk E Health A4-01 1.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+
+  .toolbar-title-md {
+    padding: 0 12px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #424242;
+  }
+  .title_name {
+    background-color: #9e66f9;
+  }
+  .title {
+    font-size: 14px;
+    color: #fff;
+    font-weight: 500;
+    padding: 10px 15px;
+  }
+
+  .item-input .label-md, .item-select .label-md, .item-datetime .label-md {
+    color: #000;
+    font-size: 13px;
+  }
+  .label {
+    font-size: 17px;
+    font-weight: bold;
+    color: #ffffff;
+    padding-top: 0px !important;
+  }
+
+  ion-footer {
+    left: 0;
+    bottom: 0;
+    position: absolute;
+    z-index: 10;
+    display: block;
+    width: 100%;
+    height: 27px;
+  }
+
+  .ngx-pagination {
+    margin-left: 0;
+    margin-bottom: 2rem;
+    padding: 0px;
+  }
+
+  .text-input-md {
+    margin: 13px 8px;
+    font-size: 13px;
+    padding: 0;
+    color: #999;
+    width: calc(100% - 8px - 8px);
+  }
+
+  .select-md {
+    padding: 13px 8px 13px 16px;
+    font-size: 13px;
+  }
+  .ellipsis {
+    //white-space: nowrap;
+    //width: 50px;
+    //overflow: hidden;
+    //text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 11px;
+  }
+
+  //.item-md [item-end] {
+  //  margin: 5px 5px 5px 5px;
+  //  background: #27a343;
+  //  color: #fff;
+  //  padding: 3px;
+  //  font-size: 12px;
+  //  width: 10%;
+  //}
+
+  .item-md h2 {
+    margin: 2px 0;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .item-md p {
+    margin: 0 0 2px;
+    overflow: inherit;
+    font-size: 11px;
+    line-height: normal;
+    text-overflow: inherit;
+    color: #666;
+  }
+
+  .item-md ion-icon[item-end] {
+    margin-left: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: #a7a2a2;
+    font-size: 20px;
+  }
+  .card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    width: 97% !important;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, .125);
+    border-radius: .25rem;
+  }
+  .card-md {
+    margin: 5px 5px 5px 5px !important;
+    width: 100%;
+    border-radius: 2px;
+    width: calc(100% - 20px);
+    font-size: 1.4rem;
+    background: #fff;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  }
+  .list-md > .item-block:last-child ion-label, .list-md > .item-block:last-child .item-inner, .list-md > .item-wrapper:last-child ion-label, .list-md > .item-wrapper:last-child .item-inner {
+    border-bottom: 0;
+    margin-left: 5px;
+  }
+

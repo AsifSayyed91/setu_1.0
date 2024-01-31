@@ -1,0 +1,165 @@
+
+<ion-header>
+  <ion-toolbar class="bar">
+    <ion-buttons start left>
+      <div ion-button show menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </div>
+    </ion-buttons>
+    <label class="label-titles">My Referral</label>
+    <!-- <ion-buttons end>
+       <div ion-button icon-only (click)="popoverMenu($event)">
+         <ion-icon name="more"></ion-icon>
+       </div>
+     </ion-buttons>-->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bgimg">
+  <ion-refresher label="Start" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-row>
+    <ion-col>
+      <img src="assets/mulk/prescription/My_Prescription1.png" class="img">
+    </ion-col>
+  </ion-row>
+
+  <form [formGroup]="myForm" (ngSubmit)="submit(myForm.value)">
+    <div class="row">
+      <div class="form-group col-sm-4">
+        <h6 style="color: white"><label for="name">Name</label></h6>
+        <input formControlName="name" id="name" type="text" placeholder="Document Name" class="form-control">
+      </div>
+
+      <div class="form-group col-sm-4">
+        <h6 style="color: white"><label for="file">File</label></h6>
+        <input formControlName="file" id="file" type="file" class="form-control"
+               (change)="onFileChange($event)">
+      </div>
+
+      <ion-row padding>
+        <h6 style="color: white"><label>Referral Type</label></h6>
+        <ion-col >
+          <input type="radio" formControlName='refferalType' name="refferalType"  value=435 (click)="onRefferalTypeSelect()"> <div style="color: white">Lab</div>
+        </ion-col>
+
+        <ion-col >
+          <input type="radio" formControlName='refferalType' name="refferalType" value=2  (click)="onRefferalTypeSelect()"> <div style="color: white">Radiology</div>
+        </ion-col>
+      </ion-row>
+
+      <div class="form-group col-sm-4">
+        <!--<h6 style="color: white"><label for="file">File</label></h6>-->
+        <ion-button type="submit" class="btn btn-primary px-4">
+          Upload
+        </ion-button>
+      </div>
+
+
+
+
+    </div>
+  </form>
+
+
+  <!--<ion-row>
+    <ion-button (click)="takephoto()" style="margin: 10px auto;
+    margin-right: 10px;" class="btn btn-primary" float-right>Upload Document</ion-button>
+  </ion-row>-->
+
+  <!-- <div *ngIf="!pagination">
+     <ion-list class="m-n">
+       <ion-item no-lines *ngFor="let i of [0,1,2,3,4,5,6,7]">
+         <skeleton-item height="8px" width="90%"></skeleton-item>
+         <skeleton-item height="6px" width="70%"></skeleton-item>
+         <skeleton-item height="6px" width="70%"></skeleton-item>
+         <ion-avatar item-end>
+           <skeleton-item height="50px" width="50px"></skeleton-item>
+         </ion-avatar>
+       </ion-item>
+     </ion-list>
+   </div>-->
+  <div *ngIf="pagination && myRefferalList.length == 0">
+    <img style="color:#fff;width: 20%;margin:0px auto;display: block;margin-top:50px;" src="assets/mulk/cpty.png">
+    <p><b
+      style="color:#fff;font-weight: bold; margin: 10px auto;display: block; text-align: center;font-size: 12px;font-family: monospace;">You
+      have no Referrals.</b></p>
+  </div>
+
+  <!--<div *ngIf="pagination  && temrDocumentUploadList.length >= 1">
+    <div *ngFor="let user of temrDocumentUploadList | paginate : config; let i=index">
+      <ion-card>
+        <ion-list>
+          <ion-item>
+            <p><b>Document Name : </b> {{user.duName}}</p>
+            <p><b>Date / Time : </b> {{user.createdDate | date}} / {{user.createdDate | date:'shortTime'}} </p>
+            <p><b>File Name : </b>{{user.duFileName}} </p>
+            <span item-end (click)="ViewImage(user.duFileName,'Upload Image View')"><img
+              src="assets/img/icons/viewupload.png"></span>
+          </ion-item>
+        </ion-list>
+      </ion-card>
+    </div>
+    <div style="text-align: left">
+      <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
+      <pagination-controls (pageChange)="getPage($event)" [id]="config.id"></pagination-controls>
+    </div>
+  </div>-->
+
+  <div *ngIf="pagination && myRefferalList.length >= 1">
+    <div *ngFor="let refferals of myRefferalList | paginate : config; let i=index" class="input-wrapper">
+      <ion-card style="padding: 0px!important;border-radius: 20px;">
+        <ion-item style="padding: 0px!important;" >
+          <div *ngIf="refferals?.refferalType == 435"><p ><b>Referral Type : </b>  Lab </p></div>
+          <div *ngIf="refferals?.refferalType == 2"><p ><b>Referral Type : </b>  Radiology </p></div>
+          <!--<div *ngIf="refferals?.duDcId?.dcId ==3 || refferals?.duDcId?.dcId == 435"><p ><b>Referral Type : </b>  Lab </p></div>-->
+          <!--<div *ngIf="refferals.duDcId.dcId == 435"><p ><b>Referral Type : </b>  Lab </p></div>-->
+          <!--<div *ngIf="refferals.refferalType == 0 && refferals?.duDcId?.dcId == 4"><p><b>Referral Type : </b> Radiology </p></div>-->
+          <!--<p><b>Date : </b> {{refferals?.createdDate | date:'dd-MM-yyyy'}} </p>-->
+          <p><b>Date : </b> {{refferals?.createdDate | date:'dd-MM-yyyy'}} </p>
+          <p><b>Doctor Name : </b> {{refferals?.doctorId?.staffUserId?.userFullname}}</p>
+          <p><b>Patient Name : </b> {{refferals.patientId?.patientUserId?.userName}} </p>
+          <p><b>Document Name : </b> {{refferals.duName}}</p>
+          <!-- <p><b>Refferal Letter : </b> {{refferals.refferalLetter}}</p>
+           <p><b>Document Name : </b> {{refferals.duName}}</p>-->
+          <!-- <p><b>File Name : </b>{{refferals.duFileName}} </p>-->
+          <!--<img style="color:#fff;width: 14%; margin: 0px 196px;display: block; margin-top: 9px;" src="assets/img/icons/pharmacy.png">-->
+          <span (click)="refferals_view(refferals?.myRefferalsId ,refferals?.refferalType)" item-end>
+                  <img style="color:#fff;margin: 0px auto;width: 104%;display: block;margin-top: 33px;"
+                       src="assets/img/icons/prescription.png"></span>
+        </ion-item>
+      </ion-card>
+    </div>
+    <div style="text-align: left;">
+      <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
+      <pagination-controls (pageChange)="getPage($event)" [id]="config.id"></pagination-controls>
+    </div>
+  </div>
+
+  <div *ngIf="refferal_type == 1">
+    <div *ngFor="let refferals of myRefferalListByLab.content ; let i=index" class="input-wrapper">
+      <ion-card style="padding: 0px!important;border-radius: 20px;">
+        <ion-item style="padding: 0px!important;">
+          <p><b>Date  : </b> {{refferals?.date | date:'dd-MM-yyyy'}} </p>
+          <p><b>Doctor Name : </b> {{refferals?.doctorId?.staffUserId?.userFullname}}</p>
+          <p><b>Patient Name : </b> {{refferals.patientId?.patientUserId?.userName}} </p>
+          <!--<p><b>Refferal Letter : </b> {{refferals.refferalLetter}}</p>-->
+          <p><b>Document Name : </b> {{refferals.duName}}</p>
+          <p *ngIf = "refferal_type == 1"><b>Referral Type : </b>  Lab </p>
+          <p *ngIf = "refferal_type == 0"><b>Referral Type : </b> Radiology </p>
+          <span (click)="refferals_view(refferals?.myRefferalsId ,refferals?.refferalType)" item-end>
+                  <img style="color:#fff;margin: 0px auto;width: 104%;display: block;margin-top: 33px;"
+                       src="assets/img/icons/prescription.png"></span>
+        </ion-item>
+      </ion-card>
+    </div>
+    <div style="text-align: left;">
+      <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
+      <pagination-controls (pageChange)="getPage($event)" [id]="config.id"></pagination-controls>
+    </div>
+  </div>
+
+
+</ion-content>
